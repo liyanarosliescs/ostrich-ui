@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import NavBar from './components/NavBar'
+import SignIn from './components/SignIn'
 class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <SignIn />
       </div>
     )
   }
