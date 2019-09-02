@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import signInImg from '../images/signInImg.jpg';
+import sideImg from '../images/sideImg.jpg';
 
 function Copyright() {
   return (
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(' + signInImg + ')',
+    backgroundImage: 'url(' + sideImg + ')',
     alt: 'Sign In',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
