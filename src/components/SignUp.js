@@ -3,6 +3,9 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -63,27 +66,15 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                id="login-email"
+                label="Login Email Address"
+                name="login-email"
+                autoComplete="login-email"
               />
             </Grid>
             <Grid item xs={12}>
@@ -91,10 +82,10 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="notification-email"
+                label="Notification Email Address"
+                name="notification-email"
+                autoComplete="notification-email"
               />
             </Grid>
             <Grid item xs={12}>
@@ -106,8 +97,51 @@ export default function SignUp() {
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                autoComplete="password"
               />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="confirm-password"
+                label="Confirm Password"
+                type="password"
+                id="confirm-password"
+                autoComplete="confirm-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="company-name"
+                label="Company Name"
+                name="company-name"
+                autoComplete="company-name"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <RadioGroup aria-label="position" name="position" row>
+              <Grid item xs={6}>
+                <FormControlLabel
+                  value="shipper"
+                  control={<Radio color="primary" />}
+                  label="Shipper"
+                  labelPlacement="shipper"
+                />
+                </Grid>
+                <Grid item xs={6}>
+                <FormControlLabel
+                  value="carrier"
+                  control={<Radio color="primary" />}
+                  label="Carrier"
+                  labelPlacement="Carrier"
+                />
+                </Grid>
+              </RadioGroup>
             </Grid>
           </Grid>
           <Button
