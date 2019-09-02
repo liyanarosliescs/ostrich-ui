@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import NavBar from './components/NavBar'
-import SignIn from './components/SignIn'
+import SignIn from './SignIn'
 class App extends Component {
   render() {
     return (
