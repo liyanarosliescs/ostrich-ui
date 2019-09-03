@@ -93,7 +93,6 @@ export default function SignUp() {
               label="Notification Email Address"
               name="notification-email"
               autoComplete="notification-email"
-              autoFocus
             />
             <TextField
               variant="outlined"
@@ -126,7 +125,6 @@ export default function SignUp() {
               label="Company Name"
               name="company-name"
               autoComplete="company-name"
-              autoFocus
             />
             <RadioGroup aria-label="position" name="position" row>
             <Grid item xs={6}>
