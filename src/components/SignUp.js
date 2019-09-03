@@ -78,10 +78,10 @@ export default function SignUp() {
               margin="normal"
               required
               fullWidth
-              id="login-email"
-              label="Login Email"
-              name="login-email"
-              autoComplete="login-email"
+              id="email-login"
+              label="Email Login"
+              name="email-login"
+              autoComplete="email-login"
               autoFocus
             />
             <TextField
@@ -89,10 +89,10 @@ export default function SignUp() {
               margin="normal"
               required
               fullWidth
-              id="notification-email"
-              label="Notification Email"
-              name="notification-email"
-              autoComplete="notification-email"
+              id="email-notification"
+              label="Email Notification"
+              name="email-notification"
+              autoComplete="email-notification"
             />
             <TextField
               variant="outlined"
