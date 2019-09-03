@@ -79,7 +79,7 @@ export default function SignUp() {
               required
               fullWidth
               id="login-email"
-              label="Login Email Address"
+              label="Login Email"
               name="login-email"
               autoComplete="login-email"
               autoFocus
@@ -90,7 +90,7 @@ export default function SignUp() {
               required
               fullWidth
               id="notification-email"
-              label="Notification Email Address"
+              label="Notification Email"
               name="notification-email"
               autoComplete="notification-email"
             />
