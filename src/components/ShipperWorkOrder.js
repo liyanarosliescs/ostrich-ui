@@ -53,6 +53,9 @@ const useStyles = makeStyles(theme => ({
     },
   },
   toolbar: theme.mixins.toolbar,
+  profile: {
+    marginTop: theme.spacing(2),
+  },
   drawerPaper: {
     width: drawerWidth,
   },
@@ -69,7 +72,7 @@ const useStyles = makeStyles(theme => ({
     height: 70,
   },
   name: {
-    paddingTop: theme.spacing(1)
+    paddingTop: theme.spacing(1),
   },
   link: {
     paddingTop: theme.spacing(1),
@@ -89,6 +92,7 @@ function ShipperWorkOrder(props) {
 
   const drawer = (
     <div>
+      <div className={classes.profile} />
       <Grid container justify="center" alignItems="center">
         <Avatar alt="Shipper" src={shipperIcon} className={classes.avatar} />
       </Grid>
@@ -98,7 +102,7 @@ function ShipperWorkOrder(props) {
         </Typography>
       </Grid>
       <Grid container justify="center" alignItems="center">
-        <Typography variant="h6" className={classes.name}>
+        <Typography variant="body1" className={classes.name}>
           User Name
         </Typography>
       </Grid>
@@ -107,7 +111,6 @@ function ShipperWorkOrder(props) {
           Edit Profile
         </Link>
       </Grid>
-
       <Divider />
       <List>
         <ListItem button key="dashboardBtn">
