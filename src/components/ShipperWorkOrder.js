@@ -27,6 +27,9 @@ import OrderFulfillmentIcon from '@material-ui/icons/Assignment';
 import ShipmentIcon from '@material-ui/icons/LocalShipping';
 import ContactsIcon from '@material-ui/icons/Contacts';
 import SettingsIcon from '@material-ui/icons/Build';
+import Paper from '@material-ui/core/Paper';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import TextField from '@material-ui/core/TextField';
 
 const drawerWidth = 240;
 
@@ -78,7 +81,27 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
   },
+  paper: {
+    padding: theme.spacing(3, 2),
+  },
+  breadIcon: {
+    marginRight: theme.spacing(0.5),
+    width: 20,
+    height: 20,
+  },
+  breadLink: {
+    display: 'flex',
+  },
+  textfield: {
+    width: 350,
+    height: 60,
+  },
 }));
+
+function handleClick(event) {
+  event.preventDefault();
+  alert('You clicked a breadcrumb.');
+}
 
 function ShipperWorkOrder(props) {
   const { container } = props;
@@ -202,29 +225,28 @@ function ShipperWorkOrder(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        <Paper className={classes.paper}>
+          <Breadcrumbs separator="›" aria-label="breadcrumb">
+            <Link color="inherit" href="/" onClick={handleClick} className={classes.breadLink}>
+              <WorkOrderIcon className={classes.breadIcon} />
+                Work Order
+            </Link>
+          </Breadcrumbs>
+          <TextField
+            id="outlined-search"
+            label="Search Ref/Work Order/Container/Truck No"
+            type="search"
+            margin="normal"
+            variant="outlined"
+            className={classes.textfield}
+          />
+          <Typography variant="h5" component="h3" className={classes.name}>
+            Work Order
+          </Typography>
+          <Typography component="p">
+            Paper can be used to build surface or other elements for your application.
+          </Typography>
+        </Paper>
       </main>
     </div>
   );
