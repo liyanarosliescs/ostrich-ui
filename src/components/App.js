@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import Card from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import sideImg from '../images/sideImg.jpg';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
@@ -27,15 +29,13 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     marginTop: 'auto',
   },
-  footerText: {
-    color: '#fff',
-  },
   text: {
-    color: '#000',
+    color: '#fff',
     margin: theme.spacing(2),
   },
   card: {
-    justify: 'center',
+    backgroundColor: fade( '#000', 0.5),
+    padding: theme.spacing(2),
   },
 }));
 
@@ -53,11 +53,23 @@ export default function StickyFooter() {
         <Typography variant="h5" component="h2" className={classes.text} align="center" gutterBottom>
           {'The Shipper and Trucker Matching Platform'}
         </Typography>
+          <Grid container spacing={1} justify="center">
+            <Grid item>
+              <Button variant="contained" size="large" color="primary" align="center">
+                Sign In
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant="contained" size="large" color="inherit" align="center">
+                Sign Up
+              </Button>
+            </Grid>
+          </Grid>
         </Card>
       </Container>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-        <Typography variant="body2" className={classes.footerText} align="center">
+        <Typography variant="body2" className={classes.text} align="center">
           {'Copyright © '}
           <Link color="inherit" href="https://material-ui.com/">
             Ostrich
