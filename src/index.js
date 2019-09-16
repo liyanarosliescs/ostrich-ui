@@ -6,6 +6,7 @@ import App from './components/App';
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import ShipperWorkOrder from './components/ShipperWorkOrder'
+import ShipperSetting from './components/ShipperSetting'
 
 const routing = (
   <Router>
@@ -14,6 +15,7 @@ const routing = (
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/shipper/workorder" component={ShipperWorkOrder} />
+      <Route exact path="/shipper/setting" component={ShipperSetting} />
     </div>
   </Router>
 )
