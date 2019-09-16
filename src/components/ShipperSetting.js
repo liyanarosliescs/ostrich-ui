@@ -32,6 +32,8 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import LockIcon from '@material-ui/icons/LockOpen';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
@@ -110,6 +112,13 @@ const useStyles = makeStyles(theme => ({
   textfield: {
     width: 350,
     height: 60,
+  },
+  form: {
+    width: '55%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
   },
 }));
 
@@ -302,7 +311,69 @@ function ShipperSetting(props) {
             </Tabs>
           </Paper>
           <TabPanel value={value} index={0}>
-            Item One
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center">
+              <form className={classes.form} noValidate>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  id="company-name"
+                  label="Company Name"
+                  name="company-name"
+                  autoComplete="company-name"
+                  autoFocus
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  name="user-name"
+                  label="User Name"
+                  type="user-name"
+                  id="user-name"
+                  autoComplete="user-name"
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  id="email-login"
+                  label="Email Login"
+                  name="email-login"
+                  autoComplete="email-login"
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  id="email-notification"
+                  label="Email Notification"
+                  name="email-notification"
+                  autoComplete="email-notification"
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  id="contact"
+                  label="Contact Number"
+                  name="contact"
+                  autoComplete="contact"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}>
+                  Update
+                </Button>
+              </form>
+            </Grid>
           </TabPanel>
           <TabPanel value={value} index={1}>
             Item Two
