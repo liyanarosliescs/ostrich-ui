@@ -31,7 +31,11 @@ import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
+import Box from '@material-ui/core/Box';
+import LockIcon from '@material-ui/icons/LockOpen';
+import MoneyIcon from '@material-ui/icons/MonetizationOn';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+import EmailIcon from '@material-ui/icons/Email';
 
 const drawerWidth = 240;
 
@@ -41,7 +45,12 @@ const useStyles = makeStyles(theme => ({
   },
   tab: {
     flexGrow: 1,
-    marginTop: theme.spacing(2),
+    backgroundColor: theme.palette.background.paper,
+    marginTop: theme.spacing(5),
+  },
+  tabPanel: {
+    backgroundColor: '#3f51b5',
+    color: '#ffffff',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -107,6 +116,36 @@ const useStyles = makeStyles(theme => ({
 function handleClick(event) {
   event.preventDefault();
   alert('You clicked a breadcrumb.');
+}
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-prevent-tabpanel-${index}`}
+      aria-labelledby={`scrollable-prevent-tab-${index}`}
+      {...other}
+    >
+      <Box p={3}>{children}</Box>
+    </Typography>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-prevent-tab-${index}`,
+    'aria-controls': `scrollable-prevent-tabpanel-${index}`,
+  };
 }
 
 function ShipperSetting(props) {
@@ -247,15 +286,34 @@ function ShipperSetting(props) {
             <Tabs
               value={value}
               onChange={handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-            <Tab label="Item One" />
-            <Tab label="Item Two" />
-            <Tab label="Item Three" />
+              className={classes.tabPanel}
+              TabIndicatorProps={{
+                style: {
+                  backgroundColor: "#FFFFFF"
+                }
+              }}
+              centered>
+
+              <Tab label="Account" icon={<PersonPinIcon />} aria-label="phone" {...a11yProps(0)} />
+              <Tab label="Password" icon={<LockIcon />} aria-label="favorite" {...a11yProps(1)} />
+              <Tab label="Currency" icon={<MoneyIcon />} aria-label="person" {...a11yProps(2)} />
+              <Tab label="Email Notification" icon={<EmailIcon />} aria-label="help" {...a11yProps(3)} />
+
             </Tabs>
           </Paper>
+          <TabPanel value={value} index={0}>
+            Item One
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            Item Two
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            Item Three
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            Item Four
+          </TabPanel>
+
         </Paper>
       </main>
     </div>
