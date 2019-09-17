@@ -48,7 +48,9 @@ const useStyles = makeStyles(theme => ({
   tab: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(25),
+    marginRight: theme.spacing(25),
   },
   tabPanel: {
     backgroundColor: '#3f51b5',
@@ -99,7 +101,8 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(2),
   },
   paper: {
-    padding: theme.spacing(3, 2),
+    marginLeft: theme.spacing(25),
+    marginRight: theme.spacing(25),
   },
   breadIcon: {
     marginRight: theme.spacing(0.5),
@@ -284,32 +287,32 @@ function ShipperSetting(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        <Breadcrumbs separator="›" aria-label="breadcrumb">
+          <Link color="inherit" href="/" onClick={handleClick} className={classes.breadLink}>
+            <SettingsIcon className={classes.breadIcon} />
+              Settings
+          </Link>
+        </Breadcrumbs>
+        <Paper className={classes.tab}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            className={classes.tabPanel}
+            TabIndicatorProps={{
+              style: {
+                backgroundColor: "#FFFFFF"
+              }
+            }}
+            centered>
+
+            <Tab label="Account" icon={<PersonPinIcon />} aria-label="phone" {...a11yProps(0)} />
+            <Tab label="Password" icon={<LockIcon />} aria-label="favorite" {...a11yProps(1)} />
+            <Tab label="Currency" icon={<MoneyIcon />} aria-label="person" {...a11yProps(2)} />
+            <Tab label="Email Notification" icon={<EmailIcon />} aria-label="help" {...a11yProps(3)} />
+
+          </Tabs>
+        </Paper>
         <Paper className={classes.paper}>
-          <Breadcrumbs separator="›" aria-label="breadcrumb">
-            <Link color="inherit" href="/" onClick={handleClick} className={classes.breadLink}>
-              <SettingsIcon className={classes.breadIcon} />
-                Settings
-            </Link>
-          </Breadcrumbs>
-          <Paper className={classes.tab}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              className={classes.tabPanel}
-              TabIndicatorProps={{
-                style: {
-                  backgroundColor: "#FFFFFF"
-                }
-              }}
-              centered>
-
-              <Tab label="Account" icon={<PersonPinIcon />} aria-label="phone" {...a11yProps(0)} />
-              <Tab label="Password" icon={<LockIcon />} aria-label="favorite" {...a11yProps(1)} />
-              <Tab label="Currency" icon={<MoneyIcon />} aria-label="person" {...a11yProps(2)} />
-              <Tab label="Email Notification" icon={<EmailIcon />} aria-label="help" {...a11yProps(3)} />
-
-            </Tabs>
-          </Paper>
           <TabPanel value={value} index={0}>
             <Grid
               container
@@ -318,7 +321,6 @@ function ShipperSetting(props) {
               alignItems="center">
               <form className={classes.form} noValidate>
                 <TextField
-                  variant="outlined"
                   margin="normal"
                   fullWidth
                   id="company-name"
@@ -328,7 +330,6 @@ function ShipperSetting(props) {
                   autoFocus
                 />
                 <TextField
-                  variant="outlined"
                   margin="normal"
                   fullWidth
                   name="user-name"
@@ -338,7 +339,6 @@ function ShipperSetting(props) {
                   autoComplete="user-name"
                 />
                 <TextField
-                  variant="outlined"
                   margin="normal"
                   fullWidth
                   id="email-login"
@@ -347,7 +347,6 @@ function ShipperSetting(props) {
                   autoComplete="email-login"
                 />
                 <TextField
-                  variant="outlined"
                   margin="normal"
                   fullWidth
                   id="email-notification"
@@ -356,7 +355,6 @@ function ShipperSetting(props) {
                   autoComplete="email-notification"
                 />
                 <TextField
-                  variant="outlined"
                   margin="normal"
                   fullWidth
                   id="contact"
