@@ -38,6 +38,7 @@ import LockIcon from '@material-ui/icons/LockOpen';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import EmailIcon from '@material-ui/icons/Email';
+import Switch from '@material-ui/core/Switch';
 
 const drawerWidth = 240;
 
@@ -420,7 +421,17 @@ function ShipperSetting(props) {
             Item Three
           </TabPanel>
           <TabPanel value={value} index={3}>
-            Item Four
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center">
+              <form className={classes.form} noValidate>
+                <Switch
+                  value="checkedB"
+                  color="primary"/>
+              </form>
+            </Grid>
           </TabPanel>
 
         </Paper>
