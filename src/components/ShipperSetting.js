@@ -32,13 +32,13 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import LockIcon from '@material-ui/icons/LockOpen';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import EmailIcon from '@material-ui/icons/Email';
-import Switch from '@material-ui/core/Switch';
+import AccountTab from './AccountTab';
+import PasswordTab from './PasswordTab';
+import EmailTab from './EmailTab';
 
 const drawerWidth = 240;
 
@@ -315,123 +315,16 @@ function ShipperSetting(props) {
         </Paper>
         <Paper className={classes.paper}>
           <TabPanel value={value} index={0}>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center">
-              <form className={classes.form} noValidate>
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  id="company-name"
-                  label="Company Name"
-                  name="company-name"
-                  autoComplete="company-name"
-                  autoFocus
-                />
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  name="user-name"
-                  label="User Name"
-                  type="user-name"
-                  id="user-name"
-                  autoComplete="user-name"
-                />
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  id="email-login"
-                  label="Email Login"
-                  name="email-login"
-                  autoComplete="email-login"
-                />
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  id="email-notification"
-                  label="Email Notification"
-                  name="email-notification"
-                  autoComplete="email-notification"
-                />
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  id="contact"
-                  label="Contact Number"
-                  name="contact"
-                  autoComplete="contact"
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}>
-                  Update
-                </Button>
-              </form>
-            </Grid>
+            <AccountTab />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center">
-              <form className={classes.form} noValidate>
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  id="current-password"
-                  label="Current Password"
-                  name="current-password"
-                  autoComplete="current-password"
-                  type="password"
-                  autoFocus/>
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  id="new-password"
-                  label="New Password"
-                  name="new-password"
-                  autoComplete="new-password"
-                  type="password"/>
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  id="confirm-new-password"
-                  label="Confirm New Password"
-                  name="confirm-new-password"
-                  autoComplete="confirm-new-password"
-                  type="password"/>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}>
-                  Update
-                </Button>
-              </form>
-            </Grid>
+            <PasswordTab />
           </TabPanel>
           <TabPanel value={value} index={2}>
             Item Three
           </TabPanel>
           <TabPanel value={value} index={3}>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center">
-              <form className={classes.form} noValidate>
-                <Switch
-                  value="checkedB"
-                  color="primary"/>
-              </form>
-            </Grid>
+            <EmailTab />
           </TabPanel>
 
         </Paper>
