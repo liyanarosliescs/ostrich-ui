@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import currencies from './Currencies';
 
 const useStyles = makeStyles(theme => ({
   textfield: {
@@ -22,29 +23,6 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
-const currencies = [
-  {
-    value: 'SGD',
-    label: 'SGD $',
-  },
-  {
-    value: 'USD',
-    label: 'USD $',
-  },
-  {
-    value: 'MXN',
-    label: 'MXN $',
-  },
-  {
-    value: 'JPY',
-    label: 'JPY ¥',
-  },
-  {
-    value: 'EUR',
-    label: 'EUR €',
-  },
-];
 
 function CurrencyTab(props) {
   const { container } = props;
