@@ -39,6 +39,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import AccountTab from './AccountTab';
 import PasswordTab from './PasswordTab';
 import EmailTab from './EmailTab';
+import CurrencyTab from './CurrencyTab';
 
 const drawerWidth = 240;
 
@@ -321,7 +322,7 @@ function ShipperSetting(props) {
             <PasswordTab />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            Item Three
+            <CurrencyTab />
           </TabPanel>
           <TabPanel value={value} index={3}>
             <EmailTab />
