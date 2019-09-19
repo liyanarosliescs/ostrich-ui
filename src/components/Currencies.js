@@ -143,6 +143,78 @@ const currencies = [
     value: 'CVE',
     label: 'CVE $',
   },
+  {
+    value: 'KHR',
+    label: 'KHR ៛',
+  },
+  {
+    value: 'XAF',
+    label: 'XAF FCFA',
+  },
+  {
+    value: 'CAD',
+    label: 'CAD $',
+  },
+  {
+    value: 'KYD',
+    label: 'KYD $',
+  },
+  {
+    value: 'CLF',
+    label: 'CLF UF',
+  },
+  {
+    value: 'CLP',
+    label: 'CLP $',
+  },
+  {
+    value: 'CNY',
+    label: 'CNY ¥',
+  },
+  {
+    value: 'COP',
+    label: 'COP $',
+  },
+  {
+    value: 'COU',
+    label: 'COU',
+  },
+  {
+    value: 'KMF',
+    label: 'KMF CF',
+  },
+  {
+    value: 'CDF',
+    label: 'CDF FC',
+  },
+  {
+    value: 'NZD',
+    label: 'NZD $',
+  },
+  {
+    value: 'CRC',
+    label: 'CRC ₡',
+  },
+  {
+    value: 'HRK',
+    label: 'HRK kn',
+  },
+  {
+    value: 'CUC',
+    label: 'CUC $',
+  },
+  {
+    value: 'CUP',
+    label: 'CUP $',
+  },
+  {
+    value: 'ANG',
+    label: 'ANG ƒ',
+  },
+  {
+    value: 'CZK',
+    label: 'CZK Kč',
+  },
 ];
 
 export default currencies;
