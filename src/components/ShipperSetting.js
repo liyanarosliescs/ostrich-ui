@@ -14,37 +14,15 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Link from '@material-ui/core/Link';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import SettingsIcon from '@material-ui/icons/Build';
-import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
-import LockIcon from '@material-ui/icons/LockOpen';
-import MoneyIcon from '@material-ui/icons/MonetizationOn';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import EmailIcon from '@material-ui/icons/Email';
-import AccountTab from './AccountTab';
-import PasswordTab from './PasswordTab';
-import EmailTab from './EmailTab';
-import CurrencyTab from './CurrencyTab';
 import SideDrawer from './SideDrawer';
+import SettingsTabs from './SettingsTabs';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-  },
-  tab: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(25),
-    marginRight: theme.spacing(25),
-  },
-  tabPanel: {
-    backgroundColor: '#3f51b5',
-    color: '#ffffff',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -75,10 +53,6 @@ const useStyles = makeStyles(theme => ({
   toolbarButtons: {
     marginLeft: 'auto',
   },
-  paper: {
-    marginLeft: theme.spacing(25),
-    marginRight: theme.spacing(25),
-  },
   breadIcon: {
     marginRight: theme.spacing(0.5),
     width: 20,
@@ -87,17 +61,6 @@ const useStyles = makeStyles(theme => ({
   breadLink: {
     display: 'flex',
   },
-  textfield: {
-    width: 350,
-    height: 60,
-  },
-  form: {
-    width: '55%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
 }));
 
 function handleClick(event) {
@@ -105,49 +68,14 @@ function handleClick(event) {
   alert('You clicked a breadcrumb.');
 }
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`scrollable-prevent-tabpanel-${index}`}
-      aria-labelledby={`scrollable-prevent-tab-${index}`}
-      {...other}
-    >
-      <Box p={3}>{children}</Box>
-    </Typography>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `scrollable-prevent-tab-${index}`,
-    'aria-controls': `scrollable-prevent-tabpanel-${index}`,
-  };
-}
-
 function ShipperSetting(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [value, setValue] = React.useState(0);
 
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
-  }
-
-  function handleChange(event, newValue) {
-    setValue(newValue);
   }
 
   return (
@@ -217,50 +145,13 @@ function ShipperSetting(props) {
               Settings
           </Link>
         </Breadcrumbs>
-        <Paper className={classes.tab}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            className={classes.tabPanel}
-            TabIndicatorProps={{
-              style: {
-                backgroundColor: "#FFFFFF"
-              }
-            }}
-            centered>
-
-            <Tab label="Account" icon={<PersonPinIcon />} aria-label="phone" {...a11yProps(0)} />
-            <Tab label="Password" icon={<LockIcon />} aria-label="favorite" {...a11yProps(1)} />
-            <Tab label="Currency" icon={<MoneyIcon />} aria-label="person" {...a11yProps(2)} />
-            <Tab label="Email Notification" icon={<EmailIcon />} aria-label="help" {...a11yProps(3)} />
-
-          </Tabs>
-        </Paper>
-        <Paper className={classes.paper}>
-          <TabPanel value={value} index={0}>
-            <AccountTab />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <PasswordTab />
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <CurrencyTab />
-          </TabPanel>
-          <TabPanel value={value} index={3}>
-            <EmailTab />
-          </TabPanel>
-
-        </Paper>
+        <SettingsTabs />
       </main>
     </div>
   );
 }
 
 ShipperSetting.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
 };
 
