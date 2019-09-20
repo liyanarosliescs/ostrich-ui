@@ -215,6 +215,78 @@ const currencies = [
     value: 'CZK',
     label: 'CZK Kč',
   },
+  {
+    value: 'DKK',
+    label: 'DKK Kr.',
+  },
+  {
+    value: 'DJF',
+    label: 'DJF Fdj',
+  },
+  {
+    value: 'DOP',
+    label: 'DOP $',
+  },
+  {
+    value: 'EGP',
+    label: 'EGP E£',
+  },
+  {
+    value: 'SVC',
+    label: 'SVC $',
+  },
+  {
+    value: 'ERN',
+    label: 'ERN ناكفا',
+  },
+  {
+    value: 'ETB',
+    label: 'ETB Br',
+  },
+  {
+    value: 'FKP',
+    label: 'FKP £',
+  },
+  {
+    value: 'FJD',
+    label: 'FJD FJ$',
+  },
+  {
+    value: 'XPF',
+    label: 'XPF ₣',
+  },
+  {
+    value: 'GMD',
+    label: 'GMD D',
+  },
+  {
+    value: 'GEL',
+    label: 'GEL ₾',
+  },
+  {
+    value: 'GHS',
+    label: 'GHS GH₵',
+  },
+  {
+    value: 'GIP',
+    label: 'GIP £',
+  },
+  {
+    value: 'GTQ',
+    label: 'GTQ Q',
+  },
+  {
+    value: 'GBP',
+    label: 'GBP £',
+  },
+  {
+    value: 'GNF',
+    label: 'GNF FG',
+  },
+  {
+    value: 'GYD',
+    label: 'GYD $',
+  },
 ];
 
 export default currencies;
