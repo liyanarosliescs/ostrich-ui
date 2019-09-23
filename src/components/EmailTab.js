@@ -21,7 +21,7 @@ function EmailTab(props) {
   const theme = useTheme();
 
   const [state, setState] = React.useState({
-    checkedEmail: false,
+    checkedEmail: true,
   });
 
   const handleChange = name => event => {
