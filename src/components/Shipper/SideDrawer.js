@@ -16,7 +16,7 @@ import ShipmentIcon from '@material-ui/icons/LocalShipping';
 import ContactsIcon from '@material-ui/icons/Contacts';
 import SettingsIcon from '@material-ui/icons/Build';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import shipperIcon from '../images/shipperIcon.png';
+import shipperIcon from '../../images/shipperIcon.png';
 
 const useStyles = makeStyles(theme => ({
   profile: {

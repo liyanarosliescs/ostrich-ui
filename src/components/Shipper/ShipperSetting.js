@@ -16,7 +16,7 @@ import ExitIcon from '@material-ui/icons/ExitToApp';
 import SettingsIcon from '@material-ui/icons/Build';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import SideDrawer from './SideDrawer';
-import SettingsTabs from './SettingsTabs';
+import SettingsTabs from '../SettingsTabs';
 
 const drawerWidth = 240;
 

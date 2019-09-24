@@ -6,7 +6,7 @@ import App from './components/App';
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import ShipperWorkOrder from './components/ShipperWorkOrder'
-import ShipperSetting from './components/ShipperSetting'
+import ShipperSetting from './components/Shipper/ShipperSetting'
 import TruckerSetting from './components/Trucker/TruckerSetting'
 import AdminSetting from './components/Admin/AdminSetting'
 
