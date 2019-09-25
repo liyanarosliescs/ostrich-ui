@@ -12,6 +12,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Link from '@material-ui/core/Link';
 import ExitIcon from '@material-ui/icons/ExitToApp';
@@ -78,6 +79,9 @@ const useStyles = makeStyles(theme => ({
     width: '90%', // Fix IE 11 issue.
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
   },
 }));
 
@@ -171,6 +175,14 @@ function TermOfUse(props) {
             alignItems="center">
             <form className={classes.form} noValidate>
               <TextEditor />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}>
+                  Update
+                </Button>
             </form>
           </Grid>
         </Paper>
