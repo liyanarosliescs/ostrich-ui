@@ -18,6 +18,7 @@ import ExitIcon from '@material-ui/icons/ExitToApp';
 import TermsOfUseIcon from '@material-ui/icons/AssignmentTurnedIn';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import SideDrawer from './SideDrawer';
+import TextEditor from './TextEditor';
 
 const drawerWidth = 240;
 
@@ -74,9 +75,9 @@ const useStyles = makeStyles(theme => ({
     },
   },
   form: {
-    width: '80%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    width: '90%', // Fix IE 11 issue.
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
   },
 }));
 
@@ -169,9 +170,7 @@ function TermOfUse(props) {
             justify="center"
             alignItems="center">
             <form className={classes.form} noValidate>
-              <Typography component="p">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </Typography>
+              <TextEditor />
             </form>
           </Grid>
         </Paper>
