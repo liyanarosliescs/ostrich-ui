@@ -7,6 +7,7 @@ import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import ShipperWorkOrder from './components/ShipperWorkOrder'
 import ShipperSetting from './components/Shipper/ShipperSetting'
+import ContactsDirectory from './components/Shipper/ContactsDirectory'
 import TruckerSetting from './components/Trucker/TruckerSetting'
 import AdminSetting from './components/Admin/AdminSetting'
 import AdminTerm from './components/Admin/TermsOfUse'
@@ -19,6 +20,7 @@ const routing = (
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/shipper/workorder" component={ShipperWorkOrder} />
       <Route exact path="/shipper/setting" component={ShipperSetting} />
+      <Route exact path="/shipper/contactsdirectory" component={ContactsDirectory} />
       <Route exact path="/trucker/setting" component={TruckerSetting} />
       <Route exact path="/admin/setting" component={AdminSetting} />
       <Route exact path="/admin/term" component={AdminTerm} />
