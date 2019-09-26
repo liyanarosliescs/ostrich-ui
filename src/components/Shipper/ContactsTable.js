@@ -15,12 +15,28 @@ export default function ContactsTable() {
     ],
     data: [
       {
+        name: 'trucker2',
+        emailLogin: 'trucker2@gmail.com',
+        emailNotification: 'company.trucker2@gmail.com',
+        companyName: 'System-T2',
+        phoneNumber: '',
+        truckerPriority: '1',
+      },
+      {
+        name: 'trucker1',
+        emailLogin: 'trucker1@gmail.com',
+        emailNotification: 'company.trucker1@gmail.com',
+        companyName: 'System-T1',
+        phoneNumber: '',
+        truckerPriority: '1',
+      },
+      {
         name: 'ylmex_trucker2',
         emailLogin: 'ylmex_trucker2@gmail.com',
         emailNotification: 'ylmex.trucker2@gmail.com',
         companyName: 'YLMEX-T2',
         phoneNumber: '',
-        truckerPriority: '0',
+        truckerPriority: '1',
       },
       {
         name: 'ylmex_trucker1',
