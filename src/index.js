@@ -11,6 +11,7 @@ import ContactsDirectory from './components/Shipper/ContactsDirectory'
 import TruckerSetting from './components/Trucker/TruckerSetting'
 import AdminSetting from './components/Admin/AdminSetting'
 import AdminTerm from './components/Admin/TermsOfUse'
+import MasterData from './components/Trucker/MasterData'
 
 const routing = (
   <Router>
@@ -22,6 +23,7 @@ const routing = (
       <Route exact path="/shipper/setting" component={ShipperSetting} />
       <Route exact path="/shipper/contactsdirectory" component={ContactsDirectory} />
       <Route exact path="/trucker/setting" component={TruckerSetting} />
+      <Route exact path="/trucker/masterdata" component={MasterData} />
       <Route exact path="/admin/setting" component={AdminSetting} />
       <Route exact path="/admin/term" component={AdminTerm} />
     </div>
