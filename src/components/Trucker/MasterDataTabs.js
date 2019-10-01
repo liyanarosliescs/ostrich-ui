@@ -12,7 +12,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import { makeStyles } from '@material-ui/core/styles';
 import TruckersTab from './TruckersTab';
 import TrailersTab from './TrailersTab';
-import CurrencyTab from '../CurrencyTab';
+import DriversTab from './DriversTab';
 
 const useStyles = makeStyles(theme => ({
   tab: {
@@ -96,7 +96,7 @@ function MasterDataTabs(props) {
           <TrailersTab />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <CurrencyTab />
+          <DriversTab />
         </TabPanel>
       </Paper>
     </div>
