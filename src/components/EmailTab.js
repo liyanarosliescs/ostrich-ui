@@ -7,7 +7,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   form: {
-    width: '55%', // Fix IE 11 issue.
+    width: '65%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {

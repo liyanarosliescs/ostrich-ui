@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     height: 60,
   },
   form: {
-    width: '55%', // Fix IE 11 issue.
+    width: '65%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {

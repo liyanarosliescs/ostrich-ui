@@ -177,11 +177,11 @@ export default function ManagerAccountTable() {
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map(row => (
               <TableRow key={row.userName}>
-                <TableCell style={{ width: "30%" }}>
+                <TableCell style={{ width: "15%" }}>
                   <Edit />
                   <DeleteOutline />
                 </TableCell>
-                <TableCell style={{ width: "15%" }}>
+                <TableCell style={{ width: "25%" }}>
                   {row.userName}
                 </TableCell>
                 <TableCell style={{ width: "15%" }}>

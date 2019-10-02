@@ -19,16 +19,16 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(25),
-    marginRight: theme.spacing(25),
+    marginLeft: theme.spacing(15),
+    marginRight: theme.spacing(15),
   },
   tabPanel: {
     backgroundColor: '#3f51b5',
     color: '#ffffff',
   },
   paper: {
-    marginLeft: theme.spacing(25),
-    marginRight: theme.spacing(25),
+    marginLeft: theme.spacing(15),
+    marginRight: theme.spacing(15),
   },
 }));
 
