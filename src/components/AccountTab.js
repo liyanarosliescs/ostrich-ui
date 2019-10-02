@@ -32,6 +32,7 @@ function AccountTab(props) {
       alignItems="center">
       <form className={classes.form} noValidate>
         <TextField
+          disabled
           margin="normal"
           fullWidth
           id="company-name"
