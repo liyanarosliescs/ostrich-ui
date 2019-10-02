@@ -155,7 +155,7 @@ export default function ManagerAccountTable() {
           <TableRow align="right">
             <TableCell colSpan="2">
               <Typography variant="h6" id="tableTitle">
-                Company Name
+                Company Name <Edit/>
               </Typography>
             </TableCell>
             <TableCell />
