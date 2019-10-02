@@ -1,19 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import LockIcon from '@material-ui/icons/LockOpen';
-import MoneyIcon from '@material-ui/icons/MonetizationOn';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import EmailIcon from '@material-ui/icons/Email';
-import { makeStyles } from '@material-ui/core/styles';
-import AccountTab from './AccountTab';
-import PasswordTab from './PasswordTab';
-import EmailTab from './EmailTab';
-import CurrencyTab from './CurrencyTab';
+import React from "react";
+import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import LockIcon from "@material-ui/icons/LockOpen";
+import MoneyIcon from "@material-ui/icons/MonetizationOn";
+import PersonPinIcon from "@material-ui/icons/PersonPin";
+import EmailIcon from "@material-ui/icons/Email";
+import { makeStyles } from "@material-ui/core/styles";
+import ManagerAccountTab from "./ManagerAccountTab";
+import PasswordTab from "./PasswordTab";
+import EmailTab from "./EmailTab";
+import CurrencyTab from "./CurrencyTab";
 
 const useStyles = makeStyles(theme => ({
   tab: {
@@ -21,22 +21,22 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(25),
-    marginRight: theme.spacing(25),
+    marginRight: theme.spacing(25)
   },
   tabPanel: {
-    backgroundColor: '#3f51b5',
-    color: '#ffffff',
+    backgroundColor: "#3f51b5",
+    color: "#ffffff"
   },
   paper: {
     marginLeft: theme.spacing(25),
-    marginRight: theme.spacing(25),
-  },
+    marginRight: theme.spacing(25)
+  }
 }));
 
 function a11yProps(index) {
   return {
     id: `scrollable-prevent-tab-${index}`,
-    'aria-controls': `scrollable-prevent-tabpanel-${index}`,
+    "aria-controls": `scrollable-prevent-tabpanel-${index}`
   };
 }
 
@@ -60,7 +60,7 @@ function TabPanel(props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired
 };
 
 function SettingsTabs(props) {
@@ -73,7 +73,7 @@ function SettingsTabs(props) {
 
   return (
     <div>
-      <Paper className={classes.tab} >
+      <Paper className={classes.tab}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -83,16 +83,37 @@ function SettingsTabs(props) {
               backgroundColor: "#FFFFFF"
             }
           }}
-          centered>
-          <Tab label="Account" icon={<PersonPinIcon />} aria-label="phone" {...a11yProps(0)} />
-          <Tab label="Password" icon={<LockIcon />} aria-label="favorite" {...a11yProps(1)} />
-          <Tab label="Currency" icon={<MoneyIcon />} aria-label="person" {...a11yProps(2)} />
-          <Tab label="Email Notification" icon={<EmailIcon />} aria-label="help" {...a11yProps(3)} />
+          centered
+        >
+          <Tab
+            label="Account"
+            icon={<PersonPinIcon />}
+            aria-label="phone"
+            {...a11yProps(0)}
+          />
+          <Tab
+            label="Password"
+            icon={<LockIcon />}
+            aria-label="favorite"
+            {...a11yProps(1)}
+          />
+          <Tab
+            label="Currency"
+            icon={<MoneyIcon />}
+            aria-label="person"
+            {...a11yProps(2)}
+          />
+          <Tab
+            label="Email Notification"
+            icon={<EmailIcon />}
+            aria-label="help"
+            {...a11yProps(3)}
+          />
         </Tabs>
       </Paper>
       <Paper className={classes.paper}>
         <TabPanel value={value} index={0}>
-          <AccountTab />
+          <ManagerAccountTab />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <PasswordTab />
@@ -109,7 +130,9 @@ function SettingsTabs(props) {
 }
 
 SettingsTabs.propTypes = {
-  container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
+  container: PropTypes.instanceOf(
+    typeof Element === "undefined" ? Object : Element
+  )
 };
 
 export default SettingsTabs;
