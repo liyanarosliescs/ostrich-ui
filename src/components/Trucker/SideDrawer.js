@@ -61,10 +61,6 @@ function SideDrawer(props) {
       </Grid>
       <Divider />
       <List>
-        <ListItem button key="dashboardBtn">
-          <ListItemIcon><DashboardIcon /></ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
         <ListItem button key="availableJobsBtn">
           <ListItemIcon><AvailableJobsIcon /></ListItemIcon>
           <ListItemText primary="Available Jobs" />
