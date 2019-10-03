@@ -11,6 +11,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
+import TextField from '@material-ui/core/TextField';
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
@@ -18,6 +19,8 @@ import LastPageIcon from "@material-ui/icons/LastPage";
 import AddBox from "@material-ui/icons/AddBox";
 import Edit from "@material-ui/icons/Edit";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Search from '@material-ui/icons/Search';
 
 const useStyles1 = makeStyles(theme => ({
   root: {
@@ -152,13 +155,23 @@ export default function DriversTable() {
           <TableRow align="right">
             <TableCell colSpan="2">
               <Typography variant="h6" id="tableTitle">
-                Drivers' Information
+                Drivers <AddBox />
               </Typography>
             </TableCell>
             <TableCell />
-            <TableCell />
-            <TableCell align="right">
-              <AddBox />
+            <TableCell colSpan="2" align="right">
+              <TextField
+                id="standard-search"
+                type="search"
+                margin="normal"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Search />
+                    </InputAdornment>
+                  ),
+                }}
+              />
             </TableCell>
           </TableRow>
           <TableRow>
@@ -189,7 +202,7 @@ export default function DriversTable() {
 
           {emptyRows > 0 && (
             <TableRow style={{ height: 48 * emptyRows }}>
-              <TableCell colSpan={4} />
+              <TableCell colSpan={5} />
             </TableRow>
           )}
         </TableBody>
@@ -197,7 +210,7 @@ export default function DriversTable() {
           <TableRow>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
-              colSpan={4}
+              colSpan={5}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}

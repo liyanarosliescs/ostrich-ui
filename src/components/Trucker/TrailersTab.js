@@ -11,6 +11,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
+import TextField from '@material-ui/core/TextField';
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
@@ -18,6 +19,8 @@ import LastPageIcon from "@material-ui/icons/LastPage";
 import AddBox from "@material-ui/icons/AddBox";
 import Edit from "@material-ui/icons/Edit";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Search from '@material-ui/icons/Search';
 
 const useStyles1 = makeStyles(theme => ({
   root: {
@@ -152,12 +155,22 @@ export default function TrailersTable() {
           <TableRow align="right">
             <TableCell colSpan="2">
               <Typography variant="h6" id="tableTitle">
-                Trailers' Information
+                Trailers <AddBox />
               </Typography>
             </TableCell>
-            <TableCell />
-            <TableCell align="right">
-              <AddBox />
+            <TableCell colSpan="2" align="right">
+              <TextField
+                id="standard-search"
+                type="search"
+                margin="normal"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Search />
+                    </InputAdornment>
+                  ),
+                }}
+              />
             </TableCell>
           </TableRow>
           <TableRow>
