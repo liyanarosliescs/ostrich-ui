@@ -10,15 +10,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Link from '@material-ui/core/Link';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import ShipmentIcon from '@material-ui/icons/LocalShipping';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import SideDrawer from './SideDrawer';
-import ShipmentTable from './ShipmentTable';
+import ShipmentTabs from './ShipmentTabs';
 
 const drawerWidth = 240;
 
@@ -62,22 +60,6 @@ const useStyles = makeStyles(theme => ({
   },
   breadLink: {
     display: 'flex',
-  },
-  body: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(15),
-    marginRight: theme.spacing(15),
-    [theme.breakpoints.between('xs', 'sm')]: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-    },
-  },
-  form: {
-    width: '90%', // Fix IE 11 issue.
-    marginTop: theme.spacing(5),
-    marginBottom: theme.spacing(5),
   },
 }));
 
@@ -163,15 +145,7 @@ function ShipmentType(props) {
               Shipment Type
           </Link>
         </Breadcrumbs>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center">
-            <form className={classes.form} noValidate>
-              <ShipmentTable />
-            </form>
-          </Grid>
+        <ShipmentTabs />
       </main>
     </div>
   );
