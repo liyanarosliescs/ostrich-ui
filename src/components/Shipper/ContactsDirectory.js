@@ -74,10 +74,11 @@ const useStyles = makeStyles(theme => ({
       marginRight: theme.spacing(1),
     },
   },
-  form: {
-    width: '90%', // Fix IE 11 issue.
+  paper: {
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
+    marginLeft: theme.spacing(5),
+    marginRight: theme.spacing(5),
   },
 }));
 
@@ -163,15 +164,9 @@ function ContactsDirectory(props) {
               Contacts Directory
           </Link>
         </Breadcrumbs>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center">
-            <form className={classes.form} noValidate>
-              <ContactsTable />
-            </form>
-          </Grid>
+        <Paper className={classes.paper}>
+          <ContactsTable />
+        </Paper>
       </main>
     </div>
   );
