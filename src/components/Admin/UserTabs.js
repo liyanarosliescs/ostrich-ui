@@ -9,6 +9,7 @@ import ShipperIcon from "@material-ui/icons/DirectionsBoat";
 import TruckerIcon from "@material-ui/icons/LocalShipping";
 import { makeStyles } from "@material-ui/core/styles";
 import ShipperTab from './ShipperTab';
+import TruckerTab from './TruckerTab';
 
 const useStyles = makeStyles(theme => ({
   tab: {
@@ -99,7 +100,7 @@ function UserTabs(props) {
           <ShipperTab/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-
+          <TruckerTab/>
         </TabPanel>
       </Paper>
     </div>
