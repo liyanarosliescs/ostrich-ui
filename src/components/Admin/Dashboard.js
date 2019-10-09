@@ -20,6 +20,8 @@ import SideDrawer from './SideDrawer';
 import OpenBidding from './OpenBidding';
 import TodayWorkOrder from './TodayWorkOrder';
 import MonthWorkOrder from './MonthWorkOrder';
+import MonthWorkOrderChart from './MonthWorkOrderChart';
+import AssignedTruckers from './AssignedTruckers';
 
 const drawerWidth = 240;
 
@@ -178,6 +180,22 @@ function Dashboard(props) {
               xl={4}
               xs={12}>
               <MonthWorkOrder />
+            </Grid>
+            <Grid
+              item
+              lg={8}
+              md={12}
+              xl={9}
+              xs={12}>
+              <MonthWorkOrderChart />
+            </Grid>
+            <Grid
+              item
+              lg={4}
+              md={6}
+              xl={3}
+              xs={12}>
+              <AssignedTruckers />
             </Grid>
           </Grid>
         </div>
