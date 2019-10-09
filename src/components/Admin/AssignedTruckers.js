@@ -135,7 +135,7 @@ const AssignedTruckers = props => {
               <Typography variant="body1">{device.title}</Typography>
               <Typography
                 style={{ color: device.color }}
-                variant="h2"
+                variant="h6"
               >
                 {device.value}%
               </Typography>
