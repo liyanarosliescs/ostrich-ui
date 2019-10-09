@@ -14,6 +14,7 @@ import AdminSetting from './components/Admin/AdminSetting'
 import AdminTerm from './components/Admin/TermsOfUse'
 import MasterData from './components/Trucker/MasterData'
 import UserManagement from './components/Admin/UserManagement'
+import Dashboard from './components/Admin/Dashboard'
 
 const routing = (
   <Router>
@@ -30,6 +31,7 @@ const routing = (
       <Route exact path="/admin/setting" component={AdminSetting} />
       <Route exact path="/admin/term" component={AdminTerm} />
       <Route exact path="/admin/user" component={UserManagement} />
+      <Route exact path="/admin/dashboard" component={Dashboard} />
     </div>
   </Router>
 )
