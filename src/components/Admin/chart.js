@@ -23,7 +23,7 @@ export const options = {
   responsive: true,
   maintainAspectRatio: false,
   animation: false,
-  legend: { display: false },
+  legend:{ display:true, position:'top' },
   cornerRadius: 20,
   tooltips: {
     enabled: true,
@@ -37,7 +37,6 @@ export const options = {
     footerFontColor: '#546E7A'
   },
   layout: { padding: 0 },
-  legend:{ display:true, position:'top' },
   scales: {
     xAxes: [
       {
