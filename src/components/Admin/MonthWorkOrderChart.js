@@ -46,7 +46,7 @@ const MonthWorkOrderChart = props => {
             <RefreshIcon />
             </IconButton>
         }
-        title="This month's accepted work order"
+        title="Three month's accepted work order"
       />
       <Divider />
       <CardContent>

@@ -7,6 +7,7 @@ import {
   Card,
   CardHeader,
   CardContent,
+  CardActions,
   IconButton,
   Divider,
   Typography
@@ -32,6 +33,9 @@ const useStyles = makeStyles(theme => ({
   },
   deviceIcon: {
     color: theme.palette.icon
+  },
+  actions: {
+    justifyContent: 'center'
   }
 }));
 
@@ -137,6 +141,12 @@ const AssignedTruckers = props => {
           ))}
         </div>
       </CardContent>
+      <Divider />
+      <CardActions className={classes.actions}>
+        <Typography variant="h6">
+          This Month
+        </Typography>
+      </CardActions>
     </Card>
   );
 };

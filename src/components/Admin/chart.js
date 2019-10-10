@@ -2,9 +2,19 @@ export const data = {
   labels: ['System-T1', 'System-T2', 'T2'],
   datasets: [
     {
-      label: 'This month',
+      label: 'Aug, 2019',
+      backgroundColor: '#e53935',
+      data: [4, 2, 2]
+    },
+    {
+      label: 'Sep, 2019',
+      backgroundColor: '#FB8C00',
+      data: [2, 5, 3],
+    },
+    {
+      label: 'Oct, 2019',
       backgroundColor: '#3F51B5',
-      data: [8, 5, 9]
+      data: [8, 5, 9],
     }
   ]
 };
@@ -27,6 +37,7 @@ export const options = {
     footerFontColor: '#546E7A'
   },
   layout: { padding: 0 },
+  legend:{ display:true, position:'top' },
   scales: {
     xAxes: [
       {
