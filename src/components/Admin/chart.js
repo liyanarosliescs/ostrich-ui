@@ -1,15 +1,10 @@
 export const data = {
-  labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug'],
+  labels: ['System-T1', 'System-T2', 'T2'],
   datasets: [
     {
-      label: 'This year',
+      label: 'This month',
       backgroundColor: '#3F51B5',
-      data: [18, 5, 19, 27, 29, 19, 20]
-    },
-    {
-      label: 'Last year',
-      backgroundColor: '#FFFFFF',
-      data: [11, 20, 12, 29, 30, 25, 13]
+      data: [8, 5, 9]
     }
   ]
 };

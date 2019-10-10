@@ -11,10 +11,7 @@ import {
   Divider,
   Typography
 } from '@material-ui/core';
-import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import TabletMacIcon from '@material-ui/icons/TabletMac';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,7 +55,7 @@ const AssignedTruckers = props => {
         hoverBorderColor: '#FFFFFF'
       }
     ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+    labels: ['System-T1', 'System-T2', 'T2']
   };
 
   const options = {
@@ -85,21 +82,18 @@ const AssignedTruckers = props => {
 
   const devices = [
     {
-      title: 'Desktop',
+      title: 'System-T1',
       value: '63',
-      icon: <LaptopMacIcon />,
       color: '#3F51B5'
     },
     {
-      title: 'Tablet',
+      title: 'System-T2',
       value: '15',
-      icon: <TabletMacIcon />,
       color: '#e53935'
     },
     {
-      title: 'Mobile',
+      title: 'T2',
       value: '23',
-      icon: <PhoneIphoneIcon />,
       color: '#FB8C00'
     }
   ];
@@ -115,7 +109,7 @@ const AssignedTruckers = props => {
             <RefreshIcon />
           </IconButton>
         }
-        title="Users By Device"
+        title="Assigned Truckers"
       />
       <Divider />
       <CardContent>

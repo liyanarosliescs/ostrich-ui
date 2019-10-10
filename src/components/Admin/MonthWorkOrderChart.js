@@ -9,10 +9,13 @@ import {
   CardContent,
   CardActions,
   Divider,
-  Button
+  Button,
+  Typography,
+  IconButton,
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 import { data, options } from './chart';
 
@@ -23,7 +26,7 @@ const useStyles = makeStyles(() => ({
     position: 'relative'
   },
   actions: {
-    justifyContent: 'flex-end'
+    justifyContent: 'center'
   }
 }));
 
@@ -39,14 +42,11 @@ const MonthWorkOrderChart = props => {
     >
       <CardHeader
         action={
-          <Button
-            size="small"
-            variant="text"
-          >
-            Last 7 days <ArrowDropDownIcon />
-          </Button>
+          <IconButton size="small">
+            <RefreshIcon />
+            </IconButton>
         }
-        title="Latest Sales"
+        title="This month's accepted work order"
       />
       <Divider />
       <CardContent>
@@ -59,13 +59,9 @@ const MonthWorkOrderChart = props => {
       </CardContent>
       <Divider />
       <CardActions className={classes.actions}>
-        <Button
-          color="primary"
-          size="small"
-          variant="text"
-        >
-          Overview <ArrowRightIcon />
-        </Button>
+        <Typography variant="h6">
+          Overview
+        </Typography>
       </CardActions>
     </Card>
   );
