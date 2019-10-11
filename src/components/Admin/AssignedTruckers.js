@@ -64,7 +64,10 @@ const AssignedTruckers = props => {
 
   const options = {
     legend: {
-      display: false
+      position: 'top',
+        labels: {
+        boxWidth: 10
+      }
     },
     responsive: true,
     maintainAspectRatio: false,
