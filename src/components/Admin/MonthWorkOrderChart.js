@@ -17,7 +17,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import RefreshIcon from '@material-ui/icons/Refresh';
 
-import { data, options } from './chart';
+import { data, options } from './Chart';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -46,7 +46,7 @@ const MonthWorkOrderChart = props => {
             <RefreshIcon />
             </IconButton>
         }
-        title="Three month's accepted work order"
+        title="Price and amount of accepted work order"
       />
       <Divider />
       <CardContent>
@@ -60,7 +60,7 @@ const MonthWorkOrderChart = props => {
       <Divider />
       <CardActions className={classes.actions}>
         <Typography variant="h6">
-          Overview
+          This Month
         </Typography>
       </CardActions>
     </Card>

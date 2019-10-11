@@ -1,22 +1,26 @@
 export const data = {
-  labels: ['System-T1', 'System-T2', 'T2'],
-  datasets: [
-    {
-      label: 'Aug, 2019',
-      backgroundColor: '#e53935',
-      data: [4, 2, 2]
-    },
-    {
-      label: 'Sep, 2019',
-      backgroundColor: '#FB8C00',
-      data: [2, 5, 3],
-    },
-    {
-      label: 'Oct, 2019',
-      backgroundColor: '#3F51B5',
-      data: [8, 5, 9],
-    }
-  ]
+  labels: ['System-T1', 'System-T2', 'March'],
+  datasets: [{
+      label: 'Amount',
+      type:'line',
+      data: [31, 55, 40],
+      fill: false,
+      borderColor: '#EC932F',
+      backgroundColor: '#EC932F',
+      pointBorderColor: '#EC932F',
+      pointBackgroundColor: '#EC932F',
+      pointHoverBackgroundColor: '#EC932F',
+      pointHoverBorderColor: '#EC932F'
+    },{
+      type: 'bar',
+      label: 'Price',
+      data: [200, 185, 590],
+      fill: false,
+      backgroundColor: '#71B37C',
+      borderColor: '#71B37C',
+      hoverBackgroundColor: '#71B37C',
+      hoverBorderColor: '#71B37C'
+    }]
 };
 
 export const options = {
@@ -40,8 +44,8 @@ export const options = {
   scales: {
     xAxes: [
       {
-        barThickness: 12,
-        maxBarThickness: 10,
+        barThickness: 42,
+        maxBarThickness: 40,
         barPercentage: 0.5,
         categoryPercentage: 0.5,
         ticks: {
