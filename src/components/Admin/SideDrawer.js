@@ -11,6 +11,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import UserManagementIcon from '@material-ui/icons/SupervisedUserCircle';
+import CurrencyIcon from '@material-ui/icons/Money';
 import TermsOfUseIcon from '@material-ui/icons/AssignmentTurnedIn';
 import SettingsIcon from '@material-ui/icons/Build';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -67,6 +68,10 @@ function SideDrawer(props) {
         <ListItem button key="userManagementBtn">
           <ListItemIcon><UserManagementIcon /></ListItemIcon>
           <ListItemText primary="User Management" />
+        </ListItem>
+        <ListItem button key="currencyBtn">
+          <ListItemIcon><CurrencyIcon /></ListItemIcon>
+          <ListItemText primary="Currency Management" />
         </ListItem>
         <ListItem button key="termsOfUseBtn">
           <ListItemIcon><TermsOfUseIcon /></ListItemIcon>

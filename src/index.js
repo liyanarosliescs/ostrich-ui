@@ -16,6 +16,7 @@ import MasterData from './components/Trucker/MasterData'
 import UserManagement from './components/Admin/UserManagement'
 import AdminDashboard from './components/Admin/Dashboard'
 import ShipperDashboard from './components/Shipper/Dashboard'
+import CurrencyManagement from './components/Admin/CurrencyManagement'
 
 const routing = (
   <Router>
@@ -34,6 +35,7 @@ const routing = (
       <Route exact path="/admin/term" component={AdminTerm} />
       <Route exact path="/admin/user" component={UserManagement} />
       <Route exact path="/admin/dashboard" component={AdminDashboard} />
+      <Route exact path="/admin/currency" component={CurrencyManagement} />
     </div>
   </Router>
 )
