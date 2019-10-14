@@ -23,6 +23,7 @@ import Search from '@material-ui/icons/Search';
 import Clear from '@material-ui/icons/Clear';
 import Edit from "@material-ui/icons/Edit";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
+import currencies from '../Currencies';
 
 const useStyles1 = makeStyles(theme => ({
   root: {
@@ -101,17 +102,6 @@ CurrencyTable.propTypes = {
   rowsPerPage: PropTypes.number.isRequired
 };
 
-function createData(name, description) {
-  return { name, description };
-}
-
-const rows = [
-  createData("trucker2", "trucker2@gmail.com"),
-  createData("trucker1", "trucker1@gmail.com"),
-  createData("ylmex_trucker2", "ylmex_trucker2@gmail.com"),
-  createData("ylmex_trucker1", "ylmex_trucker1@gmail.com"),
-];
-
 const useStyles2 = makeStyles(theme => ({
   root: {
     width: "100%",
@@ -128,10 +118,10 @@ const useStyles2 = makeStyles(theme => ({
 export default function Contacts() {
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(50);
 
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    rowsPerPage - Math.min(rowsPerPage, currencies.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -175,7 +165,7 @@ export default function Contacts() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows
+          {currencies
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map(row => (
               <TableRow key={row.id}>
@@ -184,10 +174,10 @@ export default function Contacts() {
                   <DeleteOutline />
                 </TableCell>
                 <TableCell style={{ width: "20%" }}>
-                  {row.name}
+                  {row.value}
                 </TableCell>
                 <TableCell style={{ width: "60%" }}>
-                  {row.description}
+                  {row.label}
                 </TableCell>
               </TableRow>
             ))}
@@ -201,9 +191,9 @@ export default function Contacts() {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
+              rowsPerPageOptions={[50, 100, 150]}
               colSpan={3}
-              count={rows.length}
+              count={currencies.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{
