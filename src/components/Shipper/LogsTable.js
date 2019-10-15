@@ -111,6 +111,11 @@ const useStyles2 = makeStyles(theme => ({
   tableWrapper: {
     overflowX: "auto",
   },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
 }));
 
 export default function Contacts() {
@@ -141,20 +146,41 @@ export default function Contacts() {
               </Typography>
             </TableCell>
             <TableCell />
-            <TableCell />
-            <TableCell colSpan="2" align="right">
-              <TextField
-                id="standard-search"
-                type="search"
-                margin="normal"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Search />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+            <TableCell colSpan="3" align="right">
+              <form noValidate>
+                <TextField
+                  id="date"
+                  label="From"
+                  type="date"
+                  defaultValue="2019-10-01"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <TextField
+                  id="date"
+                  label="To"
+                  type="date"
+                  defaultValue="2019-10-01"
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <TextField
+                  id="standard-search"
+                  type="search"
+                  margin="normal"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Search />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </form>
             </TableCell>
           </TableRow>
           <TableRow>
