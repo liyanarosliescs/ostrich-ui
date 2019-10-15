@@ -17,6 +17,7 @@ import UserManagement from './components/Admin/UserManagement'
 import AdminDashboard from './components/Admin/Dashboard'
 import ShipperDashboard from './components/Shipper/Dashboard'
 import CurrencyManagement from './components/Admin/CurrencyManagement'
+import WorkOrderLogs from './components/Shipper/WorkOrderLogs'
 
 const routing = (
   <Router>
@@ -25,6 +26,7 @@ const routing = (
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/shipper/workorder" component={ShipperWorkOrder} />
+      <Route exact path="/shipper/workorderlogs" component={WorkOrderLogs} />
       <Route exact path="/shipper/setting" component={ShipperSetting} />
       <Route exact path="/shipper/contactsdirectory" component={ContactsDirectory} />
       <Route exact path="/shipper/shipmenttype" component={ShipmentType} />

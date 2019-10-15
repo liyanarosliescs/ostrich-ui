@@ -11,7 +11,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import WorkOrderIcon from '@material-ui/icons/Description';
-import OrderFulfillmentIcon from '@material-ui/icons/Assignment';
+import LogsIcon from '@material-ui/icons/Assignment';
 import ShipmentIcon from '@material-ui/icons/LocalShipping';
 import ContactsIcon from '@material-ui/icons/Contacts';
 import SettingsIcon from '@material-ui/icons/Build';
@@ -70,9 +70,9 @@ function SideDrawer(props) {
           <ListItemIcon><WorkOrderIcon /></ListItemIcon>
           <ListItemText primary="Work Order" />
         </ListItem>
-        <ListItem button key="orderFulfillmentBtn">
-          <ListItemIcon><OrderFulfillmentIcon /></ListItemIcon>
-          <ListItemText primary="Order Fulfillment" />
+        <ListItem button key="workOrderLogsBtn">
+          <ListItemIcon><LogsIcon /></ListItemIcon>
+          <ListItemText primary="Work Order Logs" />
         </ListItem>
         <ListItem button key="shipmentTypeBtn">
           <ListItemIcon><ShipmentIcon /></ListItemIcon>
