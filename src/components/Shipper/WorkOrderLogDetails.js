@@ -82,11 +82,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function handleClick(event) {
-  event.preventDefault();
-  alert('You clicked a breadcrumb.');
-}
-
 function WorkOrderLogDetails(props) {
   const { container } = props;
   const classes = useStyles();
@@ -159,11 +154,11 @@ function WorkOrderLogDetails(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Breadcrumbs separator="›" aria-label="breadcrumb">
-          <Link color="inherit" href="/" onClick={handleClick} className={classes.breadLink}>
+          <Link color="inherit" href="/shipper/workorderlogs" className={classes.breadLink}>
             <LogsIcon className={classes.breadIcon} />
               Work Order Logs
           </Link>
-          <Link color="inherit" href="/" onClick={handleClick} className={classes.breadLink}>
+          <Link color="inherit" href="" className={classes.breadLink}>
             <LogsIcon className={classes.breadIcon} />
               Log Details
           </Link>

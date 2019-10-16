@@ -10,6 +10,7 @@ import TableFooter from "@material-ui/core/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from "@material-ui/core/IconButton";
@@ -198,7 +199,9 @@ export default function Contacts() {
             .map(row => (
               <TableRow key={row.id}>
                 <TableCell style={{ width: "10%" }}>
-                  <DetailViewIcon />
+                  <Link href="/shipper/workorderlogdetails">
+                    <DetailViewIcon />
+                  </Link>
                 </TableCell>
                 <TableCell style={{ width: "10%" }}>
                   {row.date}
