@@ -58,7 +58,7 @@ export default function LogDetailsTable() {
           </TableRow>
           <TableRow>
             <TableCell>Item</TableCell>
-            <TableCell>Field Name</TableCell>
+            <TableCell>Sub Item</TableCell>
             <TableCell>Data</TableCell>
           </TableRow>
         </TableHead>
@@ -77,7 +77,7 @@ export default function LogDetailsTable() {
                 </TableCell>
               </TableRow>
             ))}
-            
+
         </TableBody>
       </Table>
     </div>
