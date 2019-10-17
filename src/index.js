@@ -19,6 +19,7 @@ import ShipperDashboard from './components/Shipper/Dashboard'
 import CurrencyManagement from './components/Admin/CurrencyManagement'
 import WorkOrderLogs from './components/Shipper/WorkOrderLogs'
 import WorkOrderLogDetails from './components/Shipper/WorkOrderLogDetails'
+import AvailableJobs from './components/Trucker/AvailableJobs'
 
 const routing = (
   <Router>
@@ -35,6 +36,7 @@ const routing = (
       <Route exact path="/shipper/dashboard" component={ShipperDashboard} />
       <Route exact path="/trucker/setting" component={TruckerSetting} />
       <Route exact path="/trucker/masterdata" component={MasterData} />
+      <Route exact path="/trucker/jobs" component={AvailableJobs} />
       <Route exact path="/admin/setting" component={AdminSetting} />
       <Route exact path="/admin/term" component={AdminTerm} />
       <Route exact path="/admin/user" component={UserManagement} />
