@@ -5,10 +5,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import AddressForm from './CreateWorkOrderComponent/AddressForm';
+import MainInfoForm from './CreateWorkOrderComponent/MainInfoForm';
 import PaymentForm from './CreateWorkOrderComponent/PaymentForm';
 import Review from './CreateWorkOrderComponent/Review';
 
@@ -38,12 +39,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const steps = ['Main Info', 'Journey Info', 'Settings', 'Shipment Info', 'Documents', 'Review'];
+function getSteps() {
+  return ['Main Info', 'Journey Info', 'Settings', 'Shipment Info', 'Documents', 'Review'];
+}
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <MainInfoForm />;
     case 1:
       return <PaymentForm />;
     case 2:
@@ -56,13 +59,53 @@ function getStepContent(step) {
 export default function CreateWorkOrderContent() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [completed, setCompleted] = React.useState({});
+  const steps = getSteps();
+
+  const totalSteps = () => {
+    return steps.length;
+  };
+
+  const completedSteps = () => {
+    return Object.keys(completed).length;
+  };
+
+  const isLastStep = () => {
+    return activeStep === totalSteps() - 1;
+  };
+
+  const allStepsCompleted = () => {
+    return completedSteps() === totalSteps();
+  };
 
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
+    const newActiveStep =
+      isLastStep() && !allStepsCompleted()
+        ? // It's the last step, but not all steps have been completed,
+          // find the first step that has been completed
+          steps.findIndex((step, i) => !(i in completed))
+        : activeStep + 1;
+    setActiveStep(newActiveStep);
   };
 
   const handleBack = () => {
-    setActiveStep(activeStep - 1);
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  };
+
+  const handleStep = step => () => {
+    setActiveStep(step);
+  };
+
+  const handleComplete = () => {
+    const newCompleted = completed;
+    newCompleted[activeStep] = true;
+    setCompleted(newCompleted);
+    handleNext();
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+    setCompleted({});
   };
 
   return (
@@ -74,10 +117,12 @@ export default function CreateWorkOrderContent() {
           <Typography component="h1" variant="h4" align="center">
             Create Work Order
           </Typography>
-          <Stepper activeStep={activeStep} className={classes.stepper}>
-            {steps.map(label => (
+          <Stepper nonLinear activeStep={activeStep}>
+            {steps.map((label, index) => (
               <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+                <StepButton onClick={handleStep(index)} completed={completed[index]}>
+                  {label}
+                </StepButton>
               </Step>
             ))}
           </Stepper>
