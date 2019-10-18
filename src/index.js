@@ -20,6 +20,7 @@ import CurrencyManagement from './components/Admin/CurrencyManagement'
 import WorkOrderLogs from './components/Shipper/WorkOrderLogs'
 import WorkOrderLogDetails from './components/Shipper/WorkOrderLogDetails'
 import AvailableJobs from './components/Trucker/AvailableJobs'
+import CreateWorkOrder from './components/Shipper/CreateWorkOrder'
 
 const routing = (
   <Router>
@@ -27,6 +28,7 @@ const routing = (
       <Route exact path="/" component={App} />
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />
+      <Route exact path="/shipper/createworkorder" component={CreateWorkOrder} />
       <Route exact path="/shipper/workorder" component={ShipperWorkOrder} />
       <Route exact path="/shipper/workorderlogs" component={WorkOrderLogs} />
       <Route exact path="/shipper/workorderlogdetails" component={WorkOrderLogDetails} />
