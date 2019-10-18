@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import MainInfoForm from './CreateWorkOrderComponent/MainInfoForm';
-import PaymentForm from './CreateWorkOrderComponent/PaymentForm';
+import JourneyForm from './CreateWorkOrderComponent/JourneyForm';
 import Review from './CreateWorkOrderComponent/Review';
 
 const useStyles = makeStyles(theme => ({
@@ -18,8 +18,8 @@ const useStyles = makeStyles(theme => ({
     width: 'auto',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
+    paddingTop: theme.spacing(5),
+    paddingBottom: theme.spacing(5),
     [theme.breakpoints.up(850 + theme.spacing(2) * 2)]: {
       width: 850,
       marginLeft: 'auto',
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-  return ['Main Info', 'Journey Info', 'Settings', 'Shipment Info', 'Documents', 'Review'];
+  return ['Main', 'Journey', 'Settings', 'Shipment', 'Documents', 'Review'];
 }
 
 function getStepContent(step) {
@@ -48,7 +48,7 @@ function getStepContent(step) {
     case 0:
       return <MainInfoForm />;
     case 1:
-      return <PaymentForm />;
+      return <JourneyForm />;
     case 2:
       return <Review />;
     default:
