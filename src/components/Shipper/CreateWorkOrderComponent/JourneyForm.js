@@ -11,8 +11,10 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
 import JourneyIconVertical from '@material-ui/icons/ArrowDownward';
+import AddBox from "@material-ui/icons/AddBox";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,6 +26,9 @@ const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+  },
+  subtitle: {
+    textAlign: 'center'
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -59,6 +64,9 @@ export default function JourneyForm() {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
+          <Typography variant="h5" className={classes.subtitle}>
+            Journey <AddBox/>
+          </Typography>
         </Grid>
         <Grid item xs={12} md={5}>
           <Card className={classes.card}>
@@ -88,6 +96,15 @@ export default function JourneyForm() {
                   className={classes.textField}
                   fullWidth
                 />
+                <TextField
+                  label="Pick Up Free Time"
+                  id="pickupFreeTime"
+                  className={classes.textField}
+                  fullWidth
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
+                  }}
+                />
                 <DatePicker
                   placeholderText="* Select Date/Time"
                   className={classes.dateField}
@@ -105,12 +122,14 @@ export default function JourneyForm() {
                     control={<Radio color="primary" />}
                     label="Empty"
                     labelPlacement="empty"
+                    className={classes.textField}
                   />
                   <FormControlLabel
                     value="loaded"
                     control={<Radio color="primary" />}
                     label="Loaded"
                     labelPlacement="loaded"
+                    className={classes.textField}
                   />
                 </RadioGroup>
               </form>
