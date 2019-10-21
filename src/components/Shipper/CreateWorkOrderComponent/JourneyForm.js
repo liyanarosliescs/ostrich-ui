@@ -104,7 +104,7 @@ export default function JourneyForm() {
                   fullWidth
                   InputProps={{
                     endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
-                    inputProps: { min: 1 } 
+                    inputProps: { min: 1 }
                   }}
                 />
                 <DatePicker
@@ -178,6 +178,17 @@ export default function JourneyForm() {
                   label="Location Line 4"
                   className={classes.textField}
                   fullWidth
+                />
+                <TextField
+                  label="Pick Up Free Time"
+                  id="pickupFreeTime"
+                  type="number"
+                  className={classes.textField}
+                  fullWidth
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
+                    inputProps: { min: 1 }
+                  }}
                 />
                 <DatePicker
                   placeholderText="* Select Date/Time"
