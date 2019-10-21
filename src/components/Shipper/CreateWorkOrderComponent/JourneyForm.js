@@ -99,10 +99,12 @@ export default function JourneyForm() {
                 <TextField
                   label="Pick Up Free Time"
                   id="pickupFreeTime"
+                  type="number"
                   className={classes.textField}
                   fullWidth
                   InputProps={{
                     endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
+                    inputProps: { min: 1 } 
                   }}
                 />
                 <DatePicker
