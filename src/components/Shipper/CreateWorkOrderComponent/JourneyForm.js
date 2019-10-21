@@ -3,8 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
+import Switch from '@material-ui/core/Switch';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -56,6 +55,14 @@ export default function JourneyForm() {
   const classes = useStyles();
 
   const [startDate, setStartDate] = useState(null);
+
+  const [state, setState] = React.useState({
+    notEmpty: false,
+  });
+
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.checked });
+  };
 
   return (
     <React.Fragment>
@@ -118,22 +125,17 @@ export default function JourneyForm() {
                   timeCaption="time"
                   dateFormat="dd/MM/yyyy h:mm aa"
                 />
-                <RadioGroup aria-label="position" name="position" row>
-                  <FormControlLabel
-                    value="empty"
-                    control={<Radio color="primary" />}
-                    label="Empty"
-                    labelPlacement="empty"
-                    className={classes.textField}
-                  />
-                  <FormControlLabel
-                    value="loaded"
-                    control={<Radio color="primary" />}
-                    label="Loaded"
-                    labelPlacement="loaded"
-                    className={classes.textField}
-                  />
-                </RadioGroup>
+                <Grid component="label" container alignItems="center" spacing={1}>
+                  <Grid item>Empty</Grid>
+                    <Grid item>
+                      <Switch
+                        color="primary"
+                        checked={state.notEmpty}
+                        onChange={handleChange('notEmpty')}
+                        value="notEmpty"/>
+                    </Grid>
+                  <Grid item>Loaded</Grid>
+                </Grid>
               </form>
             </CardContent>
           </Card>
