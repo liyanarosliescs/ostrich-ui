@@ -180,7 +180,7 @@ export default function JourneyForm() {
                   fullWidth
                 />
                 <TextField
-                  label="Pick Up Free Time"
+                  label="Delivery Free Time"
                   id="pickupFreeTime"
                   type="number"
                   className={classes.textField}
