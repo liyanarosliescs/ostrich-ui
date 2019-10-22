@@ -11,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Select from 'react-select';
 import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
 import JourneyIconVertical from '@material-ui/icons/ArrowDownward';
 import AddBox from "@material-ui/icons/AddBox";
@@ -55,10 +56,28 @@ const useStyles = makeStyles(theme => ({
     width: 70,
     height: 70,
   },
+  select: {
+    width: 600,
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(2),
+    marginRight: theme.spacing(2),
+  },
+  time: {
+    width: 200,
+    marginRight: theme.spacing(2),
+  }
 }));
 
 export default function SettingForm() {
   const classes = useStyles();
+
+  const options = [
+    { value: 'all', label: 'All' },
+    { value: 'trucker2', label: 'trucker2' },
+    { value: 'trucker1', label: 'trucker1' },
+    { value: 'ylmex_trucker2', label: 'ylmex_trucker2' },
+    { value: 'ylmex_trucker1', label: 'ylmex_trucker1' }
+  ];
 
   const [startDate, setStartDate] = useState(null);
 
@@ -132,6 +151,34 @@ export default function SettingForm() {
                   </Grid>
                   <Grid item>On</Grid>
                 </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Select
+                  className={classes.select}
+                  options = {options}
+                  isClearable
+                  isMulti
+                  placeholder="Open for *"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Open Time *"
+                  id="openTime"
+                  type="number"
+                  className={classes.time}
+                  fullWidth
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">Minutes</InputAdornment>,
+                    inputProps: { min: 1 }
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Remark"
+                  fullWidth
+                />
               </Grid>
           </form>
       </Grid>
