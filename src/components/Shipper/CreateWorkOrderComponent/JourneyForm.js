@@ -125,7 +125,7 @@ export default function JourneyForm() {
                   timeCaption="time"
                   dateFormat="dd/MM/yyyy h:mm aa"
                 />
-                <Grid component="label" container alignItems="center" spacing={1}>
+                <Grid component="label" container alignItems="center" spacing={1} className={classes.textField}>
                   <Grid item>Empty</Grid>
                     <Grid item>
                       <Switch
