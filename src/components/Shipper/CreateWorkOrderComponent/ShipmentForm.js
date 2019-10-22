@@ -11,10 +11,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import Select from 'react-select';
+import Checkbox from '@material-ui/core/Checkbox';
 import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
 import JourneyIconVertical from '@material-ui/icons/ArrowDownward';
 import AddBox from "@material-ui/icons/AddBox";
@@ -33,7 +31,13 @@ const useStyles = makeStyles(theme => ({
   subtitle: {
     textAlign: 'center'
   },
+  title: {
+    marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
+  },
   textField: {
+    marginTop: theme.spacing(1),
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
@@ -52,21 +56,40 @@ const useStyles = makeStyles(theme => ({
     width: 70,
     height: 70,
   },
+  select: {
+    width: 300
+  }
 }));
 
 export default function ShipmentForm() {
   const classes = useStyles();
 
-  const [values, setValues] = React.useState({
-    age: '',
-    name: 'hai',
+  const options = [
+    { value: '20GP', label: '20GP' },
+    { value: '40GP', label: '40GP' },
+    { value: '45GP', label: '45GP' },
+    { value: '1T', label: '1T' },
+    { value: '3.5T', label: '3.5T' },
+    { value: '20RF', label: '20RF' },
+    { value: '40RF', label: '40RF' },
+    { value: '40HC', label: '40HC' },
+    { value: '53FT', label: '53FT' },
+    { value: 'Flatbed', label: 'Flatbed' },
+    { value: 'Rabon', label: 'Rabon' },
+    { value: 'Thorton', label: 'Thorton' }
+  ];
+
+  const [state, setState] = React.useState({
+    isFrost: false,
+    isChiller: false,
+    isCa: false,
+    isDg: false,
+    isOpen: false,
+    isClose: false
   });
 
-  const handleChange = event => {
-    setValues(oldValues => ({
-      ...oldValues,
-      [event.target.name]: event.target.value,
-    }));
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.checked });
   };
 
   return (
@@ -77,40 +100,22 @@ export default function ShipmentForm() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h5" className={classes.subtitle}>
-            Shipment <AddBox/>
+            Shipment
           </Typography>
         </Grid>
         <Grid item xs={12} md={4}>
           <Card className={classes.card}>
-            <CardHeader
-              title="Shipment Instruction"
-            />
+            <Typography variant="h6" className={classes.title}>
+              Instruction <AddBox/>
+            </Typography>
             <CardContent>
               <form className={classes.container}>
-                <FormControl className={classes.formControl} className={classes.textField} fullWidth>
-                  <InputLabel htmlFor="age-simple">Type</InputLabel>
-                    <Select
-                      value={values.age}
-                      onChange={handleChange}
-                      inputProps={{
-                        name: 'type',
-                        id: 'type',
-                      }}
-                      >
-                      <MenuItem value={"20GP"}>20GP</MenuItem>
-                      <MenuItem value={"40GP"}>40GP</MenuItem>
-                      <MenuItem value={"45GP"}>45GP</MenuItem>
-                      <MenuItem value={"1T"}>1T</MenuItem>
-                      <MenuItem value={"3.5T"}>3.5T</MenuItem>
-                      <MenuItem value={"20RF"}>20RF</MenuItem>
-                      <MenuItem value={"40RF"}>40RF</MenuItem>
-                      <MenuItem value={"40HC"}>40HC</MenuItem>
-                      <MenuItem value={"53FT"}>53FT</MenuItem>
-                      <MenuItem value={"Flatbed"}>Flatbed</MenuItem>
-                      <MenuItem value={"Rabon"}>Rabon</MenuItem>
-                      <MenuItem value={"Thorton"}>Thorton</MenuItem>
-                    </Select>
-                  </FormControl>
+                <Select
+                  className={classes.select}
+                  options = {options}
+                  isClearable
+                  placeholder="Select Type"
+                />
                 <TextField
                   label="Number of *"
                   id="units"
@@ -129,6 +134,86 @@ export default function ShipmentForm() {
                   className={classes.textField}
                   fullWidth
                 />
+                <TextField
+                  disabled
+                  id="currency"
+                  label="Currency"
+                  defaultValue="SGD"
+                  className={classes.textField}
+                  fullWidth
+                />
+                <FormControlLabel
+                  className={classes.textField}
+                  control={
+                    <Checkbox
+                      checked={state.isFrost}
+                      onChange={handleChange('isFrost')}
+                      value="isFrost"
+                      color="primary"
+                    />
+                  }
+                  label="Frost"
+                />
+                <FormControlLabel
+                  className={classes.textField}
+                  control={
+                    <Checkbox
+                      checked={state.isChiller}
+                      onChange={handleChange('isChiller')}
+                      value="isChiller"
+                      color="primary"
+                    />
+                  }
+                  label="Chiller"
+                />
+                <FormControlLabel
+                  className={classes.textField}
+                  control={
+                    <Checkbox
+                      checked={state.isCa}
+                      onChange={handleChange('isCa')}
+                      value="isCa"
+                      color="primary"
+                    />
+                  }
+                  label="CA"
+                />
+                <FormControlLabel
+                  className={classes.textField}
+                  control={
+                    <Checkbox
+                      checked={state.isDg}
+                      onChange={handleChange('isDg')}
+                      value="isDg"
+                      color="primary"
+                    />
+                  }
+                  label="DG"
+                />
+                <FormControlLabel
+                  className={classes.textField}
+                  control={
+                    <Checkbox
+                      checked={state.isOpen}
+                      onChange={handleChange('isOpen')}
+                      value="isOpen"
+                      color="primary"
+                    />
+                  }
+                  label="Open"
+                />
+                <FormControlLabel
+                  className={classes.textField}
+                  control={
+                    <Checkbox
+                      checked={state.isClose}
+                      onChange={handleChange('isClose')}
+                      value="isClose"
+                      color="primary"
+                    />
+                  }
+                  label="Close"
+                />
               </form>
             </CardContent>
           </Card>
@@ -147,44 +232,26 @@ export default function ShipmentForm() {
         </Grid>
         <Grid item xs={12} md={3}>
           <Card className={classes.card}>
-            <CardHeader
-              title="Shipment Transportation"
-              className={classes.cardContent}
-            />
+            <Typography variant="h6" className={classes.title}>
+              Transportation <AddBox/>
+            </Typography>
             <CardContent>
               <form className={classes.container}>
                 <TextField
-                  label="Location Line 1"
-                  className={classes.textField}
-                  fullWidth
-                  required
-                  />
-                  <TextField
-                  label="Location Line 2"
+                  label="Vehicle No"
                   className={classes.textField}
                   fullWidth
                   />
                   <TextField
-                  label="Location Line 3"
+                  label="Seal No"
                   className={classes.textField}
                   fullWidth
                   />
                   <TextField
-                  label="Location Line 4"
+                  label="VGM"
                   className={classes.textField}
                   fullWidth
-                />
-                <TextField
-                  label="Delivery"
-                  id="delivery"
-                  type="number"
-                  className={classes.textField}
-                  fullWidth
-                  InputProps={{
-                    endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
-                    inputProps: { min: 1 }
-                  }}
-                />
+                  />
               </form>
             </CardContent>
           </Card>
@@ -203,43 +270,36 @@ export default function ShipmentForm() {
         </Grid>
         <Grid item xs={12} md={3}>
           <Card className={classes.card}>
-            <CardHeader
-              title="Cargo Instruction"
-              className={classes.cardContent}
-            />
+            <Typography variant="h6" className={classes.title}>
+              Cargo <AddBox/>
+            </Typography>
             <CardContent>
               <form className={classes.container}>
                 <TextField
-                  label="Location Line 1"
-                  className={classes.textField}
-                  fullWidth
-                  required
-                  />
-                  <TextField
-                  label="Location Line 2"
-                  className={classes.textField}
-                  fullWidth
-                  />
-                  <TextField
-                  label="Location Line 3"
-                  className={classes.textField}
-                  fullWidth
-                  />
-                  <TextField
-                  label="Location Line 4"
+                  label="Cargo Name"
                   className={classes.textField}
                   fullWidth
                 />
                 <TextField
-                  label="Delivery"
-                  id="delivery"
+                  label="Pallet Quantity"
+                  className={classes.textField}
+                  fullWidth
+                />
+                <TextField
+                  label="Weight"
+                  id="weight"
                   type="number"
                   className={classes.textField}
                   fullWidth
                   InputProps={{
-                    endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
+                    endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
                     inputProps: { min: 1 }
                   }}
+                />
+                <TextField
+                  label="UN No"
+                  className={classes.textField}
+                  fullWidth
                 />
               </form>
             </CardContent>
