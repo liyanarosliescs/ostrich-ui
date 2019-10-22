@@ -11,6 +11,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import MainInfoForm from './CreateWorkOrderComponent/MainInfoForm';
 import JourneyForm from './CreateWorkOrderComponent/JourneyForm';
+import ShipmentForm from './CreateWorkOrderComponent/ShipmentForm';
 import SettingForm from './CreateWorkOrderComponent/SettingForm';
 import Review from './CreateWorkOrderComponent/Review';
 
@@ -41,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-  return ['Main', 'Journey', 'Settings', 'Shipment', 'Documents', 'Review'];
+  return ['Main', 'Journey', 'Shipment', 'Settings', 'Documents', 'Review'];
 }
 
 function getStepContent(step) {
@@ -51,8 +52,10 @@ function getStepContent(step) {
     case 1:
       return <JourneyForm />;
     case 2:
-      return <SettingForm />;
+      return <ShipmentForm />;
     case 3:
+      return <SettingForm />;
+    case 4:
       return <Review />;
     default:
       throw new Error('Unknown step');
