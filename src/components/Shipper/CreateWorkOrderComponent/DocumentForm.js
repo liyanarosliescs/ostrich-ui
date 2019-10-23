@@ -1,29 +1,28 @@
-import React, {Component} from 'react'
+import React, { useState } from 'react'
+import Typography from '@material-ui/core/Typography';
 import {DropzoneArea} from 'material-ui-dropzone'
 
-class DocumentForm extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      files: []
-    };
+export default function DocumentForm() {
+
+  const [files, setFiles] = useState([]);
+
+  const handleChange = e => {
+    setFiles(e.target.value);
   }
-  handleChange(files){
-    this.setState({
-      files: files
-    });
-  }
-  render(){
-    return (
+
+  return (
+    <React.Fragment>
+      <Typography variant="h6" gutterBottom>
+        Upload your supporting documents
+      </Typography>
       <DropzoneArea
-        onChange={this.handleChange.bind(this)}
+        onChange={setFiles}
         dropzoneText="Drag and drop your files here or click here"
         showPreviewsInDropzone={false}
         showPreviews={true}
         showFileNames={true}
       />
-    )
-  }
-}
+    </React.Fragment>
+  );
 
-export default DocumentForm;
+}
