@@ -13,6 +13,7 @@ import MainInfoForm from './CreateWorkOrderComponent/MainInfoForm';
 import JourneyForm from './CreateWorkOrderComponent/JourneyForm';
 import ShipmentForm from './CreateWorkOrderComponent/ShipmentForm';
 import SettingForm from './CreateWorkOrderComponent/SettingForm';
+import DocumentForm from './CreateWorkOrderComponent/DocumentForm';
 import Review from './CreateWorkOrderComponent/Review';
 
 const useStyles = makeStyles(theme => ({
@@ -56,6 +57,8 @@ function getStepContent(step) {
     case 3:
       return <SettingForm />;
     case 4:
+      return <DocumentForm />;
+    case 5:
       return <Review />;
     default:
       throw new Error('Unknown step');
