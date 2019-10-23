@@ -29,7 +29,7 @@ export default function WorkOrder() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Work Order summary
+        Work Order
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
