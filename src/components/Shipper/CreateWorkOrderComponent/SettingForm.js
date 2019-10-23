@@ -20,15 +20,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    maxWidth: 400,
-  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-  },
-  subtitle: {
-    textAlign: 'center'
   },
   title: {
     marginTop: theme.spacing(2),
@@ -39,22 +33,6 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-  },
-  dateField: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-  },
-  icon: {
-    marginTop: theme.spacing(20),
-    marginLeft: theme.spacing(2),
-    [theme.breakpoints.down('sm')]: {
-      marginTop: theme.spacing(2),
-      marginLeft: theme.spacing(20),
-    },
-    width: 70,
-    height: 70,
   },
   select: {
     width: 600,

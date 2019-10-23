@@ -14,6 +14,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
 import JourneyIconVertical from '@material-ui/icons/ArrowDownward';
 import AddBox from "@material-ui/icons/AddBox";
+import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,9 +30,10 @@ const useStyles = makeStyles(theme => ({
   subtitle: {
     textAlign: 'center'
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
+  title: {
+    marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
   },
   dateField: {
     marginTop: theme.spacing(2),
@@ -72,14 +74,14 @@ export default function JourneyForm() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h5" className={classes.subtitle}>
-            Journey <AddBox/>
+            Journey <AddBox/> <DeleteBox/>
           </Typography>
         </Grid>
         <Grid item xs={12} md={5}>
           <Card className={classes.card}>
-            <CardHeader
-              title="Pick Up"
-            />
+            <Typography variant="h6" className={classes.title}>
+              Pick Up
+            </Typography>
             <CardContent>
               <form className={classes.container}>
                 <TextField
@@ -154,10 +156,9 @@ export default function JourneyForm() {
         </Grid>
         <Grid item xs={12} md={5}>
           <Card className={classes.card}>
-            <CardHeader
-              title="Delivery"
-              className={classes.cardContent}
-            />
+            <Typography variant="h6" className={classes.title}>
+              Delivery
+            </Typography>
             <CardContent>
               <form className={classes.container}>
                 <TextField

@@ -16,6 +16,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
 import JourneyIconVertical from '@material-ui/icons/ArrowDownward';
 import AddBox from "@material-ui/icons/AddBox";
+import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,12 +39,6 @@ const useStyles = makeStyles(theme => ({
   },
   textField: {
     marginTop: theme.spacing(1),
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-  },
-  dateField: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
@@ -100,13 +95,13 @@ export default function ShipmentForm() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h5" className={classes.subtitle}>
-            Shipment
+            Shipment <AddBox/> <DeleteBox/>
           </Typography>
         </Grid>
         <Grid item xs={12} md={4}>
           <Card className={classes.card}>
             <Typography variant="h6" className={classes.title}>
-              Instruction <AddBox/>
+              Instruction
             </Typography>
             <CardContent>
               <form className={classes.container}>
@@ -233,7 +228,7 @@ export default function ShipmentForm() {
         <Grid item xs={12} md={3}>
           <Card className={classes.card}>
             <Typography variant="h6" className={classes.title}>
-              Transportation <AddBox/>
+              Transport <AddBox/> <DeleteBox/>
             </Typography>
             <CardContent>
               <form className={classes.container}>
@@ -271,7 +266,7 @@ export default function ShipmentForm() {
         <Grid item xs={12} md={3}>
           <Card className={classes.card}>
             <Typography variant="h6" className={classes.title}>
-              Cargo <AddBox/>
+              Cargo <AddBox/> <DeleteBox/>
             </Typography>
             <CardContent>
               <form className={classes.container}>
