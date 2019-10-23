@@ -14,7 +14,7 @@ import JourneyForm from './CreateWorkOrderComponent/JourneyForm';
 import ShipmentForm from './CreateWorkOrderComponent/ShipmentForm';
 import SettingForm from './CreateWorkOrderComponent/SettingForm';
 import DocumentForm from './CreateWorkOrderComponent/DocumentForm';
-import Review from './CreateWorkOrderComponent/Review';
+import WorkOrderReview from './CreateWorkOrderComponent/WorkOrderReview';
 
 const useStyles = makeStyles(theme => ({
   layout: {
@@ -59,7 +59,7 @@ function getStepContent(step) {
     case 4:
       return <DocumentForm />;
     case 5:
-      return <Review />;
+      return <WorkOrderReview />;
     default:
       throw new Error('Unknown step');
   }
@@ -161,7 +161,7 @@ export default function CreateWorkOrderContent() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Create work order' : 'Next'}
                   </Button>
                 </div>
               </React.Fragment>

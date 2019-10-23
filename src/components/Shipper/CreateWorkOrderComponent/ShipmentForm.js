@@ -100,9 +100,6 @@ export default function ShipmentForm() {
         </Grid>
         <Grid item xs={12} md={4}>
           <Card className={classes.card}>
-            <Typography variant="h6" className={classes.title}>
-              Instruction
-            </Typography>
             <CardContent>
               <form className={classes.container}>
                 <Select
