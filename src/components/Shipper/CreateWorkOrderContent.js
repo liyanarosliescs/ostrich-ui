@@ -142,7 +142,7 @@ export default function CreateWorkOrderContent() {
                   You have created your work order
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your work order number is #2001539.
+                  Your work order number is SYSTEM-S1201910232.
                 </Typography>
               </React.Fragment>
             ) : (
