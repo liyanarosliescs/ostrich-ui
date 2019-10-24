@@ -139,11 +139,10 @@ export default function CreateWorkOrderContent() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  You have created your work order
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
+                  Your work order number is #2001539.
                 </Typography>
               </React.Fragment>
             ) : (
