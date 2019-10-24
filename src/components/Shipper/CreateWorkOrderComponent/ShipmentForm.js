@@ -74,6 +74,13 @@ export default function ShipmentForm() {
     { value: 'Thorton', label: 'Thorton' }
   ];
 
+  const types = [
+    { value: 'single', label: 'Single' },
+    { value: 'roundLive', label: 'Round(Live)' },
+    { value: 'roundDropAndHook', label: 'Round(Drop and Hook)' },
+    { value: 'other', label: 'Other' }
+  ];
+
   const [state, setState] = React.useState({
     isFrost: false,
     isChiller: false,
@@ -104,9 +111,16 @@ export default function ShipmentForm() {
               <form className={classes.container}>
                 <Select
                   className={classes.select}
-                  options = {options}
+                  options = {types}
                   isClearable
                   placeholder="Select Type"
+                />
+                <br/>
+                <Select
+                  className={classes.select}
+                  options = {options}
+                  isClearable
+                  placeholder="Select Transport Type"
                 />
                 <TextField
                   label="Number of *"
