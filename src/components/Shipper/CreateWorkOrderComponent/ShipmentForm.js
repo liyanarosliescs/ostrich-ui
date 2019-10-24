@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
 export default function ShipmentForm() {
   const classes = useStyles();
 
-  const options = [
+  const transports = [
     { value: '20GP', label: '20GP' },
     { value: '40GP', label: '40GP' },
     { value: '45GP', label: '45GP' },
@@ -74,7 +74,7 @@ export default function ShipmentForm() {
     { value: 'Thorton', label: 'Thorton' }
   ];
 
-  const types = [
+  const shipments = [
     { value: 'single', label: 'Single' },
     { value: 'roundLive', label: 'Round(Live)' },
     { value: 'roundDropAndHook', label: 'Round(Drop and Hook)' },
@@ -111,14 +111,14 @@ export default function ShipmentForm() {
               <form className={classes.container}>
                 <Select
                   className={classes.select}
-                  options = {types}
+                  options = {shipments}
                   isClearable
-                  placeholder="Select Type"
+                  placeholder="Select Shipment Type"
                 />
                 <br/>
                 <Select
                   className={classes.select}
-                  options = {options}
+                  options = {transports}
                   isClearable
                   placeholder="Select Transport Type"
                 />
