@@ -239,7 +239,7 @@ export default function ShipmentForm() {
         <Grid item xs={12} md={3}>
           <Card className={classes.card}>
             <Typography variant="h6" className={classes.title}>
-              Transport <AddBox/> <DeleteBox/>
+              Container <AddBox/> <DeleteBox/>
             </Typography>
             <CardContent>
               <form className={classes.container}>
