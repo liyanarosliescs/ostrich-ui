@@ -218,7 +218,7 @@ export default function Contacts() {
             <TableCell>Work Order Number</TableCell>
             <TableCell>Reference Number</TableCell>
             <TableCell>Assignment Type</TableCell>
-            <TableCell>Price Per Unit</TableCell>
+            <TableCell>Expected Price Per Unit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
