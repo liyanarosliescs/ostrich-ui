@@ -6,6 +6,7 @@ import App from './components/App';
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import ShipperWorkOrder from './components/ShipperWorkOrder'
+import WorkOrder from './components/Shipper/WorkOrder'
 import ShipperSetting from './components/Shipper/ShipperSetting'
 import ContactsDirectory from './components/Shipper/ContactsDirectory'
 import ShipmentType from './components/Shipper/ShipmentType'
@@ -29,7 +30,7 @@ const routing = (
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/shipper/createworkorder" component={CreateWorkOrder} />
-      <Route exact path="/shipper/workorder" component={ShipperWorkOrder} />
+      <Route exact path="/shipper/workorder" component={WorkOrder} />
       <Route exact path="/shipper/workorderlogs" component={WorkOrderLogs} />
       <Route exact path="/shipper/workorderlogdetails" component={WorkOrderLogDetails} />
       <Route exact path="/shipper/setting" component={ShipperSetting} />
