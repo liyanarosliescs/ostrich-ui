@@ -23,7 +23,7 @@ import LastPageIcon from "@material-ui/icons/LastPage";
 import Search from '@material-ui/icons/Search';
 import DetailViewIcon from "@material-ui/icons/FindInPage";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
-import logs from './Logs';
+import data from './WorkOrderData';
 
 const useStyles1 = makeStyles(theme => ({
   root: {
@@ -133,7 +133,7 @@ export default function Contacts() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, logs.length - page * rowsPerPage);
+    rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -214,15 +214,15 @@ export default function Contacts() {
           </TableRow>
           <TableRow>
             <TableCell>Actions</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Time</TableCell>
+            <TableCell>Latest Updated Date Time</TableCell>
             <TableCell>Work Order Number</TableCell>
-            <TableCell>Event Summary</TableCell>
-            <TableCell>Actor</TableCell>
+            <TableCell>Reference Number</TableCell>
+            <TableCell>Assignment Type</TableCell>
+            <TableCell>Price Per Unit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {logs
+          {data
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map(row => (
               <TableRow key={row.id}>
@@ -231,20 +231,20 @@ export default function Contacts() {
                     <DetailViewIcon />
                   </Link>
                 </TableCell>
-                <TableCell style={{ width: "10%" }}>
-                  {row.date}
-                </TableCell>
-                <TableCell style={{ width: "10%" }}>
-                  {row.time}
-                </TableCell>
                 <TableCell style={{ width: "15%" }}>
+                  {row.dateTime}
+                </TableCell>
+                <TableCell style={{ width: "20%" }}>
                   {row.workOrderNum}
                 </TableCell>
-                <TableCell style={{ width: "40%" }}>
-                  {row.eventSummary}
+                <TableCell style={{ width: "20%" }}>
+                  {row.refNum}
                 </TableCell>
                 <TableCell style={{ width: "15%" }}>
-                  {row.actor}
+                  {row.assignmentType}
+                </TableCell>
+                <TableCell style={{ width: "15%" }}>
+                  {row.price}
                 </TableCell>
               </TableRow>
             ))}
@@ -260,7 +260,7 @@ export default function Contacts() {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               colSpan={6}
-              count={logs.length}
+              count={data.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{
