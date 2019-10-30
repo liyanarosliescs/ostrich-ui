@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+import Countdown from 'react-countdown-now';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -105,6 +107,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     color: "#3f51b5"
   },
+  timer: {
+    color: "#ff0000"
+  },
   table: {
     minWidth: 650,
   },
@@ -126,6 +131,8 @@ function WorkOrderDetails(props) {
   const handleChange = e => {
     setFiles(e.target.value);
   }
+
+  const Completionist = () => <span>Closed</span>;
 
   const options = [
     { value: 'all', label: 'Winners Only' },
@@ -211,9 +218,25 @@ function WorkOrderDetails(props) {
           </Link>
         </Breadcrumbs>
         <Paper className={classes.paper}>
-          <Typography variant="h6" gutterBottom className={classes.title}>
-            Work Order
-          </Typography>
+          <Grid container>
+            <Grid item xs={8}>
+              <Typography variant="h6" gutterBottom className={classes.title}>
+                Work Order
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant="h6" gutterBottom>
+                Remaining Time:
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant="h6" gutterBottom className={classes.timer}>
+                <Countdown date={Date.now() + 10000}>
+                  <Completionist />
+                </Countdown>
+              </Typography>
+            </Grid>
+          </Grid>
           <Grid container spacing={3} className={classes.newSection}>
             <Grid item xs={12}>
               {main.map(item => (
