@@ -1,6 +1,9 @@
 const file = [
   {
-    file: 'test.doc, test.pdf'
+    file: 'test.doc'
+  },
+  {
+    file: 'test.pdf'
   }
 ];
 

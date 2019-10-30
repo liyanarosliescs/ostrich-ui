@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -24,12 +24,16 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import TextField from '@material-ui/core/TextField';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import WorkOrderIcon from '@material-ui/icons/Description';
+import DetailViewIcon from "@material-ui/icons/FindInPage";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import SideDrawer from './SideDrawer';
+import {DropzoneArea} from 'material-ui-dropzone'
+import Select from 'react-select';
 import main from './CreateWorkOrderComponent/WorkOrderData/main';
 import journey from './CreateWorkOrderComponent/WorkOrderData/journey';
 import shipment from './CreateWorkOrderComponent/WorkOrderData/shipment';
 import setting from  './CreateWorkOrderComponent/WorkOrderData/setting';
+import file from './CreateWorkOrderComponent/WorkOrderData/file';
 import data from './WorkOrderDetailData';
 
 const drawerWidth = 240;
@@ -116,6 +120,19 @@ function WorkOrderDetails(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [files, setFiles] = useState([]);
+
+  const handleChange = e => {
+    setFiles(e.target.value);
+  }
+
+  const options = [
+    { value: 'all', label: 'Winners Only' },
+    { value: 'trucker2', label: 'trucker2' },
+    { value: 'trucker1', label: 'trucker1' },
+    { value: 'ylmex_trucker2', label: 'ylmex_trucker2' },
+    { value: 'ylmex_trucker1', label: 'ylmex_trucker1' }
+  ];
 
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
@@ -358,39 +375,46 @@ function WorkOrderDetails(props) {
                   <strong>Auto Assignment:  </strong> {item.autoAssign} <br/>
                   <strong>Open For:  </strong> {item.openFor} <br/>
                   <strong>Open Time:  </strong> {item.openTime} Minutes <br/>
-                  <Table className={classes.table}>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Remark</TableCell>
-                        <TableCell>Company Name</TableCell>
-                        <TableCell>User Name</TableCell>
-                        <TableCell>Date Time</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell>{item.remark}</TableCell>
-                        <TableCell>System-S1</TableCell>
-                        <TableCell>	Shipper1</TableCell>
-                        <TableCell>30 Oct 2019 10:18AM</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell colSpan={3}>
-                          <TextareaAutosize rows={3} placeholder="Enter additional remarks here" className={classes.textarea}/>
-                        </TableCell>
-                        <TableCell>
-                          <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary">
-                            Add Remark
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
                 </Typography>
               ))}
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body1" gutterBottom>
+                <strong>Remarks</strong>
+              </Typography>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Remark</TableCell>
+                    <TableCell>Company Name</TableCell>
+                    <TableCell>User Name</TableCell>
+                    <TableCell>Date Time</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {setting.map(item => (
+                    <TableRow>
+                      <TableCell>{item.remark}</TableCell>
+                      <TableCell>System-S1</TableCell>
+                      <TableCell>	Shipper1</TableCell>
+                      <TableCell>30 Oct 2019 10:18AM</TableCell>
+                    </TableRow>
+                  ))}
+                  <TableRow>
+                    <TableCell colSpan={3}>
+                      <TextareaAutosize rows={3} placeholder="Enter additional remarks here" className={classes.textarea}/>
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary">
+                        Add Remark
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </Grid>
             <Grid item xs={12}>
               <Typography variant="h6" gutterBottom className={classes.newSection2}>
@@ -434,6 +458,43 @@ function WorkOrderDetails(props) {
               <Typography variant="h6" gutterBottom className={classes.newSection2}>
                 Documents
               </Typography>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Open For</TableCell>
+                    <TableCell>Action</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {file.map(item => (
+                    <TableRow>
+                      <TableCell>{item.file}</TableCell>
+                      <TableCell></TableCell>
+                      <TableCell><DetailViewIcon/></TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              <br/><br/>
+              <Typography variant="body1" gutterBottom>
+                <strong>Upload additional documents</strong>
+              </Typography>
+              <DropzoneArea
+                onChange={setFiles}
+                dropzoneText="Drag and drop your files here or click here"
+                showPreviewsInDropzone={false}
+                showPreviews={true}
+                showFileNames={true}
+              />
+              <br/>
+              <Select
+                className={classes.select}
+                options = {options}
+                isClearable
+                isMulti
+                placeholder="Files open for"
+              />
             </Grid>
           </Grid>
         </Paper>
