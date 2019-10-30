@@ -227,7 +227,7 @@ export default function Contacts() {
             .map(row => (
               <TableRow key={row.id}>
                 <TableCell style={{ width: "10%" }}>
-                  <Link href="/shipper/workorderlogdetails">
+                  <Link href="/shipper/workorderdetails">
                     <DetailViewIcon />
                   </Link>
                 </TableCell>
