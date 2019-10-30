@@ -25,6 +25,7 @@ import TextField from '@material-ui/core/TextField';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import WorkOrderIcon from '@material-ui/icons/Description';
 import DetailViewIcon from "@material-ui/icons/FindInPage";
+import DeleteIcon from "@material-ui/icons/DeleteOutline";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import SideDrawer from './SideDrawer';
 import {DropzoneArea} from 'material-ui-dropzone'
@@ -470,8 +471,8 @@ function WorkOrderDetails(props) {
                   {file.map(item => (
                     <TableRow>
                       <TableCell>{item.file}</TableCell>
-                      <TableCell></TableCell>
-                      <TableCell><DetailViewIcon/></TableCell>
+                      <TableCell>trucker1, trucker2</TableCell>
+                      <TableCell><DetailViewIcon/><DeleteIcon/></TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
