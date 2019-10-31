@@ -22,6 +22,7 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
 import Search from '@material-ui/icons/Search';
 import DetailViewIcon from "@material-ui/icons/FindInPage";
+import LogsIcon from '@material-ui/icons/Assignment';
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
 import data from './WorkOrderData';
 
@@ -229,6 +230,9 @@ export default function Contacts() {
                 <TableCell style={{ width: "10%" }}>
                   <Link href="/shipper/workorderdetails">
                     <DetailViewIcon />
+                  </Link>
+                  <Link href="/shipper/workorderlogdetails">
+                    <LogsIcon/>
                   </Link>
                 </TableCell>
                 <TableCell style={{ width: "15%" }}>

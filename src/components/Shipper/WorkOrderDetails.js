@@ -208,7 +208,7 @@ function WorkOrderDetails(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Breadcrumbs separator="›" aria-label="breadcrumb">
-          <Link color="inherit" href="/shipper/workorderlogs" className={classes.breadLink}>
+          <Link color="inherit" href="/shipper/workorder" className={classes.breadLink}>
             <WorkOrderIcon className={classes.breadIcon} />
               Work Order
           </Link>
@@ -225,7 +225,7 @@ function WorkOrderDetails(props) {
               </Typography>
             </Grid>
             <Grid item xs={2}>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" gutterBottom className={classes.title}>
                 Remaining Time:
               </Typography>
             </Grid>
