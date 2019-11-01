@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactDOM from 'react-dom';
+import Countdown from 'react-countdown-now';
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -117,12 +119,16 @@ const useStyles2 = makeStyles(theme => ({
     marginRight: theme.spacing(1),
     width: 200,
   },
+  timer: {
+    color: '#FF0000'
+  }
 }));
 
 export default function AvailableJobsTable() {
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [files, setFiles] = useState([]);
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, jobs.length - page * rowsPerPage);
@@ -136,6 +142,12 @@ export default function AvailableJobsTable() {
     setPage(0);
   };
 
+  const handleChange = e => {
+    setFiles(e.target.value);
+  }
+
+  const Completionist = () => <span>Closed</span>;
+
   return (
     <div className={classes.tableWrapper}>
       <Table className={classes.table}>
@@ -146,8 +158,7 @@ export default function AvailableJobsTable() {
                 Jobs
               </Typography>
             </TableCell>
-            <TableCell />
-            <TableCell colSpan="3" align="right">
+            <TableCell colSpan="5" align="right">
               <form noValidate>
                 <TextField
                   id="date"
@@ -186,11 +197,12 @@ export default function AvailableJobsTable() {
           </TableRow>
           <TableRow>
             <TableCell>Actions</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Time</TableCell>
+            <TableCell>Closing Time</TableCell>
+            <TableCell>Last Update</TableCell>
+            <TableCell>Number of Offers</TableCell>
             <TableCell>Work Order Number</TableCell>
-            <TableCell>Event Summary</TableCell>
-            <TableCell>Actor</TableCell>
+            <TableCell>Shipper Information</TableCell>
+            <TableCell>Journey Information</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -199,31 +211,39 @@ export default function AvailableJobsTable() {
             .map(row => (
               <TableRow key={row.id}>
                 <TableCell style={{ width: "10%" }}>
-                  <Link href="/shipper/workorderlogdetails">
+                  <Link href="#">
                     <DetailViewIcon />
                   </Link>
                 </TableCell>
-                <TableCell style={{ width: "10%" }}>
-                  {row.date}
+                <TableCell style={{ width: "15%" }}>
+                  {row.closingTime}
+                  <Typography variant="body2" gutterBottom className={classes.timer}>
+                    <Countdown date={Date.now() + 10000}>
+                      <Completionist />
+                    </Countdown>
+                  </Typography>
+                </TableCell>
+                <TableCell style={{ width: "15%" }}>
+                  {row.lastUpdate}
                 </TableCell>
                 <TableCell style={{ width: "10%" }}>
-                  {row.time}
+                  {row.numOfOffers}
                 </TableCell>
                 <TableCell style={{ width: "15%" }}>
                   {row.workOrderNum}
                 </TableCell>
-                <TableCell style={{ width: "40%" }}>
-                  {row.eventSummary}
-                </TableCell>
                 <TableCell style={{ width: "15%" }}>
-                  {row.actor}
+                  {row.shipperInfo}
+                </TableCell>
+                <TableCell style={{ width: "20%" }}>
+                  {row.journeyInfo}
                 </TableCell>
               </TableRow>
             ))}
 
           {emptyRows > 0 && (
             <TableRow style={{ height: 48 * emptyRows }}>
-              <TableCell colSpan={6} />
+              <TableCell colSpan={7} />
             </TableRow>
           )}
         </TableBody>
@@ -231,7 +251,7 @@ export default function AvailableJobsTable() {
           <TableRow>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
-              colSpan={6}
+              colSpan={7}
               count={jobs.length}
               rowsPerPage={rowsPerPage}
               page={page}
