@@ -24,10 +24,10 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Link from '@material-ui/core/Link';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import WorkOrderIcon from '@material-ui/icons/Description';
 import DetailViewIcon from "@material-ui/icons/FindInPage";
-import DeleteIcon from "@material-ui/icons/DeleteOutline";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import SideDrawer from './SideDrawer';
 import {DropzoneArea} from 'material-ui-dropzone'
@@ -241,18 +241,10 @@ function WorkOrderDetails(props) {
             <Grid item xs={12}>
               {main.map(item => (
                 <Typography variant="body2">
+                  <strong>Posted by: </strong> {item.userName}, {item.companyName} <br/>
                   <strong>Reference No: </strong> {item.referenceNo} <br/>
                   <strong>Shipper: </strong> {item.shipper} <br/>
                   <strong>Consignee:  </strong> {item.consignee} <br/>
-                  <strong>Storing Order Reference: </strong> <br/>
-                  <TextField
-                    id="storingOrderRef"/>{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary">
-                    Save
-                  </Button>
                 </Typography>
               ))}
             </Grid>
@@ -322,9 +314,9 @@ function WorkOrderDetails(props) {
               </Typography>
               {shipment.map(s => (
                 <Typography variant="body2">
-                  {s.type1} <br/>
-                  {s.noOfUnits1} Units <br/>
-                  {s.ratePerUnit1} {s.currency1} <br/>
+                  <strong>Transport type: </strong>{s.type1} <br/>
+                  <strong>Number of units: </strong>{s.noOfUnits1} Units <br/>
+                  <strong>Requested Rate (Taxes Excluded): </strong>{s.ratePerUnit1} {s.currency1} <br/>
                   {s.condition1}
                 </Typography>
               ))}
@@ -335,9 +327,9 @@ function WorkOrderDetails(props) {
               </Typography>
               {shipment.map(s => (
                 <Typography variant="body2">
-                  {s.vehicleNo1} <br/>
-                  {s.sealNo1} <br/>
-                  {s.vgm1}
+                  <strong>Vehicle No: </strong>{s.vehicleNo1} <br/>
+                  <strong>Seal No: </strong>{s.sealNo1} <br/>
+                  <strong>VGM: </strong>{s.vgm1}
                 </Typography>
               ))}
               <Typography variant="body2">
@@ -345,9 +337,9 @@ function WorkOrderDetails(props) {
               </Typography>
               {shipment.map(s => (
                 <Typography variant="body2">
-                  {s.vehicleNo2} <br/>
-                  {s.sealNo2} <br/>
-                  {s.vgm2}
+                  <strong>Vehicle No: </strong>{s.vehicleNo2} <br/>
+                  <strong>Seal No: </strong>{s.sealNo2} <br/>
+                  <strong>VGM: </strong>{s.vgm2}
                 </Typography>
               ))}
             </Grid>
@@ -357,10 +349,10 @@ function WorkOrderDetails(props) {
               </Typography>
               {shipment.map(s => (
                 <Typography variant="body2">
-                  {s.cargoName1} <br/>
-                  {s.palletQuantity1} Cargo <br/>
-                  {s.weight1} <br/>
-                  {s.un1}
+                  <strong>Cargo Name: </strong>{s.cargoName1} <br/>
+                  <strong>Pallet Quantity: </strong>{s.palletQuantity1} Cargo <br/>
+                  <strong>Weight: </strong>{s.weight1} <br/>
+                  <strong>UN No: </strong>{s.un1}
                 </Typography>
               ))}
               <Typography variant="body2">
@@ -368,10 +360,10 @@ function WorkOrderDetails(props) {
               </Typography>
               {shipment.map(s => (
                 <Typography variant="body2">
-                  {s.cargoName2} <br/>
-                  {s.palletQuantity2} Cargo <br/>
-                  {s.weight2} <br/>
-                  {s.un2}
+                  <strong>Cargo Name: </strong>{s.cargoName2} <br/>
+                  <strong>Pallet Quantity: </strong>{s.palletQuantity2} Cargo <br/>
+                  <strong>Weight: </strong>{s.weight2} <br/>
+                  <strong>UN No: </strong>{s.un2}
                 </Typography>
               ))}
             </Grid>
@@ -381,9 +373,9 @@ function WorkOrderDetails(props) {
               </Typography>
               {shipment.map(s => (
                 <Typography variant="body2">
-                  {s.type2} <br/>
-                  {s.noOfUnits2} Units <br/>
-                  {s.ratePerUnit2} {s.currency2} <br/>
+                  <strong>Transport type:</strong>{s.type2} <br/>
+                  <strong>Number of units:</strong>{s.noOfUnits2} <br/>
+                  <strong>Requested Rate (Taxes Excluded):</strong>{s.ratePerUnit2} {s.currency2} <br/>
                   {s.condition2}
                 </Typography>
               ))}
@@ -424,57 +416,6 @@ function WorkOrderDetails(props) {
                       <TableCell>30 Oct 2019 10:18AM</TableCell>
                     </TableRow>
                   ))}
-                  <TableRow>
-                    <TableCell colSpan={3}>
-                      <TextareaAutosize rows={3} placeholder="Enter additional remarks here" className={classes.textarea}/>
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary">
-                        Add Remark
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="h6" gutterBottom className={classes.newSection2}>
-                Bidding and Counter Offer Information
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Detail</TableCell>
-                    <TableCell>Action</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {data.map(row => (
-                    <TableRow key={row.id}>
-                      <TableCell component="th" scope="row">
-                        <Typography variant="body2"><strong>Bidder:</strong> {row.bidder}</Typography>
-                        <Typography variant="body2"><strong>Offer Unit:</strong> {row.offerUnit}</Typography>
-                        <Typography variant="body2"><strong>Offer Rate Per Unit:</strong> {row.offerRatePerUnit}</Typography>
-                        <Typography variant="body2"><strong>Assigned Unit:</strong> {row.assignedUnit}</Typography>
-                        <Typography variant="body2"><strong>Pick Up Information:</strong> {row.pickUpDateTime}</Typography>
-                        <Typography variant="body2"><strong>Delivery Information:</strong> {row.deliveryDateTime}</Typography>
-                        <Typography variant="body2"><strong>Transport Information:</strong> {row.transportInfo}</Typography>
-                      </TableCell>
-                      <TableCell colSpan={7}>
-                        <Button
-                          type="submit"
-                          variant="contained"
-                          color="primary">
-                          Assign
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
                 </TableBody>
               </Table>
             </Grid>
@@ -495,30 +436,50 @@ function WorkOrderDetails(props) {
                     <TableRow>
                       <TableCell>{item.file}</TableCell>
                       <TableCell>trucker1, trucker2</TableCell>
-                      <TableCell><DetailViewIcon/><DeleteIcon/></TableCell>
+                      <TableCell><DetailViewIcon/></TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
-              <br/><br/>
-              <Typography variant="body1" gutterBottom>
-                <strong>Upload additional documents</strong>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom className={classes.newSection2}>
+                My Offer
               </Typography>
-              <DropzoneArea
-                onChange={setFiles}
-                dropzoneText="Drag and drop your files here or click here"
-                showPreviewsInDropzone={false}
-                showPreviews={true}
-                showFileNames={true}
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2">
+                <strong>Number of units:</strong><br/><br/>
+                <strong>Rate per unit (exclude tax):</strong>
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <TextField id="noOfUnits"/><br/>
+              <TextField
+                id="ratePerUnit"
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">SGD</InputAdornment>,
+                }}
               />
-              <br/>
-              <Select
-                className={classes.select}
-                options = {options}
-                isClearable
-                isMulti
-                placeholder="Files open for"
-              />
+            </Grid>
+            <Grid
+              container
+              direction="row"
+              justify="flex-end"
+              alignItems="center">
+              <Button
+                type="submit"
+                variant="contained"
+                color="secondary">
+                Cancel
+              </Button>
+              {'\u00A0'}{'\u00A0'}
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary">
+                Submit Offer
+              </Button>
             </Grid>
           </Grid>
         </Paper>

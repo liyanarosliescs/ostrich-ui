@@ -5,11 +5,11 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
-import main from './WorkOrderData/main';
-import journey from './WorkOrderData/journey';
-import shipment from './WorkOrderData/shipment';
-import setting from './WorkOrderData/setting';
-import file from './WorkOrderData/file';
+import main from '../../Common/WorkOrderData/main';
+import journey from '../../Common/WorkOrderData/journey';
+import shipment from '../../Common/WorkOrderData/shipment';
+import setting from '../../Common/WorkOrderData/setting';
+import file from '../../Common/WorkOrderData/file';
 
 const useStyles = makeStyles(theme => ({
   listItem: {
