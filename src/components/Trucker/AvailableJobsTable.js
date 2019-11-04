@@ -22,7 +22,8 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
 import Search from '@material-ui/icons/Search';
-import DetailViewIcon from "@material-ui/icons/FindInPage";
+import OfferIcon from "@material-ui/icons/CallMade";
+import CounterOfferIcon from "@material-ui/icons/CallSplit";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
 import jobs from './Jobs';
 
@@ -211,8 +212,11 @@ export default function AvailableJobsTable() {
             .map(row => (
               <TableRow key={row.id}>
                 <TableCell style={{ width: "10%" }}>
-                  <Link href="#">
-                    <DetailViewIcon />
+                  <Link href="/trucker/offer">
+                    <OfferIcon/>
+                  </Link>
+                  <Link href="/trucker/counteroffer">
+                    <CounterOfferIcon/>
                   </Link>
                 </TableCell>
                 <TableCell style={{ width: "15%" }}>
