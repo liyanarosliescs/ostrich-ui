@@ -213,7 +213,7 @@ export default function AvailableJobsTable() {
             .map(row => (
               <TableRow key={row.id}>
                 <TableCell style={{ width: "15%" }}>
-                  <Link href="/trucker/offer">
+                  <Link href="/trucker/workorderdetails">
                     <DetailViewIcon/>
                   </Link>
                   <Link href="/trucker/offer#action">

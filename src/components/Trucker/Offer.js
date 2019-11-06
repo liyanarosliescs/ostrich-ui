@@ -453,7 +453,7 @@ function Offer(props) {
             <Grid item xs={6}>
               <Typography variant="body2">
                 <strong>Number of units:</strong><br/><br/>
-                <strong>Rate per unit (exclude tax):</strong>
+                <strong>Rate per unit (exclude tax):</strong><br/><br/><br/>
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -473,15 +473,15 @@ function Offer(props) {
               <Button
                 type="submit"
                 variant="contained"
-                href="counteroffer#action">
-                Go to Counter Offer
+                color="secondary">
+                Cancel
               </Button>
               {'\u00A0'}{'\u00A0'}
               <Button
                 type="submit"
                 variant="contained"
-                color="secondary">
-                Cancel
+                href="counteroffer#action">
+                Go to Counter Offer
               </Button>
               {'\u00A0'}{'\u00A0'}
               <Button

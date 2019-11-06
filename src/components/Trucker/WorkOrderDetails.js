@@ -27,7 +27,8 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import AvailableJobsIcon from '@material-ui/icons/Assignment';
-import CounterOfferIcon from "@material-ui/icons/CallSplit";
+import WorkOrderIcon from '@material-ui/icons/Description';
+import OfferIcon from "@material-ui/icons/CallMade";
 import DetailViewIcon from "@material-ui/icons/FindInPage";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import SideDrawer from './SideDrawer';
@@ -117,15 +118,12 @@ const useStyles = makeStyles(theme => ({
   textarea: {
     width: 700
   },
-  select: {
-    width: 300
-  },
   submit: {
     marginTop: theme.spacing(5)
   }
 }));
 
-function CounterOffer(props) {
+function WorkOrderDetails(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -144,30 +142,6 @@ function CounterOffer(props) {
     { value: 'trucker1', label: 'trucker1' },
     { value: 'ylmex_trucker2', label: 'ylmex_trucker2' },
     { value: 'ylmex_trucker1', label: 'ylmex_trucker1' }
-  ];
-
-  const transports = [
-    { value: '20GP', label: '20GP' },
-    { value: '40GP', label: '40GP' },
-    { value: '45GP', label: '45GP' },
-    { value: '1T', label: '1T' },
-    { value: '3.5T', label: '3.5T' },
-    { value: '20RF', label: '20RF' },
-    { value: '40RF', label: '40RF' },
-    { value: '40HC', label: '40HC' },
-    { value: '53FT', label: '53FT' },
-    { value: 'Flatbed', label: 'Flatbed' },
-    { value: 'Rabon', label: 'Rabon' },
-    { value: 'Thorton', label: 'Thorton' }
-  ];
-
-  const conditions = [
-    { value: 'frost', label: 'Frost' },
-    { value: 'chiller', label: 'Chiller' },
-    { value: 'ca', label: 'CA' },
-    { value: 'dg', label: 'DG' },
-    { value: 'open', label: 'Open' },
-    { value: 'close', label: 'Close' }
   ];
 
   function handleDrawerToggle() {
@@ -241,8 +215,8 @@ function CounterOffer(props) {
               Available Jobs
           </Link>
           <Link color="inherit" href="" className={classes.breadLink}>
-            <CounterOfferIcon className={classes.breadIcon} />
-              Counter Offer
+            <WorkOrderIcon className={classes.breadIcon} />
+              Work Order Details
           </Link>
         </Breadcrumbs>
         <Paper className={classes.paper}>
@@ -471,83 +445,7 @@ function CounterOffer(props) {
                   ))}
                 </TableBody>
               </Table>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="h6" gutterBottom className={classes.newSection2}>
-                My Counter Offer
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <strong>Shipment#1</strong>
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="body2">
-                <strong>Transport Type:</strong><br/><br/><br/>
-                <strong>Condition Type:</strong><br/><br/><br/>
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Select
-                className={classes.select}
-                options = {transports}
-                isClearable
-                defaultValue={{ label: "20GP", value: "20GP" }}
-              /><br/>
-              <Select
-                className={classes.select}
-                options = {conditions}
-                isClearable
-                isMulti
-                defaultValue={[conditions[0], conditions[1]]}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <strong>Shipment#2</strong>
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="body2">
-                <strong>Transport Type:</strong><br/><br/><br/>
-                <strong>Condition Type:</strong><br/><br/><br/>
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Select
-                className={classes.select}
-                options = {transports}
-                isClearable
-                defaultValue={{ label: "40GP", value: "40GP" }}
-              /><br/>
-              <Select
-                className={classes.select}
-                options = {conditions}
-                isClearable
-                isMulti
-                defaultValue={[conditions[2], conditions[4]]}
-              /><br/>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <strong>Total Shipments</strong>
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="body2">
-                <strong>Number of units:</strong><br/><br/><br/>
-                <strong>Rate per unit (Tax Excluded):</strong><br/><br/><br/>
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField id="noOfUnits"/><br/><br/>
-              <TextField
-                id="ratePerUnit"
-                InputProps={{
-                  endAdornment: <InputAdornment position="end">SGD</InputAdornment>,
-                }}
-              />
+              <br/><br/><br/>
             </Grid>
             <Grid
               container
@@ -564,15 +462,15 @@ function CounterOffer(props) {
               <Button
                 type="submit"
                 variant="contained"
-                href="offer#action">
-                Go to Offer
+                href="counteroffer#action">
+                Go to Counter Offer
               </Button>
               {'\u00A0'}{'\u00A0'}
               <Button
                 type="submit"
                 variant="contained"
-                color="primary">
-                Submit Counter Offer
+                href="offer#action">
+                Go to Offer
               </Button>
             </Grid>
           </Grid>
@@ -582,8 +480,8 @@ function CounterOffer(props) {
   );
 }
 
-CounterOffer.propTypes = {
+WorkOrderDetails.propTypes = {
   container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
 };
 
-export default CounterOffer;
+export default WorkOrderDetails;

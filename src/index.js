@@ -8,6 +8,7 @@ import SignUp from './components/SignUp'
 import ShipperWorkOrder from './components/ShipperWorkOrder'
 import WorkOrder from './components/Shipper/WorkOrder'
 import WorkOrderDetails from './components/Shipper/WorkOrderDetails'
+import TruckerWorkOrderDetails from './components/Trucker/WorkOrderDetails'
 import TruckerOffer from './components/Trucker/Offer'
 import TruckerCounterOffer from './components/Trucker/CounterOffer'
 import ShipperSetting from './components/Shipper/ShipperSetting'
@@ -44,6 +45,7 @@ const routing = (
       <Route exact path="/trucker/setting" component={TruckerSetting} />
       <Route exact path="/trucker/masterdata" component={MasterData} />
       <Route exact path="/trucker/jobs" component={AvailableJobs} />
+      <Route exact path="/trucker/workorderdetails" component={TruckerWorkOrderDetails} />
       <Route exact path="/trucker/offer" component={TruckerOffer} />
       <Route exact path="/trucker/counteroffer" component={TruckerCounterOffer} />
       <Route exact path="/admin/setting" component={AdminSetting} />
