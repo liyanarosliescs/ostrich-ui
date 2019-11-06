@@ -39,7 +39,7 @@ import journey from '../Common/WorkOrderData/journey';
 import shipment from '../Common/WorkOrderData/shipment';
 import setting from  '../Common/WorkOrderData/setting';
 import file from '../Common/WorkOrderData/file';
-import data from './OfferData';
+import data from './WorkOrderDetailData';
 
 const drawerWidth = 240;
 
