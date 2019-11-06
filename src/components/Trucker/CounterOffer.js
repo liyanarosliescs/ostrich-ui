@@ -448,9 +448,11 @@ function CounterOffer(props) {
               </Table>
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h6" gutterBottom className={classes.newSection2}>
-                Documents
-              </Typography>
+              <div id= "action">
+                <Typography variant="h6" gutterBottom className={classes.newSection2}>
+                  Documents
+                </Typography>
+              </div>
               <Table className={classes.table}>
                 <TableHead>
                   <TableRow>
@@ -552,6 +554,13 @@ function CounterOffer(props) {
               direction="row"
               justify="flex-end"
               alignItems="center">
+              <Button
+                type="submit"
+                variant="contained"
+                href="offer#action">
+                Go to Offer
+              </Button>
+              {'\u00A0'}{'\u00A0'}
               <Button
                 type="submit"
                 variant="contained"

@@ -421,9 +421,11 @@ function Offer(props) {
               </Table>
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h6" gutterBottom className={classes.newSection2}>
-                Documents
-              </Typography>
+              <div id= "action">
+                <Typography variant="h6" gutterBottom className={classes.newSection2}>
+                  Documents
+                </Typography>
+              </div>
               <Table className={classes.table}>
                 <TableHead>
                   <TableRow>
@@ -468,6 +470,13 @@ function Offer(props) {
               direction="row"
               justify="flex-end"
               alignItems="center">
+              <Button
+                type="submit"
+                variant="contained"
+                href="counteroffer#action">
+                Go to Counter Offer
+              </Button>
+              {'\u00A0'}{'\u00A0'}
               <Button
                 type="submit"
                 variant="contained"
