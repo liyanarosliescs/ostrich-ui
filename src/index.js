@@ -27,6 +27,8 @@ import WorkOrderLogs from './components/Shipper/WorkOrderLogs'
 import WorkOrderLogDetails from './components/Shipper/WorkOrderLogDetails'
 import AvailableJobs from './components/Trucker/AvailableJobs'
 import CreateWorkOrder from './components/Shipper/CreateWorkOrder'
+import TestDynamicForm from './components/Shipper/TestDynamicForm'
+import TestForm2 from './components/Shipper/TestForm2'
 
 const routing = (
   <Router>
@@ -43,6 +45,8 @@ const routing = (
       <Route exact path="/shipper/contactsdirectory" component={ContactsDirectory} />
       <Route exact path="/shipper/shipmenttype" component={ShipmentType} />
       <Route exact path="/shipper/dashboard" component={ShipperDashboard} />
+      <Route exact path="/shipper/form" component={TestDynamicForm} />
+      <Route exact path="/shipper/form2" component={TestForm2} />
       <Route exact path="/trucker/setting" component={TruckerSetting} />
       <Route exact path="/trucker/masterdata" component={MasterData} />
       <Route exact path="/trucker/jobs" component={AvailableJobs} />
