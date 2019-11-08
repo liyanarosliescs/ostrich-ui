@@ -29,6 +29,7 @@ import AvailableJobs from './components/Trucker/AvailableJobs'
 import CreateWorkOrder from './components/Shipper/CreateWorkOrder'
 import TestDynamicForm from './components/Shipper/TestDynamicForm'
 import TestForm2 from './components/Shipper/TestForm2'
+import TestForm3 from './components/Shipper/TestForm3'
 
 const routing = (
   <Router>
@@ -47,6 +48,7 @@ const routing = (
       <Route exact path="/shipper/dashboard" component={ShipperDashboard} />
       <Route exact path="/shipper/form" component={TestDynamicForm} />
       <Route exact path="/shipper/form2" component={TestForm2} />
+      <Route exact path="/shipper/form3" component={TestForm3} />
       <Route exact path="/trucker/setting" component={TruckerSetting} />
       <Route exact path="/trucker/masterdata" component={MasterData} />
       <Route exact path="/trucker/jobs" component={AvailableJobs} />
