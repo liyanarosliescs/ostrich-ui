@@ -20,6 +20,7 @@ import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from '@material-ui/core/styles';
+import ShipmentAddContainer from './ShipmentAddContainer';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -237,30 +238,7 @@ export default function ShipmentForm() {
           </Box>
         </Grid>
         <Grid item xs={12} md={3}>
-          <Card className={classes.card}>
-            <Typography variant="h6" className={classes.title}>
-              Container <AddBox/> <DeleteBox/>
-            </Typography>
-            <CardContent>
-              <form className={classes.container}>
-                <TextField
-                  label="Vehicle No"
-                  className={classes.textField}
-                  fullWidth
-                  />
-                  <TextField
-                  label="Seal No"
-                  className={classes.textField}
-                  fullWidth
-                  />
-                  <TextField
-                  label="VGM"
-                  className={classes.textField}
-                  fullWidth
-                  />
-              </form>
-            </CardContent>
-          </Card>
+          <ShipmentAddContainer />
         </Grid>
         <Grid item xs={12} md={1}>
           <Box display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }}>
