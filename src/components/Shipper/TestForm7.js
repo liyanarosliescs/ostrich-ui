@@ -36,49 +36,21 @@ export default function TestForm7() {
   const initialValues = {
     friends: [
       {
-        name: "Klaus",
-        email: "klaus@formik.com"
-      },
-      {
-        name: "Hans",
-        email: "hans@formik.com"
+        name: "",
+        email: ""
       }
     ]
   };
 
   return (
-    <div>
-      <h1>Invite friends</h1>
-      <p>Check the console to see the formik state.</p>
-      <p>Reproduction</p>
-      <ol>
-        <li>Remove the first value of the form</li>
-        <li>
-          Check the <code>touched</code> state in the console log
-        </li>
-        <li>
-          It indicates <code>touched.friends: []</code> but one value was actually
-          touched
-        </li>
-      </ol>
       <Formik
         initialValues={initialValues}
-        validate={() => ({ foo: true })}
-        onSubmit={values => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-          }, 500);
-        }}
-        render={({ values, errors, touched, handleReset }) => {
-          console.group("formik");
-          console.log("touched", touched);
-          console.log("values", values);
-          console.groupEnd("formik");
+        render={({ values }) => {
           return (
             <Form>
               <FieldArray
                 name="friends"
-                render={({ insert, remove, push }) => (
+                render={({ remove, push }) => (
                   <div>
                     {values.friends.length > 0 &&
                       values.friends.map((friend, index) => (
@@ -90,15 +62,6 @@ export default function TestForm7() {
                               placeholder="Jane Doe"
                               type="text"
                             />
-                            {errors.friends &&
-                              errors.friends[index] &&
-                              errors.friends[index].name &&
-                              touched.friends &&
-                              touched.friends[index].name && (
-                                <div className="field-error">
-                                  {errors.friends[index].name}
-                                </div>
-                              )}
                           </div>
                           <div className="col">
                             <label htmlFor={`friends.${index}.email`}>
@@ -109,15 +72,6 @@ export default function TestForm7() {
                               placeholder="jane@acme.com"
                               type="email"
                             />
-                            {errors.friends &&
-                              errors.friends[index] &&
-                              errors.friends[index].email &&
-                              touched.friends &&
-                              touched.friends[index].email && (
-                                <div className="field-error">
-                                  {errors.friends[index].email}
-                                </div>
-                              )}
                           </div>
                           <div className="col">
                             <button
@@ -141,19 +95,10 @@ export default function TestForm7() {
                 )}
               />
               <br />
-              <button
-                onClick={event => {
-                  event.preventDefault();
-                  handleReset();
-                }}
-              >
-                Reset
-              </button>
               <button type="submit">Submit</button>
             </Form>
           );
         }}
       />
-    </div>
   );
 }
