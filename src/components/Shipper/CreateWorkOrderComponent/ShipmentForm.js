@@ -11,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
 import Select from 'react-select';
 import Checkbox from '@material-ui/core/Checkbox';
 import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
@@ -20,6 +21,7 @@ import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from '@material-ui/core/styles';
+import { Formik, Field, Form, FieldArray } from "formik";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -53,6 +55,9 @@ const useStyles = makeStyles(theme => ({
   },
   select: {
     width: 300
+  },
+  iconButton: {
+    color: "#000000"
   }
 }));
 
@@ -94,8 +99,23 @@ export default function ShipmentForm() {
     setState({ ...state, [name]: event.target.checked });
   };
 
+  const initialValues = {
+    containers: [
+      {
+        vehicleNo: "",
+        sealNo: "",
+        vgm: ""
+      }
+    ]
+  };
+
   return (
     <React.Fragment>
+    <Formik
+      initialValues={initialValues}
+      render={({ values }) => {
+        return (
+          <Form>
       <Typography variant="h6" gutterBottom>
         Shipment Information
       </Typography>
@@ -238,28 +258,57 @@ export default function ShipmentForm() {
         </Grid>
         <Grid item xs={12} md={3}>
           <Card className={classes.card}>
-            <Typography variant="h6" className={classes.title}>
-              Container <AddBox/> <DeleteBox/>
-            </Typography>
-            <CardContent>
-              <form className={classes.container}>
-                <TextField
-                  label="Vehicle No"
-                  className={classes.textField}
-                  fullWidth
-                  />
-                  <TextField
-                  label="Seal No"
-                  className={classes.textField}
-                  fullWidth
-                  />
-                  <TextField
-                  label="VGM"
-                  className={classes.textField}
-                  fullWidth
-                  />
-              </form>
-            </CardContent>
+            <FieldArray
+              name="containers"
+              render={({ remove, push }) => (
+                <div>
+                <Typography variant="h6" className={classes.title}>
+                  Container
+                  <IconButton
+                    className= {classes.iconButton}
+                    onClick={() => push({ vehicleNo: "", sealNo: "", vgm: "" })}>
+                    <AddBox/>
+                  </IconButton>
+                </Typography>
+                <CardContent>
+                  {values.containers.length > 0 &&
+                    values.containers.map((container, index) => (
+                      <div className="row" key={index}>
+                        <div className="col">
+                          <TextField
+                            name={`containers.${index}.vehicleNo`}
+                            label="Vehicle Number"
+                            className={classes.textField}
+                            fullWidth/>
+                        </div>
+                        <div className="col">
+                          <TextField
+                            name={`containers.${index}.sealNo`}
+                            label="Seal No"
+                            className={classes.textField}
+                            fullWidth/>
+                        </div>
+                        <div className="col">
+                          <TextField
+                            name={`containers.${index}.vgm`}
+                            label="VGM"
+                            className={classes.textField}
+                            fullWidth/>
+                        </div>
+                        <div className="col">
+                          <IconButton
+                            className= {classes.iconButton}
+                            onClick={() => remove(index)}
+                          >
+                            <DeleteBox/>
+                          </IconButton>
+                        </div>
+                      </div>
+                    ))}
+                  </CardContent>
+                </div>
+              )}
+            />
           </Card>
         </Grid>
         <Grid item xs={12} md={1}>
@@ -312,6 +361,10 @@ export default function ShipmentForm() {
           </Card>
         </Grid>
       </Grid>
+      </Form>
+    );
+  }}
+/>
     </React.Fragment>
   );
 }
