@@ -106,6 +106,14 @@ export default function ShipmentForm() {
         sealNo: "",
         vgm: ""
       }
+    ],
+    cargoes: [
+      {
+        cargoName: "",
+        palletQuantity: "",
+        weight: "",
+        unNo: ""
+      }
     ]
   };
 
@@ -325,39 +333,72 @@ export default function ShipmentForm() {
         </Grid>
         <Grid item xs={12} md={3}>
           <Card className={classes.card}>
-            <Typography variant="h6" className={classes.title}>
-              Cargo <AddBox/> <DeleteBox/>
-            </Typography>
-            <CardContent>
-              <form className={classes.container}>
-                <TextField
-                  label="Cargo Name"
-                  className={classes.textField}
-                  fullWidth
-                />
-                <TextField
-                  label="Pallet Quantity"
-                  className={classes.textField}
-                  fullWidth
-                />
-                <TextField
-                  label="Weight"
-                  id="weight"
-                  type="number"
-                  className={classes.textField}
-                  fullWidth
-                  InputProps={{
-                    endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
-                    inputProps: { min: 1 }
-                  }}
-                />
-                <TextField
-                  label="UN No"
-                  className={classes.textField}
-                  fullWidth
-                />
-              </form>
-            </CardContent>
+          <FieldArray
+            name="cargoes"
+            render={({ remove, push }) => (
+              <div>
+              <Typography variant="h6" className={classes.title}>
+                Cargo
+                <IconButton
+                  className= {classes.iconButton}
+                  onClick={() => push({ cargoName: "", palletQuantity: "", weight: "", unNo: "" })}>
+                  <AddBox/>
+                </IconButton>
+              </Typography>
+              <CardContent>
+                {values.cargoes.length > 0 &&
+                  values.cargoes.map((cargo, index) => (
+                    <div className="row" key={index}>
+                      <div className="col">
+                        <TextField
+                          name={`cargoes.${index}.cargoName`}
+                          label="Cargo Name"
+                          className={classes.textField}
+                          fullWidth/>
+                      </div>
+                      <div className="col">
+                        <TextField
+                          name={`cargoes.${index}.palletQuantity`}
+                          label="Pallet Quantity"
+                          className={classes.textField}
+                          fullWidth/>
+                      </div>
+                      <div className="col">
+                        <TextField
+                          name={`cargoes.${index}.weight`}
+                          label="Weight"
+                          id="weight"
+                          type="number"
+                          className={classes.textField}
+                          fullWidth
+                          InputProps={{
+                            endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
+                            inputProps: { min: 1 }
+                          }}
+                        />
+                      </div>
+                      <div className="col">
+                        <TextField
+                          name={`cargoes.${index}.unNo`}
+                          label="UN No"
+                          className={classes.textField}
+                          fullWidth
+                        />
+                      </div>
+                      <div className="col">
+                        <IconButton
+                          className= {classes.iconButton}
+                          onClick={() => remove(index)}
+                        >
+                          <DeleteBox/>
+                        </IconButton>
+                      </div>
+                    </div>
+                  ))}
+                </CardContent>
+              </div>
+            )}
+          />
           </Card>
         </Grid>
       </Grid>
