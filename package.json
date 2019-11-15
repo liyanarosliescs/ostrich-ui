@@ -13,6 +13,7 @@
     "formik-material-ui": "^1.0.0",
     "material-table": "^1.50.0",
     "material-ui-dropzone": "^2.4.5",
+    "material-ui-formik-components": "^0.5.1",
     "react": "^16.9.0",
     "react-chartjs-2": "^2.8.0",
     "react-countdown-now": "^2.1.1",
