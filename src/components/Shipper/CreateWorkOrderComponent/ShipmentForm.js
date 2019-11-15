@@ -281,29 +281,29 @@ export default function ShipmentForm() {
                 <CardContent>
                   {values.containers.length > 0 &&
                     values.containers.map((container, index) => (
-                      <div className="row" key={index}>
-                        <div className="col">
+                      <div key={index}>
+                        <div className={classes.container}>
                           <TextField
                             name={`containers.${index}.vehicleNo`}
                             label="Vehicle Number"
                             className={classes.textField}
                             fullWidth/>
                         </div>
-                        <div className="col">
+                        <div className={classes.container}>
                           <TextField
                             name={`containers.${index}.sealNo`}
                             label="Seal No"
                             className={classes.textField}
                             fullWidth/>
                         </div>
-                        <div className="col">
+                        <div className={classes.container}>
                           <TextField
                             name={`containers.${index}.vgm`}
                             label="VGM"
                             className={classes.textField}
                             fullWidth/>
                         </div>
-                        <div className="col">
+                        <div className={classes.container}>
                           <IconButton
                             className= {classes.iconButton}
                             onClick={() => remove(index)}
@@ -348,22 +348,22 @@ export default function ShipmentForm() {
               <CardContent>
                 {values.cargoes.length > 0 &&
                   values.cargoes.map((cargo, index) => (
-                    <div className="row" key={index}>
-                      <div className="col">
+                    <div key={index}>
+                      <div className={classes.container}>
                         <TextField
                           name={`cargoes.${index}.cargoName`}
                           label="Cargo Name"
                           className={classes.textField}
                           fullWidth/>
                       </div>
-                      <div className="col">
+                      <div className={classes.container}>
                         <TextField
                           name={`cargoes.${index}.palletQuantity`}
                           label="Pallet Quantity"
                           className={classes.textField}
                           fullWidth/>
                       </div>
-                      <div className="col">
+                      <div className={classes.container}>
                         <TextField
                           name={`cargoes.${index}.weight`}
                           label="Weight"
@@ -377,7 +377,7 @@ export default function ShipmentForm() {
                           }}
                         />
                       </div>
-                      <div className="col">
+                      <div className={classes.container}>
                         <TextField
                           name={`cargoes.${index}.unNo`}
                           label="UN No"
@@ -385,7 +385,7 @@ export default function ShipmentForm() {
                           fullWidth
                         />
                       </div>
-                      <div className="col">
+                      <div className={classes.container}>
                         <IconButton
                           className= {classes.iconButton}
                           onClick={() => remove(index)}
