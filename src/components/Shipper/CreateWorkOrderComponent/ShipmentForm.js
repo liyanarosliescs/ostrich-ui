@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+import { TextField } from 'formik-material-ui';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Box from '@material-ui/core/Box';
@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
 export default function ShipmentForm() {
   const classes = useStyles();
 
-  const transports = [
+  const transportsType = [
     { value: '20GP', label: '20GP' },
     { value: '40GP', label: '40GP' },
     { value: '45GP', label: '45GP' },
@@ -79,7 +79,7 @@ export default function ShipmentForm() {
     { value: 'Thorton', label: 'Thorton' }
   ];
 
-  const shipments = [
+  const shipmentsType = [
     { value: 'single', label: 'Single' },
     { value: 'roundLive', label: 'Round(Live)' },
     { value: 'roundDropAndHook', label: 'Round(Drop and Hook)' },
@@ -100,6 +100,16 @@ export default function ShipmentForm() {
   };
 
   const initialValues = {
+    shipments: [
+      {
+        shipmentsType: "",
+        transportsType: "",
+        noOfUnits: "",
+        ratePerUnit: "",
+        currency: "SGD",
+        deliveryMode: ""
+      }
+    ],
     containers: [
       {
         vehicleNo: "",
@@ -129,127 +139,168 @@ export default function ShipmentForm() {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Typography variant="h5" className={classes.subtitle}>
-            Shipment <AddBox/> <DeleteBox/>
-          </Typography>
         </Grid>
         <Grid item xs={12} md={4}>
           <Card className={classes.card}>
-            <CardContent>
-              <form className={classes.container}>
-                <Select
-                  className={classes.select}
-                  options = {shipments}
-                  isClearable
-                  placeholder="Select Shipment Type"
-                />
-                <br/>
-                <Select
-                  className={classes.select}
-                  options = {transports}
-                  isClearable
-                  placeholder="Select Transport Type"
-                />
-                <TextField
-                  label="Number of *"
-                  id="units"
-                  type="number"
-                  className={classes.textField}
-                  fullWidth
-                  InputProps={{
-                    endAdornment: <InputAdornment position="end">Units</InputAdornment>,
-                    inputProps: { min: 1 }
-                  }}
-                />
-                <TextField
-                  label="Rate Per Unit (Tax Excluded) *"
-                  id="rate"
-                  type="number"
-                  className={classes.textField}
-                  fullWidth
-                />
-                <TextField
-                  disabled
-                  id="currency"
-                  label="Currency"
-                  defaultValue="SGD"
-                  className={classes.textField}
-                  fullWidth
-                />
-                <FormControlLabel
-                  className={classes.textField}
-                  control={
-                    <Checkbox
-                      checked={state.isFrost}
-                      onChange={handleChange('isFrost')}
-                      value="isFrost"
-                      color="primary"
-                    />
-                  }
-                  label="Frost"
-                />
-                <FormControlLabel
-                  className={classes.textField}
-                  control={
-                    <Checkbox
-                      checked={state.isChiller}
-                      onChange={handleChange('isChiller')}
-                      value="isChiller"
-                      color="primary"
-                    />
-                  }
-                  label="Chiller"
-                />
-                <FormControlLabel
-                  className={classes.textField}
-                  control={
-                    <Checkbox
-                      checked={state.isCa}
-                      onChange={handleChange('isCa')}
-                      value="isCa"
-                      color="primary"
-                    />
-                  }
-                  label="CA"
-                />
-                <FormControlLabel
-                  className={classes.textField}
-                  control={
-                    <Checkbox
-                      checked={state.isDg}
-                      onChange={handleChange('isDg')}
-                      value="isDg"
-                      color="primary"
-                    />
-                  }
-                  label="DG"
-                />
-                <FormControlLabel
-                  className={classes.textField}
-                  control={
-                    <Checkbox
-                      checked={state.isOpen}
-                      onChange={handleChange('isOpen')}
-                      value="isOpen"
-                      color="primary"
-                    />
-                  }
-                  label="Open"
-                />
-                <FormControlLabel
-                  className={classes.textField}
-                  control={
-                    <Checkbox
-                      checked={state.isClose}
-                      onChange={handleChange('isClose')}
-                      value="isClose"
-                      color="primary"
-                    />
-                  }
-                  label="Close"
-                />
-              </form>
-            </CardContent>
+          <FieldArray
+            name="shipments"
+            render={({ remove, push }) => (
+              <div>
+                <Typography variant="h6" className={classes.title}>
+                  Shipment
+                  <IconButton
+                    className= {classes.iconButton}
+                    onClick={() => push({ shipmentsType: "", transportsType: "", noOfUnits: "", ratePerUnit: "", currency: "SGD", deliveryMode: "" })}>
+                    <AddBox/>
+                  </IconButton>
+                </Typography>
+                <CardContent>
+                  {values.shipments.length > 0 &&
+                    values.shipments.map((shipment, index) => (
+                      <div key={index}>
+                        <div className={classes.container}>
+                          <Select
+                            className={classes.select}
+                            options = {shipmentsType}
+                            isClearable
+                            placeholder="Select Shipment Type"
+                          />
+                        </div>
+                        <br/>
+                        <div className={classes.container}>
+                          <Select
+                            className={classes.select}
+                            options = {transportsType}
+                            isClearable
+                            placeholder="Select Transport Type"
+                          />
+                        </div>
+                        <br/>
+                        <div className={classes.container}>
+                          <Field
+                            name={`shipments.${index}.noOfUnits`}
+                            component={TextField}
+                            label="Number of *"
+                            id="units"
+                            type="number"
+                            className={classes.textField}
+                            fullWidth
+                            InputProps={{
+                              endAdornment: <InputAdornment position="end">Units</InputAdornment>,
+                              inputProps: { min: 1 }
+                            }}
+                          />
+                        </div>
+                        <div className={classes.container}>
+                          <Field
+                            name={`shipments.${index}.ratePerUnit`}
+                            component={TextField}
+                            label="Rate Per Unit (Tax Excluded) *"
+                            id="rate"
+                            type="number"
+                            className={classes.textField}
+                            fullWidth
+                          />
+                        </div>
+                        <div className={classes.container}>
+                          <Field
+                            name={`shipments.${index}.currency`}
+                            component={TextField}
+                            disabled
+                            id="currency"
+                            label="Currency"
+                            className={classes.textField}
+                            fullWidth
+                          />
+                        </div>
+                        <div className={classes.container}>
+                          <FormControlLabel
+                            className={classes.textField}
+                            control={
+                              <Checkbox
+                                checked={state.isFrost}
+                                onChange={handleChange('isFrost')}
+                                value="isFrost"
+                                color="primary"
+                              />
+                            }
+                            label="Frost"
+                          />
+                          <FormControlLabel
+                            className={classes.textField}
+                            control={
+                              <Checkbox
+                                checked={state.isChiller}
+                                onChange={handleChange('isChiller')}
+                                value="isChiller"
+                                color="primary"
+                              />
+                            }
+                            label="Chiller"
+                          />
+                          <FormControlLabel
+                            className={classes.textField}
+                            control={
+                              <Checkbox
+                                checked={state.isCa}
+                                onChange={handleChange('isCa')}
+                                value="isCa"
+                                color="primary"
+                              />
+                            }
+                            label="CA"
+                          />
+                          <FormControlLabel
+                            className={classes.textField}
+                            control={
+                              <Checkbox
+                                checked={state.isDg}
+                                onChange={handleChange('isDg')}
+                                value="isDg"
+                                color="primary"
+                              />
+                            }
+                            label="DG"
+                          />
+                          <FormControlLabel
+                            className={classes.textField}
+                            control={
+                              <Checkbox
+                                checked={state.isOpen}
+                                onChange={handleChange('isOpen')}
+                                value="isOpen"
+                                color="primary"
+                              />
+                            }
+                            label="Open"
+                          />
+                          <FormControlLabel
+                            className={classes.textField}
+                            control={
+                              <Checkbox
+                                checked={state.isClose}
+                                onChange={handleChange('isClose')}
+                                value="isClose"
+                                color="primary"
+                              />
+                            }
+                            label="Close"
+                          />
+                        </div>
+                        <div className={classes.container}>
+                          <IconButton
+                            className= {classes.iconButton}
+                            onClick={() => remove(index)}
+                          >
+                            <DeleteBox/>
+                          </IconButton>
+                        </div>
+                      </div>
+                  ))}
+                </CardContent>
+              </div>
+            )}
+          />
           </Card>
         </Grid>
         <Grid item xs={12} md={1}>
@@ -283,21 +334,24 @@ export default function ShipmentForm() {
                     values.containers.map((container, index) => (
                       <div key={index}>
                         <div className={classes.container}>
-                          <TextField
+                          <Field
+                            component={TextField}
                             name={`containers.${index}.vehicleNo`}
                             label="Vehicle Number"
                             className={classes.textField}
                             fullWidth/>
                         </div>
                         <div className={classes.container}>
-                          <TextField
+                          <Field
+                            component={TextField}
                             name={`containers.${index}.sealNo`}
                             label="Seal No"
                             className={classes.textField}
                             fullWidth/>
                         </div>
                         <div className={classes.container}>
-                          <TextField
+                          <Field
+                            component={TextField}
                             name={`containers.${index}.vgm`}
                             label="VGM"
                             className={classes.textField}
@@ -350,21 +404,24 @@ export default function ShipmentForm() {
                   values.cargoes.map((cargo, index) => (
                     <div key={index}>
                       <div className={classes.container}>
-                        <TextField
+                        <Field
+                          component={TextField}
                           name={`cargoes.${index}.cargoName`}
                           label="Cargo Name"
                           className={classes.textField}
                           fullWidth/>
                       </div>
                       <div className={classes.container}>
-                        <TextField
+                        <Field
+                          component={TextField}
                           name={`cargoes.${index}.palletQuantity`}
                           label="Pallet Quantity"
                           className={classes.textField}
                           fullWidth/>
                       </div>
                       <div className={classes.container}>
-                        <TextField
+                        <Field
+                          component={TextField}
                           name={`cargoes.${index}.weight`}
                           label="Weight"
                           id="weight"
@@ -378,7 +435,8 @@ export default function ShipmentForm() {
                         />
                       </div>
                       <div className={classes.container}>
-                        <TextField
+                        <Field
+                          component={TextField}
                           name={`cargoes.${index}.unNo`}
                           label="UN No"
                           className={classes.textField}
@@ -401,6 +459,10 @@ export default function ShipmentForm() {
           />
           </Card>
         </Grid>
+        {
+          //Uncomment the statement below to see how the form submission will look like
+          //<pre>{JSON.stringify(values, null, 2)}</pre>
+        }
       </Grid>
       </Form>
     );
