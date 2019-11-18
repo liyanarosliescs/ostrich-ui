@@ -40,6 +40,7 @@ import TestForm10 from './components/Shipper/TestForm10'
 import TestForm11 from './components/Shipper/TestForm11'
 import TestForm12 from './components/Shipper/TestForm12'
 import TestForm13 from './components/Shipper/TestForm13'
+import TestForm14 from './components/Shipper/TestForm14'
 import TestSelectForm from './components/Shipper/TestSelectForm'
 
 const routing = (
@@ -70,6 +71,7 @@ const routing = (
       <Route exact path="/shipper/form11" component={TestForm11} />
       <Route exact path="/shipper/form12" component={TestForm12} />
       <Route exact path="/shipper/form13" component={TestForm13} />
+      <Route exact path="/shipper/form14" component={TestForm14} />
       <Route exact path="/shipper/selectform" component={TestSelectForm} />
       <Route exact path="/trucker/setting" component={TruckerSetting} />
       <Route exact path="/trucker/masterdata" component={MasterData} />
