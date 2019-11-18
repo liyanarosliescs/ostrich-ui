@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Field } from "formik";
 
-const Checkbox = (props) => {
+const CustomCheckbox = (props) => {
   return (
     <Field name={props.name}>
       {({ field, form }) => (
@@ -29,4 +29,4 @@ const Checkbox = (props) => {
   );
 }
 
-export default Checkbox;
+export default CustomCheckbox;

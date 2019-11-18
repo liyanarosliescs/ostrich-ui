@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { Formik, Field } from "formik";
-import Checkbox from './Checkbox';
+import CustomCheckbox from '../Common/CustomCheckbox';
 
 export default function TestForm8() {
   return (
@@ -14,8 +14,8 @@ export default function TestForm8() {
       {formik => (
         <div>
           <div>
-            <Checkbox name="roles" value="admin" />
-            <Checkbox name="roles" value="customer" />
+            <CustomCheckbox name="roles" value="admin" />
+            <CustomCheckbox name="roles" value="customer" />
           </div>
           <button onClick={formik.submitForm}>submit</button>
           <pre>{JSON.stringify(formik.values, null, 2)}</pre>
