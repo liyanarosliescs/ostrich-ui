@@ -5,6 +5,13 @@ import { Select } from 'material-ui-formik-components/Select'
 
 export default function TestForm17() {
 
+  const shipmentsType = [
+    { value: 'single', label: 'Single' },
+    { value: 'roundLive', label: 'Round(Live)' },
+    { value: 'roundDropAndHook', label: 'Round(Drop and Hook)' },
+    { value: 'other', label: 'Other' }
+  ];
+
     return (
       <div>
         <h1>Register</h1>
@@ -23,11 +30,7 @@ export default function TestForm17() {
                 required
                 name="gender"
                 label="Gender"
-                options={[
-                  { value: 'Male', label: 'Male' },
-                  { value: 'Female', label: 'Female' },
-                  { value: 'Other', label: 'Other' },
-                ]}
+                options={shipmentsType}
                 component={Select}
               />
               <button type="submit" disabled={!props.dirty}>
@@ -38,5 +41,5 @@ export default function TestForm17() {
         />
       </div>
     )
-  
+
 }
