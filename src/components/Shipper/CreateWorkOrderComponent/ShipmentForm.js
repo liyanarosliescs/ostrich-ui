@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { TextField } from 'formik-material-ui';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
@@ -13,7 +12,6 @@ import CardActions from '@material-ui/core/CardActions';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Select from 'react-select';
-import Checkbox from '@material-ui/core/Checkbox';
 import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
 import JourneyIconVertical from '@material-ui/icons/ArrowDownward';
 import AddBox from "@material-ui/icons/AddBox";
@@ -22,6 +20,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik, Field, Form, FieldArray } from "formik";
+import { Checkbox } from "../../Common/Checkbox";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -86,19 +85,6 @@ export default function ShipmentForm() {
     { value: 'other', label: 'Other' }
   ];
 
-  const [state, setState] = React.useState({
-    isFrost: false,
-    isChiller: false,
-    isCa: false,
-    isDg: false,
-    isOpen: false,
-    isClose: false
-  });
-
-  const handleChange = name => event => {
-    setState({ ...state, [name]: event.target.checked });
-  };
-
   const initialValues = {
     shipments: [
       {
@@ -107,7 +93,12 @@ export default function ShipmentForm() {
         noOfUnits: "",
         ratePerUnit: "",
         currency: "SGD",
-        deliveryMode: ""
+        isFrost: false,
+        isChiller: false,
+        isCa: false,
+        isDg: false,
+        isOpen: false,
+        isClose: false
       }
     ],
     containers: [
@@ -150,7 +141,7 @@ export default function ShipmentForm() {
                   Shipment
                   <IconButton
                     className= {classes.iconButton}
-                    onClick={() => push({ shipmentsType: "", transportsType: "", noOfUnits: "", ratePerUnit: "", currency: "SGD", deliveryMode: "" })}>
+                    onClick={() => push({ shipmentsType: "", transportsType: "", noOfUnits: "", ratePerUnit: "", currency: "SGD", isFrost: false, isChiller: false, isCa: false, isDg: false, isOpen: false, isClose: false   })}>
                     <AddBox/>
                   </IconButton>
                 </Typography>
@@ -214,78 +205,18 @@ export default function ShipmentForm() {
                           />
                         </div>
                         <div className={classes.container}>
-                          <FormControlLabel
-                            className={classes.textField}
-                            control={
-                              <Checkbox
-                                checked={state.isFrost}
-                                onChange={handleChange('isFrost')}
-                                value="isFrost"
-                                color="primary"
-                              />
-                            }
-                            label="Frost"
-                          />
-                          <FormControlLabel
-                            className={classes.textField}
-                            control={
-                              <Checkbox
-                                checked={state.isChiller}
-                                onChange={handleChange('isChiller')}
-                                value="isChiller"
-                                color="primary"
-                              />
-                            }
-                            label="Chiller"
-                          />
-                          <FormControlLabel
-                            className={classes.textField}
-                            control={
-                              <Checkbox
-                                checked={state.isCa}
-                                onChange={handleChange('isCa')}
-                                value="isCa"
-                                color="primary"
-                              />
-                            }
-                            label="CA"
-                          />
-                          <FormControlLabel
-                            className={classes.textField}
-                            control={
-                              <Checkbox
-                                checked={state.isDg}
-                                onChange={handleChange('isDg')}
-                                value="isDg"
-                                color="primary"
-                              />
-                            }
-                            label="DG"
-                          />
-                          <FormControlLabel
-                            className={classes.textField}
-                            control={
-                              <Checkbox
-                                checked={state.isOpen}
-                                onChange={handleChange('isOpen')}
-                                value="isOpen"
-                                color="primary"
-                              />
-                            }
-                            label="Open"
-                          />
-                          <FormControlLabel
-                            className={classes.textField}
-                            control={
-                              <Checkbox
-                                checked={state.isClose}
-                                onChange={handleChange('isClose')}
-                                value="isClose"
-                                color="primary"
-                              />
-                            }
-                            label="Close"
-                          />
+                          <Checkbox name={`shipments.${index}.isFrost`} />
+                          <p>Frost</p>
+                          <Checkbox name={`shipments.${index}.isChiller`} />
+                          <p>Chiller</p>
+                          <Checkbox name={`shipments.${index}.isCa`} />
+                          <p>CA</p>
+                          <Checkbox name={`shipments.${index}.isDg`} />
+                          <p>DG</p>
+                          <Checkbox name={`shipments.${index}.isOpen`} />
+                          <p>Open</p>
+                          <Checkbox name={`shipments.${index}.isClose`} />
+                          <p>Close</p>
                         </div>
                         <div className={classes.container}>
                           <IconButton
