@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+import { TextField } from 'formik-material-ui';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Box from '@material-ui/core/Box';
@@ -11,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
 import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
 import JourneyIconVertical from '@material-ui/icons/ArrowDownward';
 import AddBox from "@material-ui/icons/AddBox";
@@ -18,6 +19,7 @@ import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from '@material-ui/core/styles';
+import { Formik, Field, Form, FieldArray } from "formik";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -35,6 +37,11 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(2),
   },
+  textField: {
+    marginTop: theme.spacing(1),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+  },
   dateField: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
@@ -51,6 +58,9 @@ const useStyles = makeStyles(theme => ({
     width: 70,
     height: 70,
   },
+  iconButton: {
+    color: "#000000"
+  }
 }));
 
 export default function JourneyForm() {
@@ -66,149 +76,256 @@ export default function JourneyForm() {
     setState({ ...state, [name]: event.target.checked });
   };
 
+  const initialValues = {
+    journeys: [
+      {
+        pickUpLocation1: "",
+        pickUpLocation2: "",
+        pickUpLocation3: "",
+        pickUpLocation4: "",
+        pickUpFreeTime: "",
+        pickUpDateTime: "",
+        pickUpIsEmpty: true,
+        deliveryLocation1: "",
+        deliveryLocation2: "",
+        deliveryLocation3: "",
+        deliveryLocation4: "",
+        deliveryFreeTime: "",
+        deliveryDateTime: ""
+      }
+    ]
+  };
+
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Journey Information
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Typography variant="h5" className={classes.subtitle}>
-            Journey <AddBox/> <DeleteBox/>
-          </Typography>
-        </Grid>
-        <Grid item xs={12} md={5}>
-          <Card className={classes.card}>
-            <Typography variant="h6" className={classes.title}>
-              Pick Up
+    <Formik
+      initialValues={initialValues}
+      render={({ values }) => {
+        return (
+          <Form>
+            <Typography variant="h6" gutterBottom>
+              Journey
             </Typography>
-            <CardContent>
-              <form className={classes.container}>
-                <TextField
-                  label="Location Line 1"
-                  className={classes.textField}
-                  fullWidth
-                  required
-                />
-                <TextField
-                  label="Location Line 2"
-                  className={classes.textField}
-                  fullWidth
-                />
-                <TextField
-                  label="Location Line 3"
-                  className={classes.textField}
-                  fullWidth
-                />
-                <TextField
-                  label="Location Line 4"
-                  className={classes.textField}
-                  fullWidth
-                />
-                <TextField
-                  label="Pick Up Free Time"
-                  id="pickupFreeTime"
-                  type="number"
-                  className={classes.textField}
-                  fullWidth
-                  InputProps={{
-                    endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
-                    inputProps: { min: 1 }
-                  }}
-                />
-                <DatePicker
-                  placeholderText="* Select Date/Time"
-                  className={classes.dateField}
-                  selected={startDate}
-                  onChange={date => setStartDate(date)}
-                  showTimeSelect
-                  timeFormat="HH:mm"
-                  timeIntervals={10}
-                  timeCaption="time"
-                  dateFormat="dd/MM/yyyy h:mm aa"
-                />
-                <Grid component="label" container alignItems="center" spacing={1} className={classes.textField}>
-                  <Grid item>Empty</Grid>
-                    <Grid item>
-                      <Switch
-                        color="primary"
-                        checked={state.notEmpty}
-                        onChange={handleChange('notEmpty')}
-                        value="notEmpty"/>
-                    </Grid>
-                  <Grid item>Loaded</Grid>
-                </Grid>
-              </form>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={2}>
-          <Box display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }}>
-            <JourneyIconHorizontal
-              className={classes.icon}
-            />
-          </Box>
-          <Box display={{ xs: 'block', sm: 'block', md: 'none', lg: 'none' }}>
-            <JourneyIconVertical
-              className={classes.icon}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={5}>
-          <Card className={classes.card}>
-            <Typography variant="h6" className={classes.title}>
-              Delivery
-            </Typography>
-            <CardContent>
-              <form className={classes.container}>
-                <TextField
-                  label="Location Line 1"
-                  className={classes.textField}
-                  fullWidth
-                  required
-                  />
-                  <TextField
-                  label="Location Line 2"
-                  className={classes.textField}
-                  fullWidth
-                  />
-                  <TextField
-                  label="Location Line 3"
-                  className={classes.textField}
-                  fullWidth
-                  />
-                  <TextField
-                  label="Location Line 4"
-                  className={classes.textField}
-                  fullWidth
-                />
-                <TextField
-                  label="Delivery Free Time"
-                  id="pickupFreeTime"
-                  type="number"
-                  className={classes.textField}
-                  fullWidth
-                  InputProps={{
-                    endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
-                    inputProps: { min: 1 }
-                  }}
-                />
-                <DatePicker
-                  placeholderText="* Select Date/Time"
-                  className={classes.dateField}
-                  selected={startDate}
-                  onChange={date => setStartDate(date)}
-                  showTimeSelect
-                  timeFormat="HH:mm"
-                  timeIntervals={10}
-                  timeCaption="time"
-                  dateFormat="dd/MM/yyyy h:mm aa"
-                />
-              </form>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+              <FieldArray
+                name="journeys"
+                render={({ remove, push }) => (
+                  <div className="headOfFieldArray">
+                    {values.journeys.length > 0 &&
+                      values.journeys.map((journey, index) => (
+                        <div className="headOfForm">
+                        <Grid container spacing={3}>
+                          <Grid item xs={12}>
+                            <Typography variant="h5" className={classes.subtitle}>
+                              Journey
+                              <IconButton
+                                className= {classes.iconButton}
+                                onClick={() => push({ pickUpLocation1: "", pickUpLocation2: "", pickUpLocation3: "", pickUpLocation4: "", pickUpFreeTime: "", pickUpDateTime: "", pickUpIsEmpty: true, deliveryLocation1: "", deliveryLocation2: "", deliveryLocation3: "", deliveryLocation4: "", deliveryFreeTime: "", deliveryDateTime: "" })}>
+                                <AddBox/>
+                              </IconButton>
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={12} md={5}>
+                            <Card className={classes.card}>
+                              <Typography variant="h6" className={classes.title}>
+                                Pick Up
+                              </Typography>
+                              <CardContent>
+                                <div className="pickUpForm">
+                                <div className={classes.container}>
+                                  <Field
+                                    component={TextField}
+                                    name={`journeys.${index}.pickUpLocation1`}
+                                    label="Location Line 1"
+                                    className={classes.textField}
+                                    fullWidth
+                                    required
+                                  />
+                                </div>
+                                <div className={classes.container}>
+                                  <Field
+                                    component={TextField}
+                                    name={`journeys.${index}.pickUpLocation2`}
+                                    label="Location Line 2"
+                                    className={classes.textField}
+                                    fullWidth
+                                  />
+                                </div>
+                                <div className={classes.container}>
+                                  <Field
+                                    component={TextField}
+                                    name={`journeys.${index}.pickUpLocation3`}
+                                    label="Location Line 3"
+                                    className={classes.textField}
+                                    fullWidth
+                                  />
+                                </div>
+                                <div className={classes.container}>
+                                  <Field
+                                    component={TextField}
+                                    name={`journeys.${index}.pickUpLocation4`}
+                                    label="Location Line 4"
+                                    className={classes.textField}
+                                    fullWidth
+                                  />
+                                </div>
+                                <div className={classes.container}>
+                                  <Field
+                                    component={TextField}
+                                    name={`journeys.${index}.pickUpFreeTime`}
+                                    label="Pick Up Free Time"
+                                    id="pickupFreeTime"
+                                    type="number"
+                                    className={classes.textField}
+                                    fullWidth
+                                    InputProps={{
+                                      endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
+                                      inputProps: { min: 1 }
+                                    }}
+                                  />
+                                </div>
+                                <br/>
+                                <div className={classes.container}>
+                                  <DatePicker
+                                    placeholderText="* Select Date/Time"
+                                    className={classes.dateField}
+                                    selected={startDate}
+                                    onChange={date => setStartDate(date)}
+                                    showTimeSelect
+                                    timeFormat="HH:mm"
+                                    timeIntervals={10}
+                                    timeCaption="time"
+                                    dateFormat="dd/MM/yyyy h:mm aa"
+                                  />
+                                </div>
+                                <div className={classes.container}>
+                                  <Grid component="label" container alignItems="center" spacing={1} className={classes.textField}>
+                                    <Grid item>Empty</Grid>
+                                    <Grid item>
+                                      <Switch
+                                        color="primary"
+                                        checked={state.notEmpty}
+                                        onChange={handleChange('notEmpty')}
+                                        value="notEmpty"/>
+                                    </Grid>
+                                    <Grid item>Loaded</Grid>
+                                  </Grid>
+                                </div>
+                                <div className={classes.container}>
+                                  <IconButton
+                                    className= {classes.iconButton}
+                                    onClick={() => remove(index)}
+                                    >
+                                    <DeleteBox/>
+                                  </IconButton>
+                                </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          </Grid>
+                          <Grid item xs={12} md={2}>
+                            <Box display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }}>
+                              <JourneyIconHorizontal
+                                className={classes.icon}
+                              />
+                            </Box>
+                            <Box display={{ xs: 'block', sm: 'block', md: 'none', lg: 'none' }}>
+                              <JourneyIconVertical
+                                className={classes.icon}
+                              />
+                              dd
+                            </Box>
+                          </Grid>
+                          <Grid item xs={12} md={5}>
+                            <Card className={classes.card}>
+                              <Typography variant="h6" className={classes.title}>
+                                Delivery
+                              </Typography>
+                              <CardContent>
+                                <div className="deliveryForm">
+                                <div className={classes.container}>
+                                  <Field
+                                    component={TextField}
+                                    name={`journeys.${index}.deliveryLocation1`}
+                                    label="Location Line 1"
+                                    className={classes.textField}
+                                    fullWidth
+                                    required
+                                  />
+                                </div>
+                                <div className={classes.container}>
+                                  <Field
+                                    component={TextField}
+                                    name={`journeys.${index}.deliveryLocation2`}
+                                    label="Location Line 2"
+                                    className={classes.textField}
+                                    fullWidth
+                                  />
+                                </div>
+                                <div className={classes.container}>
+                                  <Field
+                                    component={TextField}
+                                    name={`journeys.${index}.deliveryLocation3`}
+                                    label="Location Line 3"
+                                    className={classes.textField}
+                                    fullWidth
+                                  />
+                                </div>
+                                <div className={classes.container}>
+                                  <Field
+                                    component={TextField}
+                                    name={`journeys.${index}.deliveryLocation4`}
+                                    label="Location Line 4"
+                                    className={classes.textField}
+                                    fullWidth
+                                  />
+                                </div>
+                                <div className={classes.container}>
+                                  <Field
+                                    component={TextField}
+                                    name={`journeys.${index}.deliveryFreeTime`}
+                                    label="Delivery Free Time"
+                                    id="pickupFreeTime"
+                                    type="number"
+                                    className={classes.textField}
+                                    fullWidth
+                                    InputProps={{
+                                      endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
+                                      inputProps: { min: 1 }
+                                    }}
+                                  />
+                                </div>
+                                <br/>
+                                <div className={classes.container}>
+                                  <DatePicker
+                                    placeholderText="* Select Date/Time"
+                                    className={classes.dateField}
+                                    selected={startDate}
+                                    onChange={date => setStartDate(date)}
+                                    showTimeSelect
+                                    timeFormat="HH:mm"
+                                    timeIntervals={10}
+                                    timeCaption="time"
+                                    dateFormat="dd/MM/yyyy h:mm aa"
+                                  />
+                                </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          </Grid>
+                        </Grid>
+                        </div>
+                    ))}
+                  </div>
+                )}
+              />
+              {
+                //Uncomment the statement below to see how the form submission will look like
+                <pre>{JSON.stringify(values, null, 2)}</pre>
+              }
+          </Form>
+        );
+      }}
+    />
     </React.Fragment>
   );
 }
