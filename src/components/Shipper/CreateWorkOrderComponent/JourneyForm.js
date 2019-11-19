@@ -298,18 +298,18 @@ export default function JourneyForm() {
                                     dateFormat="dd/MM/yyyy h:mm aa"
                                   />
                                 </div>
-                                <div className={classes.container}>
-                                  <IconButton
-                                    className= {classes.iconButton}
-                                    onClick={() => remove(index)}
-                                    >
-                                    <DeleteBox/>
-                                  </IconButton>
-                                </div>
                                 </div>
                               </CardContent>
                             </Card>
                           </Grid>
+                          <div className={classes.container}>
+                            <IconButton
+                              className= {classes.iconButton}
+                              onClick={() => remove(index)}
+                              >
+                              <DeleteBox/>
+                            </IconButton>
+                          </div>
                         </Grid>
                         </div>
                     ))}
