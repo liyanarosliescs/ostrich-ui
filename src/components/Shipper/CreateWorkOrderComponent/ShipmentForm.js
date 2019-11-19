@@ -11,7 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
-import Select from 'react-select';
+import { Select } from 'material-ui-formik-components/Select'
 import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
 import JourneyIconVertical from '@material-ui/icons/ArrowDownward';
 import AddBox from "@material-ui/icons/AddBox";
@@ -53,7 +53,10 @@ const useStyles = makeStyles(theme => ({
     height: 70,
   },
   select: {
-    width: 300
+    width: 220
+  },
+  formControl: {
+    margin: theme.spacing(1),
   },
   iconButton: {
     color: "#000000"
@@ -149,24 +152,24 @@ export default function ShipmentForm() {
                   {values.shipments.length > 0 &&
                     values.shipments.map((shipment, index) => (
                       <div key={index}>
-                        <div className={classes.container}>
-                          <Select
+                        <div className={classes.formControl}>
+                          <Field
+                            name={`shipments.${index}.shipmentsType`}
+                            component={Select}
                             className={classes.select}
                             options = {shipmentsType}
-                            isClearable
-                            placeholder="Select Shipment Type"
+                            label="Select Shipment Type"
                           />
                         </div>
-                        <br/>
-                        <div className={classes.container}>
-                          <Select
+                        <div className={classes.formControl}>
+                          <Field
+                            name={`shipments.${index}.transportsType`}
+                            component={Select}
                             className={classes.select}
                             options = {transportsType}
-                            isClearable
-                            placeholder="Select Transport Type"
+                            label="Select Transport Type"
                           />
                         </div>
-                        <br/>
                         <div className={classes.container}>
                           <Field
                             name={`shipments.${index}.noOfUnits`}
