@@ -1,20 +1,27 @@
 import React from 'react';
 
 import Select from 'react-select';
+import TextField from '@material-ui/core/TextField';
 
 const options = [
   { value: 'Food', label: 'Food' },
   { value: 'Being Fabulous', label: 'Being Fabulous' },
   { value: 'Ken Wheeler', label: 'Ken Wheeler' },
-  { value: 'ReasonML', label: 'ReasonML' },
-  { value: 'Unicorns', label: 'Unicorns' },
+
   { value: 'Kittens', label: 'Kittens' },
+  { value: 'Others', label: 'Others' },
 ];
 
 class MySelect extends React.Component {
   handleChange = value => {
     // this is going to call setFieldValue and manually update values.topcis
-    this.props.onChange('topics', value);
+    this.props.onChange('topics', value[0].value);
+    if (value[0].value.includes('Others')) {
+      console.log("Hiya")
+    }
+    else {
+      console.log(value[0].value)
+    }
   };
 
   handleBlur = () => {
@@ -33,6 +40,12 @@ class MySelect extends React.Component {
           onChange={this.handleChange}
           onBlur={this.handleBlur}
           value={this.props.value}
+        />
+        <TextField
+          onChange={this.state.username}
+          label="Location Line 1"
+          fullWidth
+          required
         />
         {!!this.props.error &&
           this.props.touched && (
