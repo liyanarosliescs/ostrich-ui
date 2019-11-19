@@ -104,26 +104,24 @@ export default function JourneyForm() {
         return (
           <Form>
             <Typography variant="h6" gutterBottom>
-              Journey
+              Journey Information
             </Typography>
               <FieldArray
                 name="journeys"
                 render={({ remove, push }) => (
                   <div className="headOfFieldArray">
+                  <Typography variant="h5" className={classes.subtitle}>
+                    Trip
+                    <IconButton
+                      className= {classes.iconButton}
+                      onClick={() => push({ pickUpLocation1: "", pickUpLocation2: "", pickUpLocation3: "", pickUpLocation4: "", pickUpFreeTime: "", pickUpDateTime: "", pickUpIsEmpty: true, deliveryLocation1: "", deliveryLocation2: "", deliveryLocation3: "", deliveryLocation4: "", deliveryFreeTime: "", deliveryDateTime: "" })}>
+                      <AddBox/>
+                    </IconButton>
+                  </Typography>
                     {values.journeys.length > 0 &&
                       values.journeys.map((journey, index) => (
                         <div className="headOfForm">
                         <Grid container spacing={3}>
-                          <Grid item xs={12}>
-                            <Typography variant="h5" className={classes.subtitle}>
-                              Journey
-                              <IconButton
-                                className= {classes.iconButton}
-                                onClick={() => push({ pickUpLocation1: "", pickUpLocation2: "", pickUpLocation3: "", pickUpLocation4: "", pickUpFreeTime: "", pickUpDateTime: "", pickUpIsEmpty: true, deliveryLocation1: "", deliveryLocation2: "", deliveryLocation3: "", deliveryLocation4: "", deliveryFreeTime: "", deliveryDateTime: "" })}>
-                                <AddBox/>
-                              </IconButton>
-                            </Typography>
-                          </Grid>
                           <Grid item xs={12} md={5}>
                             <Card className={classes.card}>
                               <Typography variant="h6" className={classes.title}>
@@ -209,14 +207,6 @@ export default function JourneyForm() {
                                     </Grid>
                                     <Grid item>Loaded</Grid>
                                   </Grid>
-                                </div>
-                                <div className={classes.container}>
-                                  <IconButton
-                                    className= {classes.iconButton}
-                                    onClick={() => remove(index)}
-                                    >
-                                    <DeleteBox/>
-                                  </IconButton>
                                 </div>
                                 </div>
                               </CardContent>
@@ -308,6 +298,14 @@ export default function JourneyForm() {
                                     dateFormat="dd/MM/yyyy h:mm aa"
                                   />
                                 </div>
+                                <div className={classes.container}>
+                                  <IconButton
+                                    className= {classes.iconButton}
+                                    onClick={() => remove(index)}
+                                    >
+                                    <DeleteBox/>
+                                  </IconButton>
+                                </div>
                                 </div>
                               </CardContent>
                             </Card>
@@ -320,7 +318,7 @@ export default function JourneyForm() {
               />
               {
                 //Uncomment the statement below to see how the form submission will look like
-                <pre>{JSON.stringify(values, null, 2)}</pre>
+                //<pre>{JSON.stringify(values, null, 2)}</pre>
               }
           </Form>
         );
