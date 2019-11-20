@@ -16,8 +16,7 @@ import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
 import JourneyIconVertical from '@material-ui/icons/ArrowDownward';
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import CustomDatePicker from '../../Common/CustomDatePicker';
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik, Field, Form, FieldArray } from "formik";
 
@@ -66,8 +65,6 @@ const useStyles = makeStyles(theme => ({
 export default function JourneyForm() {
   const classes = useStyles();
 
-  const [startDate, setStartDate] = useState(null);
-
   const initialValues = {
     journeys: [
       {
@@ -91,8 +88,18 @@ export default function JourneyForm() {
   return (
     <React.Fragment>
     <Formik
-      initialValues={initialValues}
-      render={({ values }) => {
+      initialValues={initialValues}>
+      {props => {
+        const {
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          dirty,
+          setFieldValue,
+          setFieldTouched,
+          isSubmitting
+        } = props;
         return (
           <Form>
             <Typography variant="h6" gutterBottom>
@@ -175,16 +182,9 @@ export default function JourneyForm() {
                                 </div>
                                 <br/>
                                 <div className={classes.container}>
-                                  <DatePicker
-                                    placeholderText="* Select Date/Time"
+                                  <CustomDatePicker
+                                    name={`journeys.${index}.pickUpDateTime`}
                                     className={classes.dateField}
-                                    selected={startDate}
-                                    onChange={date => setStartDate(date)}
-                                    showTimeSelect
-                                    timeFormat="HH:mm"
-                                    timeIntervals={10}
-                                    timeCaption="time"
-                                    dateFormat="dd/MM/yyyy h:mm aa"
                                   />
                                 </div>
                                 <div className={classes.container}>
@@ -276,16 +276,9 @@ export default function JourneyForm() {
                                 </div>
                                 <br/>
                                 <div className={classes.container}>
-                                  <DatePicker
-                                    placeholderText="* Select Date/Time"
+                                  <CustomDatePicker
+                                    name={`journeys.${index}.deliveryDateTime`}
                                     className={classes.dateField}
-                                    selected={startDate}
-                                    onChange={date => setStartDate(date)}
-                                    showTimeSelect
-                                    timeFormat="HH:mm"
-                                    timeIntervals={10}
-                                    timeCaption="time"
-                                    dateFormat="dd/MM/yyyy h:mm aa"
                                   />
                                 </div>
                                 </div>
@@ -313,7 +306,7 @@ export default function JourneyForm() {
           </Form>
         );
       }}
-    />
+    </Formik>
     </React.Fragment>
   );
 }
