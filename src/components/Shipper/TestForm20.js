@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import { Formik, Field, Form, FieldArray } from "formik";
-import DatePicker from '../Common/DatePicker';
+import CustomDatePicker from '../Common/CustomDatePicker';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -39,7 +39,7 @@ export default function TestForm20() {
       {
         name: "",
         email: "",
-        myDate: new Date()
+        customDate: ""
       }
     ]
   };
@@ -86,9 +86,8 @@ export default function TestForm20() {
                             />
                           </div>
                           <div className="col">
-                            <DatePicker
-                              name={`friends.${index}.myDate`}
-                              onChange={setFieldValue}
+                            <CustomDatePicker
+                              name={`friends.${index}.customDate`}
                             />
                           </div>
                           <div className="col">
@@ -105,7 +104,7 @@ export default function TestForm20() {
                     <button
                       type="button"
                       className="secondary"
-                      onClick={() => push({ name: "", email: "", myDate: new Date() })}
+                      onClick={() => push({ name: "", email: "", customDate: "" })}
                     >
                       Add Friend
                     </button>
