@@ -11,16 +11,15 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
-import { Select } from 'material-ui-formik-components/Select'
 import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
 import JourneyIconVertical from '@material-ui/icons/ArrowDownward';
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik, Field, Form, FieldArray } from "formik";
 import { Checkbox } from "../../Common/Checkbox";
+import ShipmentSelect from "../../Common/ShipmentSelect";
+import TransportSelect from "../../Common/TransportSelect";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -53,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     height: 70,
   },
   select: {
-    width: 220
+    width: 300
   },
   formControl: {
     margin: theme.spacing(1),
@@ -65,28 +64,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function ShipmentForm() {
   const classes = useStyles();
-
-  const transportsType = [
-    { value: '20GP', label: '20GP' },
-    { value: '40GP', label: '40GP' },
-    { value: '45GP', label: '45GP' },
-    { value: '1T', label: '1T' },
-    { value: '3.5T', label: '3.5T' },
-    { value: '20RF', label: '20RF' },
-    { value: '40RF', label: '40RF' },
-    { value: '40HC', label: '40HC' },
-    { value: '53FT', label: '53FT' },
-    { value: 'Flatbed', label: 'Flatbed' },
-    { value: 'Rabon', label: 'Rabon' },
-    { value: 'Thorton', label: 'Thorton' }
-  ];
-
-  const shipmentsType = [
-    { value: 'single', label: 'Single' },
-    { value: 'roundLive', label: 'Round(Live)' },
-    { value: 'roundDropAndHook', label: 'Round(Drop and Hook)' },
-    { value: 'other', label: 'Other' }
-  ];
 
   const initialValues = {
     shipments: [
@@ -124,10 +101,20 @@ export default function ShipmentForm() {
   return (
     <React.Fragment>
     <Formik
-      initialValues={initialValues}
-      render={({ values }) => {
-        return (
-          <Form>
+      initialValues={initialValues}>
+      {props => {
+        const {
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          dirty,
+          setFieldValue,
+          setFieldTouched,
+          isSubmitting
+        } = props;
+      return (
+      <Form>
       <Typography variant="h6" gutterBottom>
         Shipment Information
       </Typography>
@@ -152,22 +139,17 @@ export default function ShipmentForm() {
                   {values.shipments.length > 0 &&
                     values.shipments.map((shipment, index) => (
                       <div key={index}>
-                        <div className={classes.formControl}>
-                          <Field
-                            name={`shipments.${index}.shipmentsType`}
-                            component={Select}
+                        <div className={classes.container}>
+                          <ShipmentSelect
                             className={classes.select}
-                            options = {shipmentsType}
-                            label="Select Shipment Type"
+                            name={`shipments.${index}.shipmentsType`}
                           />
                         </div>
-                        <div className={classes.formControl}>
-                          <Field
-                            name={`shipments.${index}.transportsType`}
-                            component={Select}
+                        <br/>
+                        <div className={classes.container}>
+                          <TransportSelect
                             className={classes.select}
-                            options = {transportsType}
-                            label="Select Transport Type"
+                            name={`shipments.${index}.transportsType`}
                           />
                         </div>
                         <div className={classes.container}>
@@ -401,7 +383,7 @@ export default function ShipmentForm() {
       </Form>
     );
   }}
-/>
+</Formik>
     </React.Fragment>
   );
 }
