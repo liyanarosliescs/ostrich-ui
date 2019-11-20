@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { TextField } from 'formik-material-ui';
+import { Switch } from "../../Common/Switch";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -68,14 +68,6 @@ export default function JourneyForm() {
 
   const [startDate, setStartDate] = useState(null);
 
-  const [state, setState] = React.useState({
-    notEmpty: false,
-  });
-
-  const handleChange = name => event => {
-    setState({ ...state, [name]: event.target.checked });
-  };
-
   const initialValues = {
     journeys: [
       {
@@ -85,7 +77,7 @@ export default function JourneyForm() {
         pickUpLocation4: "",
         pickUpFreeTime: "",
         pickUpDateTime: "",
-        pickUpIsEmpty: true,
+        pickUpIsLoaded: true,
         deliveryLocation1: "",
         deliveryLocation2: "",
         deliveryLocation3: "",
@@ -114,7 +106,7 @@ export default function JourneyForm() {
                     Trip
                     <IconButton
                       className= {classes.iconButton}
-                      onClick={() => push({ pickUpLocation1: "", pickUpLocation2: "", pickUpLocation3: "", pickUpLocation4: "", pickUpFreeTime: "", pickUpDateTime: "", pickUpIsEmpty: true, deliveryLocation1: "", deliveryLocation2: "", deliveryLocation3: "", deliveryLocation4: "", deliveryFreeTime: "", deliveryDateTime: "" })}>
+                      onClick={() => push({ pickUpLocation1: "", pickUpLocation2: "", pickUpLocation3: "", pickUpLocation4: "", pickUpFreeTime: "", pickUpDateTime: "", pickUpIsLoaded: true, deliveryLocation1: "", deliveryLocation2: "", deliveryLocation3: "", deliveryLocation4: "", deliveryFreeTime: "", deliveryDateTime: "" })}>
                       <AddBox/>
                     </IconButton>
                   </Typography>
@@ -200,10 +192,8 @@ export default function JourneyForm() {
                                     <Grid item>Empty</Grid>
                                     <Grid item>
                                       <Switch
-                                        color="primary"
-                                        checked={state.notEmpty}
-                                        onChange={handleChange('notEmpty')}
-                                        value="notEmpty"/>
+                                        name={`journeys.${index}.pickUpIsLoaded`}
+                                        color="primary" />
                                     </Grid>
                                     <Grid item>Loaded</Grid>
                                   </Grid>
