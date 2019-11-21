@@ -69,6 +69,7 @@ export default function ShipmentForm() {
     shipments: [
       {
         shipmentsType: "",
+        shipmentsOtherType: "",
         transportsType: "",
         noOfUnits: "",
         ratePerUnit: "",
@@ -145,6 +146,25 @@ export default function ShipmentForm() {
                             name={`shipments.${index}.shipmentsType`}
                           />
                         </div>
+                        {(() => {
+                          if (shipment.shipmentsType.includes('other')) {
+                            return (
+                              <div className={classes.container}>
+                              <Field
+                                name={`shipments.${index}.shipmentsOtherType`}
+                                component={TextField}
+                                label="Specify Other Shipment"
+                                className={classes.textField}
+                                fullWidth
+                              />
+                              </div>
+                            )
+                          } else {
+                            return (
+                              <div></div>
+                            )
+                          }
+                        })()}
                         <br/>
                         <div className={classes.container}>
                           <TransportSelect
