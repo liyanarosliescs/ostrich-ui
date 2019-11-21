@@ -29,6 +29,12 @@ import WorkOrderIcon from '@material-ui/icons/Description';
 import DetailViewIcon from "@material-ui/icons/FindInPage";
 import DeleteIcon from "@material-ui/icons/DeleteOutline";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import SideDrawer from './SideDrawer';
 import {DropzoneArea} from 'material-ui-dropzone'
 import Select from 'react-select';
@@ -131,6 +137,16 @@ function WorkOrderDetails(props) {
   const handleChange = e => {
     setFiles(e.target.value);
   }
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const Completionist = () => <span>Closed</span>;
 
@@ -469,9 +485,38 @@ function WorkOrderDetails(props) {
                         <Button
                           type="submit"
                           variant="contained"
-                          color="primary">
+                          color="primary"
+                          onClick={handleClickOpen}>
                           Assign
                         </Button>
+                        <Dialog open={open} onClose={handleClose}>
+                          <DialogTitle id="form-dialog-title">Assign trucker's container</DialogTitle>
+                          <DialogContent>
+                            <DialogContentText>
+                              There are 3 containers available. How many would you like to assign?
+                            </DialogContentText>
+                            <TextField
+                              autoFocus
+                              margin="dense"
+                              id="noOfAssignContainer"
+                              label="Number of *"
+                              type="number"
+                              fullWidth
+                              InputProps={{
+                                endAdornment: <InputAdornment position="end">Containers</InputAdornment>,
+                                inputProps: { min: 1 }
+                              }}
+                              />
+                          </DialogContent>
+                          <DialogActions>
+                            <Button onClick={handleClose} color="primary">
+                              Cancel
+                            </Button>
+                            <Button onClick={handleClose} color="primary">
+                              Assign
+                            </Button>
+                          </DialogActions>
+                        </Dialog>
                       </TableCell>
                     </TableRow>
                   ))}
