@@ -445,6 +445,43 @@ function WorkOrderDetails(props) {
                   ))}
                 </TableBody>
               </Table>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom className={classes.newSection2}>
+                Request, Offer and Assignment Information
+              </Typography>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Request</TableCell>
+                    <TableCell>Offer/CounterOffer</TableCell>
+                    <TableCell>Assignment</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.map(row => (
+                    <TableRow key={row.id}>
+                      <TableCell component="th" scope="row">
+                        <Typography variant="body2"><strong>Units:</strong> {row.requestedUnit}</Typography>
+                        <Typography variant="body2"><strong>Rate Per Unit:</strong> {row.requestedRate}</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="body2"><strong>Units:</strong> {row.offerUnit}</Typography>
+                        <Typography variant="body2"><strong>Rate Per Unit:</strong> {row.offerRatePerUnit}</Typography>
+                        <Typography variant="body2"><strong>Pick Up Information:</strong> {row.pickUpDateTime}</Typography>
+                        <Typography variant="body2"><strong>Delivery Information:</strong> {row.deliveryDateTime}</Typography>
+                        <Typography variant="body2"><strong>Transport Information:</strong> {row.transportInfo}</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="body2"><strong>Units:</strong> {row.assignedUnit}</Typography>
+                        <Typography variant="body2"><strong>Total Price:</strong> {row.totalPrice}</Typography>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Grid>
+            <Grid item xs={12}>
               <br/><br/><br/>
             </Grid>
             <Grid
