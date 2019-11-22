@@ -40,6 +40,7 @@ import shipment from '../Common/WorkOrderData/shipment';
 import setting from  '../Common/WorkOrderData/setting';
 import file from '../Common/WorkOrderData/file';
 import data from './WorkOrderDetailData';
+import cargo from './CargoDetail';
 
 const drawerWidth = 240;
 
@@ -476,6 +477,31 @@ function WorkOrderDetails(props) {
                         <Typography variant="body2"><strong>Units:</strong> {row.assignedUnit}</Typography>
                         <Typography variant="body2"><strong>Total Price:</strong> {row.totalPrice}</Typography>
                       </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom className={classes.newSection2}>
+                Cargo Information
+              </Typography>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Number of Pallets</TableCell>
+                    <TableCell>Weight</TableCell>
+                    <TableCell>UN Number</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {cargo.map(item => (
+                    <TableRow>
+                      <TableCell>{item.name}</TableCell>
+                      <TableCell>{item.noOfPallets}</TableCell>
+                      <TableCell>{item.weight}</TableCell>
+                      <TableCell>{item.unNo}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
