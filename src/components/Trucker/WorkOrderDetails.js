@@ -502,8 +502,11 @@ function WorkOrderDetails(props) {
               <Table className={classes.table}>
                 <TableBody>
                   <TableRow>
+                    <TableCell colSpan={2}></TableCell>
+                  </TableRow>
+                  <TableRow>
                     <TableCell colSpan={2}>
-                      <strong>Journey#1 Information</strong>
+                      <strong>Journey#1 Transport Detail</strong>
                     </TableCell>
                   </TableRow>
                   <TableRow>
@@ -549,7 +552,7 @@ function WorkOrderDetails(props) {
                   </TableRow>
                   <TableRow>
                     <TableCell colSpan={2}>
-                      <strong>Journey#2 Information</strong>
+                      <strong>Journey#2 Transport Detail</strong>
                     </TableCell>
                   </TableRow>
                   <TableRow>
