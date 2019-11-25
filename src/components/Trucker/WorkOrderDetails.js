@@ -419,6 +419,19 @@ function WorkOrderDetails(props) {
                       <TableCell>30 Oct 2019 10:18AM</TableCell>
                     </TableRow>
                   ))}
+                  <TableRow>
+                    <TableCell colSpan={3}>
+                      <TextareaAutosize rows={3} placeholder="Enter additional remarks here" className={classes.textarea}/>
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary">
+                        Add Remark
+                      </Button>
+                    </TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </Grid>
@@ -479,6 +492,107 @@ function WorkOrderDetails(props) {
                       </TableCell>
                     </TableRow>
                   ))}
+                </TableBody>
+              </Table>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom className={classes.newSection2}>
+                Transport Information
+              </Typography>
+              <Table className={classes.table}>
+                <TableBody>
+                  <TableRow>
+                    <TableCell colSpan={2}>
+                      <strong>Journey#1 Information</strong>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <TextField
+                        defaultValue="SM2354H"
+                        label="Vehicle Number"
+                        fullWidth
+                      />
+                      <TextField
+                        defaultValue="YTREA12345"
+                        label="Seal Number"
+                        fullWidth
+                      />
+                      <TextField
+                        defaultValue="20KGM"
+                        label="VGM"
+                        fullWidth
+                      />
+                      <TextField
+                        label="Carrier Name"
+                        fullWidth
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <TextField
+                        label="License Plate"
+                        fullWidth
+                      />
+                      <TextField
+                        label="Trailer Number"
+                        fullWidth
+                      />
+                      <TextField
+                        label="Driver Name"
+                        fullWidth
+                      />
+                      <TextField
+                        label="Track Number"
+                        fullWidth
+                      />
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell colSpan={2}>
+                      <strong>Journey#2 Information</strong>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <TextField
+                        defaultValue="SM1122R"
+                        label="Vehicle Number"
+                        fullWidth
+                      />
+                      <TextField
+                        defaultValue="YTRBS76765"
+                        label="Seal Number"
+                        fullWidth
+                      />
+                      <TextField
+                        defaultValue="50LBS"
+                        label="VGM"
+                        fullWidth
+                      />
+                      <TextField
+                        label="Carrier Name"
+                        fullWidth
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <TextField
+                        label="License Plate"
+                        fullWidth
+                      />
+                      <TextField
+                        label="Trailer Number"
+                        fullWidth
+                      />
+                      <TextField
+                        label="Driver Name"
+                        fullWidth
+                      />
+                      <TextField
+                        label="Track Number"
+                        fullWidth
+                      />
+                    </TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </Grid>
