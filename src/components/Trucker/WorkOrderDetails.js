@@ -500,15 +500,17 @@ function WorkOrderDetails(props) {
                 Transport Information
               </Typography>
               <Table className={classes.table}>
-                <TableBody>
+                <TableHead>
                   <TableRow>
                     <TableCell colSpan={2}></TableCell>
                   </TableRow>
+                </TableHead>
+                <TableHead>
                   <TableRow>
-                    <TableCell colSpan={2}>
-                      <strong>Journey#1 Transport Detail</strong>
-                    </TableCell>
+                    <TableCell colSpan={2}>Journey#1 Transport Detail</TableCell>
                   </TableRow>
+                </TableHead>
+                <TableBody>
                   <TableRow>
                     <TableCell>
                       <TextField
@@ -550,11 +552,13 @@ function WorkOrderDetails(props) {
                       />
                     </TableCell>
                   </TableRow>
+                </TableBody>
+                <TableHead>
                   <TableRow>
-                    <TableCell colSpan={2}>
-                      <strong>Journey#2 Transport Detail</strong>
-                    </TableCell>
+                    <TableCell colSpan={2}>Journey#2 Transport Detail</TableCell>
                   </TableRow>
+                </TableHead>
+                <TableBody>
                   <TableRow>
                     <TableCell>
                       <TextField
