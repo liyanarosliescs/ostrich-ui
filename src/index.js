@@ -8,6 +8,7 @@ import SignUp from './components/SignUp'
 import ShipperWorkOrder from './components/ShipperWorkOrder'
 import WorkOrder from './components/Shipper/WorkOrder'
 import TruckerWorkOrder from './components/Trucker/WorkOrder'
+import EditDetails from './components/Shipper/EditDetails'
 import WorkOrderDetails from './components/Shipper/WorkOrderDetails'
 import TruckerWorkOrderDetails from './components/Trucker/WorkOrderDetails'
 import TruckerOffer from './components/Trucker/Offer'
@@ -58,6 +59,7 @@ const routing = (
       <Route exact path="/shipper/createworkorder" component={CreateWorkOrder} />
       <Route exact path="/shipper/workorder" component={WorkOrder} />
       <Route exact path="/shipper/workorderdetails" component={WorkOrderDetails} />
+      <Route exact path="/shipper/edit" component={EditDetails} />
       <Route exact path="/shipper/workorderlogs" component={WorkOrderLogs} />
       <Route exact path="/shipper/workorderlogdetails" component={WorkOrderLogDetails} />
       <Route exact path="/shipper/setting" component={ShipperSetting} />

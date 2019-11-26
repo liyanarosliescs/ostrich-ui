@@ -127,7 +127,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function WorkOrderDetails(props) {
+function EditDetails(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -230,7 +230,7 @@ function WorkOrderDetails(props) {
           </Link>
           <Link color="inherit" href="" className={classes.breadLink}>
             <WorkOrderIcon className={classes.breadIcon} />
-              Details
+              Edit Details
           </Link>
         </Breadcrumbs>
         <Paper className={classes.paper}>
@@ -575,9 +575,8 @@ function WorkOrderDetails(props) {
               alignItems="center">
               <Button
                 type="submit"
-                variant="contained"
-                color="secondary">
-                Cancel
+                variant="contained">
+                Restart
               </Button>
               {'\u00A0'}{'\u00A0'}
               <Button
@@ -585,7 +584,7 @@ function WorkOrderDetails(props) {
                 variant="contained"
                 color="primary"
                 href="edit">
-                Edit
+                Update
               </Button>
             </Grid>
           </Grid>
@@ -595,8 +594,8 @@ function WorkOrderDetails(props) {
   );
 }
 
-WorkOrderDetails.propTypes = {
+EditDetails.propTypes = {
   container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
 };
 
-export default WorkOrderDetails;
+export default EditDetails;
