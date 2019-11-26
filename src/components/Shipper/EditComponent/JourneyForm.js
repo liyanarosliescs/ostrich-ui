@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -21,6 +22,10 @@ const useStyles = makeStyles(theme => ({
     width: 40,
     height: 40,
   },
+  card: {
+    padding: theme.spacing(2),
+    margin: theme.spacing(2)
+  }
 }));
 
 export default function JourneyForm() {
@@ -81,6 +86,7 @@ export default function JourneyForm() {
                       {values.journeys.length > 0 &&
                         values.journeys.map((journey, index) => (
                           <div className="headOfForm">
+                          <Card className={classes.card}>
                             <Typography variant="body1">
                               <strong>Pick Up</strong>
                             </Typography>
@@ -100,7 +106,7 @@ export default function JourneyForm() {
                                 label="Pick Up Free Time"
                                 id="pickupFreeTime"
                                 type="number"
-                                fullWidth
+                                width="300"
                                 InputProps={{
                                   endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
                                   inputProps: { min: 1 }
@@ -150,7 +156,7 @@ export default function JourneyForm() {
                                 label="Delivery Free Time"
                                 id="deliveryFreeTime"
                                 type="number"
-                                fullWidth
+                                width="300"
                                 InputProps={{
                                   endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
                                   inputProps: { min: 1 }
@@ -171,6 +177,7 @@ export default function JourneyForm() {
                                 <DeleteBox/>
                               </IconButton>
                             </div>
+                            </Card>
                           </div>
                       ))}
                   </div>
