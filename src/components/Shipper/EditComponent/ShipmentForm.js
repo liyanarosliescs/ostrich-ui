@@ -132,42 +132,47 @@ export default function ShipmentForm() {
                                 ()}
                               </div>
                               <div>
-                                <Field
-                                  name={`shipments.${index}.noOfUnits`}
-                                  component={TextField}
-                                  label="Number of *"
-                                  id="units"
-                                  type="number"
-                                  className={classes.textField}
-                                  fullWidth
-                                  InputProps={{
-                                    endAdornment: <InputAdornment position="end" style={{ width: "50px"}}>Units</InputAdornment>,
-                                    inputProps: { min: 1 }
-                                  }}
-                                />
+                                <Grid container justify = "center">
+                                  <Grid item xs={4}>
+                                    <Field
+                                      name={`shipments.${index}.noOfUnits`}
+                                      component={TextField}
+                                      label="Number of *"
+                                      id="units"
+                                      type="number"
+                                      className={classes.textField}
+                                      fullWidth
+                                      InputProps={{
+                                        endAdornment: <InputAdornment position="end" style={{ width: "50px"}}>Units</InputAdornment>,
+                                        inputProps: { min: 1 }
+                                      }}
+                                    />
+                                  </Grid>
+                                  <Grid item xs={4}>
+                                    <Field
+                                      name={`shipments.${index}.ratePerUnit`}
+                                      component={TextField}
+                                      label="Rate Per Unit (Tax Excluded) *"
+                                      id="rate"
+                                      type="number"
+                                      className={classes.textField}
+                                      fullWidth
+                                    />
+                                  </Grid>
+                                  <Grid item xs={4}>
+                                    <Field
+                                      name={`shipments.${index}.currency`}
+                                      component={TextField}
+                                      disabled
+                                      id="currency"
+                                      label="Currency"
+                                      className={classes.textField}
+                                      fullWidth
+                                    />
+                                  </Grid>
+                                </Grid>
                               </div>
-                              <div>
-                                <Field
-                                  name={`shipments.${index}.ratePerUnit`}
-                                  component={TextField}
-                                  label="Rate Per Unit (Tax Excluded) *"
-                                  id="rate"
-                                  type="number"
-                                  className={classes.textField}
-                                  fullWidth
-                                />
-                              </div>
-                              <div>
-                                <Field
-                                  name={`shipments.${index}.currency`}
-                                  component={TextField}
-                                  disabled
-                                  id="currency"
-                                  label="Currency"
-                                  className={classes.textField}
-                                  fullWidth
-                                />
-                              </div>
+                              <br/>
                               <div>
                                 <FormControlLabel
                                   className={classes.textField}
