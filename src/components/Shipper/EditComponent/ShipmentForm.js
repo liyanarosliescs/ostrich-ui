@@ -14,6 +14,7 @@ import shipment from '../../Common/WorkOrderData/shipment';
 import ShipmentSelect from "../../Common/ShipmentSelect";
 import TransportSelect from "../../Common/TransportSelect";
 import { Checkbox } from "../../Common/Checkbox";
+import ContainerForm from './ContainerForm';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -220,6 +221,9 @@ export default function ShipmentForm() {
                                   <DeleteBox/>
                                 </IconButton>
                               </div>
+                              <Card className={classes.card}>
+                                <ContainerForm/>
+                              </Card>
                             </Card>
                           </div>
                       ))}
