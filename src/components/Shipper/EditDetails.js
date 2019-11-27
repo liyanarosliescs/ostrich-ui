@@ -251,20 +251,6 @@ function EditDetails(props) {
             <SettingForm/>
             <Grid item xs={12}>
               <Typography variant="body1" gutterBottom>
-                <strong>Settings</strong>
-              </Typography>
-              {setting.map(item => (
-                <Typography variant="body2">
-                  <strong>Auto Reject: </strong> {item.autoReject} <br/>
-                  <strong>Counter Offer: </strong> {item.counterOffer} <br/>
-                  <strong>Auto Assignment:  </strong> {item.autoAssign} <br/>
-                  <strong>Open For:  </strong> {item.openFor} <br/>
-                  <strong>Open Time:  </strong> {item.openTime} Minutes <br/>
-                </Typography>
-              ))}
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
                 <strong>Remarks</strong>
               </Typography>
               <Table className={classes.table}>
