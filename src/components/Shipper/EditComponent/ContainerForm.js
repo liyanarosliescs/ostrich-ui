@@ -9,6 +9,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import { Formik, Field, Form, FieldArray } from "formik";
+import CargoForm from './CargoForm';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -102,6 +103,11 @@ export default function ContainerForm() {
                                 fullWidth/>
                             </Grid>
                           </Grid>
+                          <div>
+                            <Card className={classes.card}>
+                              <CargoForm/>
+                            </Card>
+                          </div>
                           <div>
                             <IconButton
                               className= {classes.iconButton}
