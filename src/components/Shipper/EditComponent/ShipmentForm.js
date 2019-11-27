@@ -226,6 +226,10 @@ export default function ShipmentForm() {
                                   <DeleteBox/>
                                 </IconButton>
                               </div>
+                              {
+                                //Uncomment the statement below to see how the form submission will look like
+                                //<pre>{JSON.stringify(values, null, 2)}</pre>
+                              }
                             </Card>
                           </div>
                       ))}
