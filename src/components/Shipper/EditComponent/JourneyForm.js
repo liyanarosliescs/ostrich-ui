@@ -86,97 +86,96 @@ export default function JourneyForm() {
                       {values.journeys.length > 0 &&
                         values.journeys.map((journey, index) => (
                           <div className="headOfForm">
-                          <Card className={classes.card}>
-                            <Typography variant="body1">
-                              <strong>Pick Up</strong>
-                            </Typography>
-                            <div>
-                              <Field
-                                component={TextField}
-                                name={`journeys.${index}.pickUpLocation`}
-                                label="Location"
-                                fullWidth
-                                required
-                              />
-                            </div>
-                            <div>
-                              <Field
-                                component={TextField}
-                                name={`journeys.${index}.pickUpFreeTime`}
-                                label="Pick Up Free Time"
-                                id="pickupFreeTime"
-                                type="number"
-                                width="300"
-                                InputProps={{
-                                  endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
-                                  inputProps: { min: 1 }
-                                }}
-                              />
-                            </div>
-                            <br/>
-                            <div className={classes.container}>
-                              <CustomDatePicker
-                                name={`journeys.${index}.pickUpDateTime`}
-                              />
-                            </div>
-                            <div>
-                              <Grid component="label" container alignItems="center" spacing={1} className={classes.textField}>
-                                <Grid item>Empty</Grid>
-                                <Grid item>
-                                  <Switch
-                                    name={`journeys.${index}.pickUpIsLoaded`}
-                                    color="primary" />
+                            <Card className={classes.card}>
+                              <Typography variant="body1">
+                                <strong>Pick Up</strong>
+                              </Typography>
+                              <div>
+                                <Field
+                                  component={TextField}
+                                  name={`journeys.${index}.pickUpLocation`}
+                                  label="Location"
+                                  fullWidth
+                                  required
+                                />
+                              </div>
+                              <div>
+                                <Field
+                                  component={TextField}
+                                  name={`journeys.${index}.pickUpFreeTime`}
+                                  label="Pick Up Free Time"
+                                  id="pickupFreeTime"
+                                  type="number"
+                                  width="300"
+                                  InputProps={{
+                                    endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
+                                    inputProps: { min: 1 }
+                                  }}
+                                />
+                              </div>
+                              <br/>
+                              <div className={classes.container}>
+                                <CustomDatePicker
+                                  name={`journeys.${index}.pickUpDateTime`}
+                                />
+                              </div>
+                              <div>
+                                <Grid component="label" container alignItems="center" spacing={1} className={classes.textField}>
+                                  <Grid item>Empty</Grid>
+                                  <Grid item>
+                                    <Switch
+                                      name={`journeys.${index}.pickUpIsLoaded`}
+                                      color="primary" />
+                                  </Grid>
+                                  <Grid item>Loaded</Grid>
                                 </Grid>
-                                <Grid item>Loaded</Grid>
-                              </Grid>
-                            </div>
-                            <div>
-                              <Grid container justify = "center">
-                                <JourneyIconVertical
-                                  className={classes.icon}
+                              </div>
+                              <div>
+                                <Grid container justify = "center">
+                                  <JourneyIconVertical
+                                    className={classes.icon}
+                                  />
+                                </Grid>
+                              </div>
+                              <Typography variant="body1">
+                                <strong>Delivery</strong>
+                              </Typography>
+                              <div>
+                                <Field
+                                  component={TextField}
+                                  name={`journeys.${index}.deliveryLocation`}
+                                  label="Location"
+                                  fullWidth
+                                  required
                                 />
-                              </Grid>
-                            </div>
-                            <Typography variant="body1">
-                              <strong>Delivery</strong>
-                            </Typography>
-                            <div>
-                              <Field
-                                component={TextField}
-                                name={`journeys.${index}.deliveryLocation`}
-                                label="Location"
-                                fullWidth
-                                required
-                              />
-                            </div>
-                            <div>
-                              <Field
-                                component={TextField}
-                                name={`journeys.${index}.deliveryFreeTime`}
-                                label="Delivery Free Time"
-                                id="deliveryFreeTime"
-                                type="number"
-                                width="300"
-                                InputProps={{
-                                  endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
-                                  inputProps: { min: 1 }
-                                }}
+                              </div>
+                              <div>
+                                <Field
+                                  component={TextField}
+                                  name={`journeys.${index}.deliveryFreeTime`}
+                                  label="Delivery Free Time"
+                                  id="deliveryFreeTime"
+                                  type="number"
+                                  width="300"
+                                  InputProps={{
+                                    endAdornment: <InputAdornment position="end">Hours</InputAdornment>,
+                                    inputProps: { min: 1 }
+                                  }}
                                 />
-                            </div>
-                            <br/>
-                            <div>
-                              <CustomDatePicker
-                                name={`journeys.${index}.deliveryDateTime`}
-                              />
-                            </div>
-                            <div>
-                              <IconButton
-                                className= {classes.iconButton}
-                                onClick={() => remove(index)}
-                              >
-                                <DeleteBox/>
-                              </IconButton>
-                            </div>
+                              </div>
+                              <br/>
+                              <div>
+                                <CustomDatePicker
+                                  name={`journeys.${index}.deliveryDateTime`}
+                                />
+                              </div>
+                              <div>
+                                <IconButton
+                                  className= {classes.iconButton}
+                                  onClick={() => remove(index)}>
+                                  <DeleteBox/>
+                                </IconButton>
+                              </div>
                             </Card>
                           </div>
                       ))}
