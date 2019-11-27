@@ -45,6 +45,7 @@ import file from '../Common/WorkOrderData/file';
 import data from './WorkOrderDetailData';
 import MainForm from './EditComponent/MainForm';
 import JourneyForm from './EditComponent/JourneyForm';
+import ShipmentForm from './EditComponent/ShipmentForm';
 
 const drawerWidth = 240;
 
@@ -245,6 +246,7 @@ function EditDetails(props) {
           <Grid container spacing={3} className={classes.newSection}>
             <MainForm/>
             <JourneyForm/>
+            <ShipmentForm/>
             <Grid item xs={12}>
               <Typography variant="body1" gutterBottom>
                 <strong>Settings</strong>
