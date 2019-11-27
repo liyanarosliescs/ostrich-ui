@@ -35,9 +35,88 @@ const useStyles = makeStyles(theme => ({
 export default function ContainerForm() {
   const classes = useStyles();
 
+  const initialValues = {
+    containers: [
+      {
+        vehicleNo: "",
+        sealNo: "",
+        vgm: ""
+      }
+    ]
+  };
+
   return(
-    <Typography variant="h6" className={classes.title}>
-      Container
-    </Typography>
+    <Formik
+      initialValues={initialValues}>
+      {props => {
+        const {
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          dirty,
+          setFieldValue,
+          setFieldTouched,
+          isSubmitting
+        } = props;
+        return (
+          <Form>
+            <FieldArray
+              name="containers"
+              render={({ remove, push }) => (
+                <div className="headOfFieldArray">
+                  <Typography variant="h6" className={classes.title}>
+                    Container
+                    <IconButton
+                      className= {classes.iconButton}
+                      onClick={() => push({ vehicleNo: "", sealNo: "", vgm: "" })}>
+                      <AddBox/>
+                    </IconButton>
+                  </Typography>
+                    {values.containers.length > 0 &&
+                      values.containers.map((container, index) => (
+                        <div>
+                          <Grid container justify = "center">
+                            <Grid item xs={4}>
+                              <Field
+                                component={TextField}
+                                name={`containers.${index}.vehicleNo`}
+                                label="Vehicle Number"
+                                className={classes.textField}
+                                fullWidth/>
+                            </Grid>
+                            <Grid item xs={4}>
+                              <Field
+                                component={TextField}
+                                name={`containers.${index}.sealNo`}
+                                label="Seal No"
+                                className={classes.textField}
+                                fullWidth/>
+                            </Grid>
+                            <Grid item xs={4}>
+                              <Field
+                                component={TextField}
+                                name={`containers.${index}.vgm`}
+                                label="VGM"
+                                className={classes.textField}
+                                fullWidth/>
+                            </Grid>
+                          </Grid>
+                          <div>
+                            <IconButton
+                              className= {classes.iconButton}
+                              onClick={() => remove(index)}>
+                              <DeleteBox/>
+                            </IconButton>
+                          </div>
+                        </div>
+                    ))}
+                </div>
+              )}
+            />
+          </Form>
+        );
+      }}
+    </Formik>
   );
 }

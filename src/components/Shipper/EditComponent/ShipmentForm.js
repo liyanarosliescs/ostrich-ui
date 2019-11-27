@@ -214,6 +214,11 @@ export default function ShipmentForm() {
                                 />
                               </div>
                               <div>
+                                <Card className={classes.card}>
+                                  <ContainerForm/>
+                                </Card>
+                              </div>
+                              <div>
                                 <IconButton
                                   className= {classes.iconButton}
                                   onClick={() => remove(index)}
@@ -221,9 +226,6 @@ export default function ShipmentForm() {
                                   <DeleteBox/>
                                 </IconButton>
                               </div>
-                              <Card className={classes.card}>
-                                <ContainerForm/>
-                              </Card>
                             </Card>
                           </div>
                       ))}
