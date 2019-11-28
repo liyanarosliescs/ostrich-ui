@@ -10,7 +10,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import { Formik, Field, Form, FieldArray } from "formik";
-import shipment from '../../Common/WorkOrderData/shipment';
 import ShipmentSelect from "../../Common/ShipmentSelect";
 import TransportSelect from "../../Common/TransportSelect";
 import { Checkbox } from "../../Common/Checkbox";
@@ -19,10 +18,6 @@ import ContainerForm from './ContainerForm';
 const useStyles = makeStyles(theme => ({
   title: {
     color: "#3f51b5"
-  },
-  icon: {
-    width: 40,
-    height: 40,
   },
   card: {
     padding: theme.spacing(2),
