@@ -48,6 +48,7 @@ import JourneyForm from './EditComponent/JourneyForm';
 import ShipmentForm from './EditComponent/ShipmentForm';
 import SettingForm from './EditComponent/SettingForm';
 import RemarkForm from './EditComponent/RemarkForm';
+import DocumentForm from './EditComponent/DocumentForm';
 
 const drawerWidth = 240;
 
@@ -251,50 +252,9 @@ function EditDetails(props) {
             <ShipmentForm/>
             <SettingForm/>
             <RemarkForm/>
+            <DocumentForm/>
             <Grid item xs={12}>
-              <Typography variant="h6" gutterBottom className={classes.newSection2}>
-                Documents
-              </Typography>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Open For</TableCell>
-                    <TableCell>Action</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {file.map(item => (
-                    <TableRow>
-                      <TableCell>{item.file}</TableCell>
-                      <TableCell>trucker1, trucker2</TableCell>
-                      <TableCell><DetailViewIcon/><DeleteIcon/></TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-              <br/><br/>
-              <Typography variant="body1" gutterBottom>
-                <strong>Upload additional documents</strong>
-              </Typography>
-              <DropzoneArea
-                onChange={setFiles}
-                dropzoneText="Drag and drop your files here or click here"
-                showPreviewsInDropzone={false}
-                showPreviews={true}
-                showFileNames={true}
-              />
               <br/>
-              <Select
-                className={classes.select}
-                options = {options}
-                isClearable
-                isMulti
-                placeholder="Files open for"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <br/><br/><br/>
             </Grid>
             <Grid
               container
