@@ -30,7 +30,7 @@ export default function RemarkForm() {
   return(
     <Grid item xs={12}>
       <Typography variant="h6" className={classes.title}>
-        Remark
+        Remarks
       </Typography>
       <Table className={classes.table}>
         <TableHead>

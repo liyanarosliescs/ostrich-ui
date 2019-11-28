@@ -56,7 +56,7 @@ export default function MainForm() {
   return (
     <Grid item xs={12}>
       <Typography variant="h6" className={classes.title}>
-        Setting
+        Settings
       </Typography>
       <Grid container spacing={3} className={classes.mainGrid}>
         <Grid item xs={12}>
