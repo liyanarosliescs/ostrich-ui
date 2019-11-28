@@ -12,7 +12,6 @@ import { Formik, Field, Form, FieldArray } from "formik";
 import { TextField } from 'formik-material-ui';
 import { Switch } from "../../Common/Switch";
 import CustomDatePicker from '../../Common/CustomDatePicker';
-import journey from '../../Common/WorkOrderData/journey';
 
 const useStyles = makeStyles(theme => ({
   title: {
