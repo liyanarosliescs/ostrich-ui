@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import Countdown from 'react-countdown-now';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,34 +13,13 @@ import Badge from '@material-ui/core/Badge';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Link from '@material-ui/core/Link';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import TextField from '@material-ui/core/TextField';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import WorkOrderIcon from '@material-ui/icons/Description';
-import DetailViewIcon from "@material-ui/icons/FindInPage";
-import DeleteIcon from "@material-ui/icons/DeleteOutline";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SideDrawer from './SideDrawer';
-import {DropzoneArea} from 'material-ui-dropzone'
-import Select from 'react-select';
-import journey from '../Common/WorkOrderData/journey';
-import shipment from '../Common/WorkOrderData/shipment';
-import setting from  '../Common/WorkOrderData/setting';
-import file from '../Common/WorkOrderData/file';
-import data from './WorkOrderDetailData';
 import MainForm from './EditComponent/MainForm';
 import JourneyForm from './EditComponent/JourneyForm';
 import ShipmentForm from './EditComponent/ShipmentForm';
@@ -93,17 +70,6 @@ const useStyles = makeStyles(theme => ({
   breadLink: {
     display: 'flex',
   },
-  body: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(15),
-    marginRight: theme.spacing(15),
-    [theme.breakpoints.between('xs', 'sm')]: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-    },
-  },
   paper: {
     margin: theme.spacing(5),
     padding: theme.spacing(5)
@@ -111,24 +77,8 @@ const useStyles = makeStyles(theme => ({
   newSection: {
     marginTop: theme.spacing(5),
   },
-  newSection2: {
-    marginTop: theme.spacing(5),
-    color: "#3f51b5"
-  },
   title: {
     color: "#3f51b5"
-  },
-  timer: {
-    color: "#ff0000"
-  },
-  table: {
-    minWidth: 650,
-  },
-  textarea: {
-    width: 700
-  },
-  submit: {
-    marginTop: theme.spacing(5)
   }
 }));
 
