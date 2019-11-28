@@ -109,17 +109,20 @@ export default function MainForm() {
             isMulti
             placeholder="Open for *"
           />
-          <TextField
-            label="Open Time *"
-            id="openTime"
-            type="number"
-            className={classes.time}
-            fullWidth
-            InputProps={{
-              endAdornment: <InputAdornment position="end" style={{ width: "100px"}}>Minutes</InputAdornment>,
-              inputProps: { min: 1 }
-            }}
-          />
+          {setting.map(item => (
+            <TextField
+              defaultValue={item.openTime}
+              label="Open Time *"
+              id="openTime"
+              type="number"
+              className={classes.time}
+              fullWidth
+              InputProps={{
+                endAdornment: <InputAdornment position="end" style={{ width: "100px"}}>Minutes</InputAdornment>,
+                inputProps: { min: 1 }
+              }}
+            />
+          ))}
         </Grid>
       </Grid>
     </Grid>
