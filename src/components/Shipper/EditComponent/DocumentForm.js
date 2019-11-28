@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -20,10 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
   table: {
     minWidth: 650,
-  },
-  textarea: {
-    width: 700
-  },
+  }
 }));
 
 export default function DocumentForm() {
