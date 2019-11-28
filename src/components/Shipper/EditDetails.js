@@ -47,6 +47,7 @@ import MainForm from './EditComponent/MainForm';
 import JourneyForm from './EditComponent/JourneyForm';
 import ShipmentForm from './EditComponent/ShipmentForm';
 import SettingForm from './EditComponent/SettingForm';
+import RemarkForm from './EditComponent/RemarkForm';
 
 const drawerWidth = 240;
 
@@ -249,44 +250,7 @@ function EditDetails(props) {
             <JourneyForm/>
             <ShipmentForm/>
             <SettingForm/>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <strong>Remarks</strong>
-              </Typography>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Remark</TableCell>
-                    <TableCell>Company Name</TableCell>
-                    <TableCell>User Name</TableCell>
-                    <TableCell>Date Time</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {setting.map(item => (
-                    <TableRow>
-                      <TableCell>{item.remark}</TableCell>
-                      <TableCell>System-S1</TableCell>
-                      <TableCell>	Shipper1</TableCell>
-                      <TableCell>30 Oct 2019 10:18AM</TableCell>
-                    </TableRow>
-                  ))}
-                  <TableRow>
-                    <TableCell colSpan={3}>
-                      <TextareaAutosize rows={3} placeholder="Enter additional remarks here" className={classes.textarea}/>
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary">
-                        Add Remark
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </Grid>
+            <RemarkForm/>
             <Grid item xs={12}>
               <Typography variant="h6" gutterBottom className={classes.newSection2}>
                 Bidding and Counter Offer Information
