@@ -39,9 +39,9 @@ export default function ShipmentForm() {
   const initialValues = {
     shipments: [
       {
-        shipmentsType: "",
+        shipmentsType: "Single",
         shipmentsOtherType: "",
-        transportsType: "",
+        transportsType: "20GP",
         noOfUnits: "2",
         ratePerUnit: "150",
         currency: "SGD",
@@ -91,12 +91,28 @@ export default function ShipmentForm() {
                               <div>
                                 <Grid container justify = "center">
                                   <Grid item xs={6}>
+                                    <strong>Shipment Type:</strong>
+                                    <Field
+                                      name={`shipments.${index}.shipmentsType`}
+                                      component={TextField}
+                                      disabled
+                                      className={classes.textField}
+                                      fullWidth
+                                      />
                                     <ShipmentSelect
                                       className={classes.select}
                                       name={`shipments.${index}.shipmentsType`}
                                     />
                                   </Grid>
                                   <Grid item xs={6}>
+                                    <strong>Transport Type:</strong>
+                                    <Field
+                                      name={`shipments.${index}.transportsType`}
+                                      component={TextField}
+                                      disabled
+                                      className={classes.textField}
+                                      fullWidth
+                                      />
                                     <TransportSelect
                                       className={classes.select}
                                       name={`shipments.${index}.transportsType`}
