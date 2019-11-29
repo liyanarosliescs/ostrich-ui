@@ -25,10 +25,10 @@ export default function CargoForm() {
   const initialValues = {
     cargoes: [
       {
-        cargoName: "",
-        palletQuantity: "",
-        weight: "",
-        unNo: ""
+        cargoName: "raw meat",
+        palletQuantity: "1",
+        weight: "200",
+        unNo: "FR123"
       }
     ]
   };

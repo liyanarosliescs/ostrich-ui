@@ -30,9 +30,9 @@ export default function ContainerForm() {
   const initialValues = {
     containers: [
       {
-        vehicleNo: "",
-        sealNo: "",
-        vgm: ""
+        vehicleNo: "SGH5643R",
+        sealNo: "GHT12345",
+        vgm: "HR6565"
       }
     ]
   };
