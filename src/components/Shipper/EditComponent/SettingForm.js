@@ -105,6 +105,7 @@ export default function MainForm() {
           <Select
             className={classes.select}
             options = {options}
+            defaultValue={[options[1], options[2]]}
             isClearable
             isMulti
             placeholder="Open for *"
