@@ -38,6 +38,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import SideDrawer from './SideDrawer';
 import {DropzoneArea} from 'material-ui-dropzone'
 import Select from 'react-select';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import main from '../Common/WorkOrderData/main';
 import journey from '../Common/WorkOrderData/journey';
 import shipment from '../Common/WorkOrderData/shipment';
@@ -122,6 +124,9 @@ const useStyles = makeStyles(theme => ({
   textarea: {
     width: 700
   },
+  textfield: {
+    width: 200
+  },
   submit: {
     marginTop: theme.spacing(5)
   }
@@ -137,6 +142,8 @@ function WorkOrderDetails(props) {
   const handleChange = e => {
     setFiles(e.target.value);
   }
+
+  const [startDate, setStartDate] = useState(null);
 
   const [open, setOpen] = React.useState(false);
 
@@ -466,6 +473,7 @@ function WorkOrderDetails(props) {
                 <TableHead>
                   <TableRow>
                     <TableCell>Detail</TableCell>
+                    <TableCell>Input</TableCell>
                     <TableCell>Action</TableCell>
                   </TableRow>
                 </TableHead>
@@ -480,8 +488,74 @@ function WorkOrderDetails(props) {
                         <Typography variant="body2"><strong>Pick Up Information:</strong> {row.pickUpDateTime}</Typography>
                         <Typography variant="body2"><strong>Delivery Information:</strong> {row.deliveryDateTime}</Typography>
                         <Typography variant="body2"><strong>Transport Information:</strong> {row.transportInfo}</Typography>
+                        <Typography variant="body2"><strong>Carrier Name:</strong></Typography>
+                        <Typography variant="body2"><strong>License Plate:</strong></Typography>
+                        <Typography variant="body2"><strong>Trailer Number:</strong></Typography>
+                        <Typography variant="body2"><strong>Driver Name:</strong></Typography>
+                        <Typography variant="body2"><strong>Track Number:</strong></Typography>
                       </TableCell>
-                      <TableCell colSpan={7}>
+                      <TableCell>
+                        <DatePicker
+                          placeholderText="* Select Date/Time"
+                          className={classes.dateField}
+                          selected={startDate}
+                          onChange={date => setStartDate(date)}
+                          showTimeSelect
+                          timeFormat="HH:mm"
+                          timeIntervals={10}
+                          timeCaption="time"
+                          dateFormat="dd/MM/yyyy h:mm aa"
+                        />
+                        <br/>
+                        <TextField
+                          label="Vehicle Number"
+                          className={classes.textfield}
+                          fullWidth
+                        />
+                        <br/>
+                        <TextField
+                          label="Seal Number"
+                          className={classes.textfield}
+                          fullWidth
+                        />
+                        <br/>
+                        <TextField
+                          label="VGM"
+                          className={classes.textfield}
+                          fullWidth
+                        />
+                        <br/>
+                        <TextField
+                          label="Cargo Name"
+                          className={classes.textfield}
+                          fullWidth
+                        />
+                        <br/>
+                        <TextField
+                          label="Pallet Quantity"
+                          className={classes.textfield}
+                          fullWidth
+                        />
+                        <br/>
+                        <TextField
+                          label="Weight"
+                          id="weight"
+                          type="number"
+                          className={classes.textfield}
+                          fullWidth
+                          InputProps={{
+                            endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
+                            inputProps: { min: 1 }
+                          }}
+                        />
+                        <br/>
+                        <TextField
+                          label="UN No"
+                          className={classes.textfield}
+                          fullWidth
+                        />
+                      </TableCell>
+                      <TableCell>
                         <Button
                           type="submit"
                           variant="contained"
@@ -578,6 +652,12 @@ function WorkOrderDetails(props) {
                 variant="contained"
                 color="secondary">
                 Cancel
+              </Button>
+              {'\u00A0'}{'\u00A0'}
+              <Button
+                type="submit"
+                variant="contained">
+                Save
               </Button>
               {'\u00A0'}{'\u00A0'}
               <Button
