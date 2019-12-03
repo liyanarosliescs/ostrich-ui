@@ -22,6 +22,7 @@ import AdminSetting from './components/Admin/AdminSetting'
 import AdminTerm from './components/Admin/TermsOfUse'
 import MasterData from './components/Trucker/MasterData'
 import UserManagement from './components/Admin/UserManagement'
+import AdminUserEdit from './components/Admin/UserEdit'
 import AdminDashboard from './components/Admin/Dashboard'
 import ShipperDashboard from './components/Shipper/Dashboard'
 import CurrencyManagement from './components/Admin/CurrencyManagement'
@@ -103,6 +104,7 @@ const routing = (
       <Route exact path="/admin/setting" component={AdminSetting} />
       <Route exact path="/admin/term" component={AdminTerm} />
       <Route exact path="/admin/user" component={UserManagement} />
+      <Route exact path="/admin/useredit" component={AdminUserEdit} />
       <Route exact path="/admin/dashboard" component={AdminDashboard} />
       <Route exact path="/admin/currency" component={CurrencyManagement} />
     </div>

@@ -13,6 +13,7 @@ import Paper from "@material-ui/core/Paper";
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from "@material-ui/core/IconButton";
+import Link from '@material-ui/core/Link';
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
@@ -189,7 +190,9 @@ export default function ShipperTable() {
             .map(row => (
               <TableRow key={row.id}>
                 <TableCell style={{ width: "35%" }}>
-                  <Edit />
+                  <Link href="/admin/useredit">
+                    <Edit />
+                  </Link>
                   <DeleteOutline />
                 </TableCell>
                 <TableCell style={{ width: "5%" }}>
