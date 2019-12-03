@@ -16,6 +16,8 @@ import TruckerOffer from './components/Trucker/Offer'
 import TruckerCounterOffer from './components/Trucker/CounterOffer'
 import ShipperSetting from './components/Shipper/ShipperSetting'
 import ContactsDirectory from './components/Shipper/ContactsDirectory'
+import ContactsAdd from './components/Shipper/ContactsAdd'
+import ContactsEdit from './components/Shipper/ContactsEdit'
 import ShipmentType from './components/Shipper/ShipmentType'
 import TruckerSetting from './components/Trucker/TruckerSetting'
 import AdminSetting from './components/Admin/AdminSetting'
@@ -72,6 +74,8 @@ const routing = (
       <Route exact path="/shipper/workorderlogdetails" component={WorkOrderLogDetails} />
       <Route exact path="/shipper/setting" component={ShipperSetting} />
       <Route exact path="/shipper/contactsdirectory" component={ContactsDirectory} />
+      <Route exact path="/shipper/contactsadd" component={ContactsAdd} />
+      <Route exact path="/shipper/contactsedit" component={ContactsEdit} />
       <Route exact path="/shipper/shipmenttype" component={ShipmentType} />
       <Route exact path="/shipper/dashboard" component={ShipperDashboard} />
       <Route exact path="/shipper/form" component={TestDynamicForm} />

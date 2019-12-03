@@ -14,6 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from "@material-ui/core/IconButton";
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
@@ -149,7 +150,10 @@ export default function Contacts() {
           <TableRow align="right">
             <TableCell colSpan="2">
               <Typography variant="h6" id="tableTitle">
-                Truckers' Contacts <AddBox/>
+                Truckers' Contacts
+                <Link href="/shipper/contactsadd">
+                  <AddBox/>
+                </Link>
               </Typography>
             </TableCell>
             <TableCell />
