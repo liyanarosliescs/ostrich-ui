@@ -152,7 +152,10 @@ export default function ShipperTable() {
           <TableRow align="right">
             <TableCell colSpan="2">
               <Typography variant="h6" id="tableTitle">
-                Shipper <AddBox/>
+                Shipper
+                <Link href="/admin/useradd">
+                  <AddBox/>
+                </Link>
               </Typography>
             </TableCell>
             <TableCell />

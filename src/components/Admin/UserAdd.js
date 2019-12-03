@@ -18,7 +18,7 @@ import Button from '@material-ui/core/Button';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import UserManagementIcon from '@material-ui/icons/SupervisedUserCircle';
-import UserEditIcon from '@material-ui/icons/Person';
+import UserAddIcon from '@material-ui/icons/PersonAdd';
 import Select from 'react-select';
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -83,13 +83,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function UserEdit(props) {
+function UserAdd(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [state, setState] = React.useState({
-    reqApproval: true,
+    reqApproval: false,
   });
 
   function handleDrawerToggle() {
@@ -180,8 +180,8 @@ function UserEdit(props) {
               User Management
           </Link>
           <Link color="inherit" href="" className={classes.breadLink}>
-            <UserEditIcon className={classes.breadIcon} />
-              Edit User
+            <UserAddIcon className={classes.breadIcon} />
+              Add User
           </Link>
         </Breadcrumbs>
         <Paper className={classes.paper}>
@@ -192,13 +192,12 @@ function UserEdit(props) {
             alignItems="center">
             <div className={classes.grid}>
               <Typography variant="h6" className={classes.title}>
-                shipper3
+                Add New User
               </Typography>
               <TextField
                 margin="normal"
                 fullWidth
                 id="user-name"
-                defaultValue="shipper3"
                 label="User Name"
                 name="user-name"
                 autoFocus/>
@@ -206,28 +205,24 @@ function UserEdit(props) {
                 margin="normal"
                 fullWidth
                 id="email-login"
-                defaultValue="shipper3@gmail.com"
                 label="Email Login"
                 name="email-login"/>
               <TextField
                 margin="normal"
                 fullWidth
                 id="phone-number"
-                defaultValue="23456787654"
                 label="Phone Number"
                 name="phone-number"/>
               <TextField
                 margin="normal"
                 fullWidth
                 id="company-name"
-                defaultValue="I am shipper"
                 label="Company Name"
                 name="company-name"/>
               <TextField
                 margin="normal"
                 fullWidth
                 id="truck-code"
-                defaultValue="abc"
                 label="Truck Code"
                 name="truck-code"/>
               <br/><br/>
@@ -250,14 +245,12 @@ function UserEdit(props) {
                   options = {userTypeOptions}
                   isClearable
                   placeholder="Select User Type"
-                  defaultValue={userTypeOptions[1]}
               />
               <br/>
               <Select
                   options = {userRoleOptions}
                   isClearable
                   placeholder="Select User Role"
-                  defaultValue={userRoleOptions[1]}
               />
               <Button
                 type="submit"
@@ -265,7 +258,7 @@ function UserEdit(props) {
                 variant="contained"
                 color="primary"
                 className={classes.submit}>
-                Update
+                Create
               </Button>
             </div>
           </Grid>
@@ -275,8 +268,8 @@ function UserEdit(props) {
   );
 }
 
-UserEdit.propTypes = {
+UserAdd.propTypes = {
   container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
 };
 
-export default UserEdit;
+export default UserAdd;
