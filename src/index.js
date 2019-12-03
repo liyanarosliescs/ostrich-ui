@@ -28,6 +28,7 @@ import AdminDashboard from './components/Admin/Dashboard'
 import ShipperDashboard from './components/Shipper/Dashboard'
 import CurrencyManagement from './components/Admin/CurrencyManagement'
 import CurrencyAdd from './components/Admin/CurrencyAdd'
+import CurrencyEdit from './components/Admin/CurrencyEdit'
 import WorkOrderLogs from './components/Shipper/WorkOrderLogs'
 import WorkOrderLogDetails from './components/Shipper/WorkOrderLogDetails'
 import AvailableJobs from './components/Trucker/AvailableJobs'
@@ -111,6 +112,7 @@ const routing = (
       <Route exact path="/admin/dashboard" component={AdminDashboard} />
       <Route exact path="/admin/currency" component={CurrencyManagement} />
       <Route exact path="/admin/currencyadd" component={CurrencyAdd} />
+      <Route exact path="/admin/currencyedit" component={CurrencyEdit} />
     </div>
   </Router>
 )

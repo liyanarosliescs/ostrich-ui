@@ -174,7 +174,9 @@ export default function Contacts() {
             .map(row => (
               <TableRow key={row.id}>
                 <TableCell style={{ width: "20%" }}>
-                  <Edit />
+                  <Link href="/admin/currencyedit">
+                    <Edit />
+                  </Link>
                   <DeleteOutline />
                 </TableCell>
                 <TableCell style={{ width: "20%" }}>
