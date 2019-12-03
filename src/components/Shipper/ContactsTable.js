@@ -189,7 +189,9 @@ export default function Contacts() {
             .map(row => (
               <TableRow key={row.id}>
                 <TableCell style={{ width: "30%" }}>
-                  <Edit />
+                  <Link href="/shipper/contactsedit">
+                    <Edit />
+                  </Link>
                   <DeleteOutline />
                 </TableCell>
                 <TableCell style={{ width: "10%" }}>
