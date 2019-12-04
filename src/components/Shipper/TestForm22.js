@@ -1,35 +1,33 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { TextField } from 'formik-material-ui';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import { Formik, Field, Form, FieldArray } from "formik";
-import ShipmentSelect from "../Common/ShipmentSelect";
-import TransportSelect from "../Common/TransportSelect";
-import { Checkbox } from "../Common/Checkbox";
-import ContainerForm from './EditComponent/ContainerForm';
+import CustomDatePicker from '../Common/CustomDatePicker';
 
 const useStyles = makeStyles(theme => ({
-  title: {
-    color: "#3f51b5"
-  },
   card: {
-    padding: theme.spacing(2),
-    margin: theme.spacing(2)
+    maxWidth: 400,
   },
-  select: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(1)
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  title: {
+    marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
   },
   textField: {
-    marginLeft: theme.spacing(2),
-    paddingRight: theme.spacing(4)
+    marginTop: theme.spacing(1),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   }
 }));
 
@@ -37,13 +35,14 @@ export default function TestForm22() {
   const classes = useStyles();
 
   const initialValues = {
-    shipments: {
-      shipmentsType: ['single', 'roundLive'],
-    }
+    email: ["test1@gmail.com", "test2@gmail.com"],
+    social: {
+      facebook: ["fb1@gmail.com", "fb2@gmail.com"]
+    },
+    contact: [""]
   };
 
   return (
-    <Grid item xs={12}>
       <Formik
         initialValues={initialValues}>
         {props => {
@@ -59,41 +58,66 @@ export default function TestForm22() {
           } = props;
           return (
             <Form>
+              <Field
+                placeholder="Enter your email"
+                type="text"
+                name={`email`}
+              />
+              <br/>
               <FieldArray
-                name="shipments"
-                render={({ remove, push }) => (
-                  <div className="headOfFieldArray">
-                    <Typography variant="h6" className={classes.title}>
-                      Shipment
-                      <IconButton
-                        className= {classes.iconButton}
-                        onClick={() => push({ shipmentsType: ""   })}>
-                        <AddBox/>
-                      </IconButton>
-                    </Typography>
-                    {values.shipments.shipmentsType.length > 0 &&
-                      values.shipments.shipmentsType.map((type, index) => (
-                        <div className="headOfForm">
-                          <Field
-                            name={`shipments.shipmentsType.${index}`}
-                            component={TextField}
-                            disabled
-                            className={classes.textField}
-                            fullWidth
-                          />
-                          <ShipmentSelect
-                            className={classes.select}
-                            name={`shipments.shipmentsType.${index}`}
-                          />
-                        </div>
+                name="email"
+                render={arrayHelpers => (
+                  <div>
+                    {values.email.map((e, index) => (
+                      <div key={index}>
+                        <Field name={`email[${index}]`} />
+                        <button type="button" onClick={() => arrayHelpers.remove(index)}>
+                          -
+                        </button>
+                      </div>
                     ))}
+                    <button
+                      type="button"
+                      onClick={() => arrayHelpers.push('')}
+                    >
+                    +
+                    </button>
                   </div>
                 )}
               />
+              <br/>
+              <Field
+                name="social.facebook"
+                placeholder="Facebook username"
+                type="text"
+                />
+                <br/>
+                <FieldArray
+                  name="social.facebook"
+                  render={arrayHelpers => (
+                    <div>
+                      {values.social.facebook.map((fb, index) => (
+                        <div key={index}>
+                          <Field name={`social.facebook[${index}]`} />
+                          <button type="button" onClick={() => arrayHelpers.remove(index)}>
+                            -
+                          </button>
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={() => arrayHelpers.push('')}
+                      >
+                      +
+                      </button>
+                    </div>
+                  )}
+                />
+              <br />
+              <pre>{JSON.stringify(values, null, 2)}</pre>
             </Form>
           );
         }}
       </Formik>
-    </Grid>
   );
 }
