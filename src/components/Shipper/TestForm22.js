@@ -39,7 +39,13 @@ export default function TestForm22() {
     social: {
       facebook: ["fb1@gmail.com", "fb2@gmail.com"]
     },
-    contact: [""]
+    contact: [""],
+    shipment: [
+      {
+        shipmentType: "",
+        transportType: ""
+      }
+    ]
   };
 
   return (
@@ -121,6 +127,35 @@ export default function TestForm22() {
                     {values.contact.map((c, index) => (
                       <div key={index}>
                         <Field name={`contact[${index}]`} />
+                        <button type="button" onClick={() => arrayHelpers.remove(index)}>
+                          -
+                        </button>
+                      </div>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={() => arrayHelpers.push('')}
+                    >
+                    +
+                    </button>
+                  </div>
+                )}
+              />
+              <br/>
+              <FieldArray
+                name="shipment"
+                render={arrayHelpers => (
+                  <div>
+                    {values.shipment.map((ship, index) => (
+                      <div key={index}>
+                        <Field
+                          name={`shipment[${index}].shipmentType`}
+                          placeholder="Shipment Type"
+                        />
+                        <Field
+                          name={`shipment[${index}].transportType`}
+                          placeholder="Transport Type"
+                        />
                         <button type="button" onClick={() => arrayHelpers.remove(index)}>
                           -
                         </button>
