@@ -40,10 +40,14 @@ export default function TestForm22() {
       facebook: ["fb1@gmail.com", "fb2@gmail.com"]
     },
     contact: [""],
-    shipment: [
+    shipments: [
       {
-        shipmentType: "",
-        transportType: ""
+        shipmentType: "SA",
+        transportType: "TA"
+      },
+      {
+        shipmentType: "SB",
+        transportType: "TB"
       }
     ]
   };
@@ -143,17 +147,17 @@ export default function TestForm22() {
               />
               <br/>
               <FieldArray
-                name="shipment"
+                name="shipments"
                 render={arrayHelpers => (
                   <div>
-                    {values.shipment.map((ship, index) => (
+                    {values.shipments.map((shipment, index) => (
                       <div key={index}>
                         <Field
-                          name={`shipment[${index}].shipmentType`}
+                          name={`shipments[${index}].shipmentType`}
                           placeholder="Shipment Type"
                         />
                         <Field
-                          name={`shipment[${index}].transportType`}
+                          name={`shipments[${index}].transportType`}
                           placeholder="Transport Type"
                         />
                         <button type="button" onClick={() => arrayHelpers.remove(index)}>
