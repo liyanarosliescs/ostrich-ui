@@ -53,7 +53,13 @@ export default function TestForm22() {
       },
       {
         shipmentType: "Round(Live)",
-        transportType: "40GP"
+        transportType: "40GP",
+        containers: [
+          {
+            vehicleNo: "",
+            sealNo: ""
+          }
+        ]
       }
     ]
   };
@@ -181,11 +187,15 @@ export default function TestForm22() {
                 )}
               />
               <br/>
-              <Field
-                name="shipments[0].containers[0].vehicleNo"
-                placeholder="Shipment Type"
-                type="text"
-              />
+              {
+                /*
+                <Field
+                  name="shipments[0].containers[0].vehicleNo"
+                  placeholder="Shipment Type"
+                  type="text"
+                />
+                */
+              }
               <br/>
               <pre>{JSON.stringify(values, null, 2)}</pre>
             </Form>
