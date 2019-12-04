@@ -114,6 +114,27 @@ export default function TestForm22() {
                   )}
                 />
               <br />
+              <FieldArray
+                name="contact"
+                render={arrayHelpers => (
+                  <div>
+                    {values.contact.map((c, index) => (
+                      <div key={index}>
+                        <Field name={`contact[${index}]`} />
+                        <button type="button" onClick={() => arrayHelpers.remove(index)}>
+                          -
+                        </button>
+                      </div>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={() => arrayHelpers.push('')}
+                    >
+                    +
+                    </button>
+                  </div>
+                )}
+              />
               <pre>{JSON.stringify(values, null, 2)}</pre>
             </Form>
           );
