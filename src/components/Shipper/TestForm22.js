@@ -182,7 +182,7 @@ export default function TestForm22() {
               />
               <br/>
               <Field
-                name="shipments.[0].containers[0].vehicleNo"
+                name="shipments[0].containers[0].vehicleNo"
                 placeholder="Shipment Type"
                 type="text"
               />
