@@ -48,6 +48,10 @@ export default function TestForm22() {
           {
             vehicleNo: "SM123",
             sealNo: "H3456"
+          },
+          {
+            vehicleNo: "SM223",
+            sealNo: "H3556"
           }
         ]
       },
@@ -56,8 +60,8 @@ export default function TestForm22() {
         transportType: "40GP",
         containers: [
           {
-            vehicleNo: "",
-            sealNo: ""
+            vehicleNo: "b",
+            sealNo: "b"
           }
         ]
       }
@@ -160,18 +164,80 @@ export default function TestForm22() {
               <br/>
               <FieldArray
                 name="shipments"
+                id="shipments"
                 render={arrayHelpers => (
                   <div>
-                    {values.shipments.map((shipment, index) => (
+                    {values.shipments.length > 0 &&
+                      values.shipments.map((shipment, index) => (
                       <div key={index}>
-                        <Field
-                          name={`shipments[${index}].shipmentType`}
-                          placeholder="Shipment Type"
+                        {console.log("index", index)}
+                        <FieldArray
+                          id={`shipments.${index}.containers`}
+                          name={`shipments.${index}.containers`}
+                          render={arrayHelpers2 => (
+                            <div>
+                              {values.shipments[index].containers.map((s, i) => (
+                                <div key={i}>
+                                  {console.log("i", i)}
+                                  <Field
+                                    name={`shipments[${index}].shipmentType`}
+                                    placeholder="Shipment Type"
+                                    type="text"
+                                  />
+                                    <Field
+                                    name={`shipments[${index}].transportType`}
+                                    placeholder="Transport Type"
+                                    type="text"
+                                  />
+                                  <Field
+                                    name={`shipments[${i}].containers[${i}].vehicleNo`}
+                                    placeholder="Vehicle Number"
+                                    type="text"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         />
-                        <Field
-                          name={`shipments[${index}].transportType`}
-                          placeholder="Transport Type"
+                        {/*<Field
+                          name={`shipments[${index}].containers[${index}].vehicleNo`}
+                          placeholder="Vehicle Number"
+                          type="text"
                         />
+                        <FieldArray
+                          id={`shipments.${index}.containers`}
+                          name={`shipments.${index}.containers`}
+                          render={arrayHelpers2 => (
+                            <div>
+                              {values.shipments[index].containers.length > 0 &&
+                                values.shipments[index].containers.map((container, index) => (
+                                <div key={index}>
+                                  {console.log("value", values.shipments[index].containers)}
+                                  <Field
+                                    name={`shipments[${index}].containers[${index}].vehicleNo`}
+                                    placeholder="Vehicle Number"
+                                    type="text"
+                                  />
+                                  <Field
+                                    name={`shipments[${index}].containers[${index}].sealNo`}
+                                    placeholder="Seal Number"
+                                    type="text"
+                                  />
+                                  <button type="button" onClick={() => arrayHelpers2.remove(index)}>
+                                    -
+                                  </button>
+                                </div>
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => arrayHelpers2.push('')}
+                              >
+                              +
+                              </button>
+                            </div>
+                          )}
+                        />
+                      */}
                         <button type="button" onClick={() => arrayHelpers.remove(index)}>
                           -
                         </button>
@@ -186,6 +252,7 @@ export default function TestForm22() {
                   </div>
                 )}
               />
+
               <br/>
               {
                 /*
