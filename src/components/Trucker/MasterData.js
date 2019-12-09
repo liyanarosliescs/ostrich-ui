@@ -13,7 +13,7 @@ import Badge from '@material-ui/core/Badge';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Link from '@material-ui/core/Link';
 import ExitIcon from '@material-ui/icons/ExitToApp';
-import SettingsIcon from '@material-ui/icons/Build';
+import MasterDataIcon from '@material-ui/icons/Storage';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import SideDrawer from './SideDrawer';
 import MasterDataTabs from './MasterDataTabs';
@@ -141,8 +141,8 @@ function TruckerSetting(props) {
         <div className={classes.toolbar} />
         <Breadcrumbs separator="›" aria-label="breadcrumb">
           <Link color="inherit" href="/" onClick={handleClick} className={classes.breadLink}>
-            <SettingsIcon className={classes.breadIcon} />
-              Settings
+            <MasterDataIcon className={classes.breadIcon} />
+              Master Data
           </Link>
         </Breadcrumbs>
         <MasterDataTabs />

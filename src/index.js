@@ -23,6 +23,7 @@ import TruckerSetting from './components/Trucker/TruckerSetting'
 import AdminSetting from './components/Admin/AdminSetting'
 import AdminTerm from './components/Admin/TermsOfUse'
 import MasterData from './components/Trucker/MasterData'
+import TruckerAdd from './components/Trucker/TruckerAdd'
 import UserManagement from './components/Admin/UserManagement'
 import AdminUserEdit from './components/Admin/UserEdit'
 import AdminUserAdd from './components/Admin/UserAdd'
@@ -107,6 +108,7 @@ const routing = (
       <Route exact path="/shipper/selectform" component={TestSelectForm} />
       <Route exact path="/trucker/setting" component={TruckerSetting} />
       <Route exact path="/trucker/masterdata" component={MasterData} />
+      <Route exact path="/trucker/truckeradd" component={TruckerAdd} />
       <Route exact path="/trucker/jobs" component={AvailableJobs} />
       <Route exact path="/trucker/workorder" component={TruckerWorkOrder} />
       <Route exact path="/trucker/workorderdetails" component={TruckerWorkOrderDetails} />
