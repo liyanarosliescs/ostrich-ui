@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,6 +22,7 @@ import TruckIcon from '@material-ui/icons/LocalShipping';
 import Select from 'react-select';
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import {DropzoneArea} from 'material-ui-dropzone'
 import Typography from "@material-ui/core/Typography";
 import SideDrawer from './SideDrawer';
 
@@ -91,6 +92,7 @@ function TruckerAdd(props) {
   const [state, setState] = React.useState({
     reqApproval: false,
   });
+  const [files, setFiles] = useState([]);
 
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
@@ -99,19 +101,6 @@ function TruckerAdd(props) {
   const handleChange = name => event => {
     setState({ ...state, [name]: event.target.checked });
   };
-
-  const userTypeOptions = [
-    { value: 'Import', label: 'Import' },
-    { value: 'Export', label: 'Export' }
-  ];
-
-  const userRoleOptions = [
-    { value: 'Admin', label: 'Admin' },
-    { value: 'Shipper Admin', label: 'Shipper Administrator' },
-    { value: 'Shipper', label: 'Shipper' },
-    { value: 'Trucker Admin', label: 'Trucker Administrator' },
-    { value: 'Trucker', label: 'Trucker' }
-  ];
 
   return (
     <div className={classes.root}>
@@ -207,50 +196,17 @@ function TruckerAdd(props) {
                 id="insurance-no"
                 label="Insurance Number"
                 name="insurance-no"/>
-              <TextField
-                margin="normal"
-                fullWidth
-                id="phone-number"
-                label="Phone Number"
-                name="phone-number"/>
-              <TextField
-                margin="normal"
-                fullWidth
-                id="company-name"
-                label="Company Name"
-                name="company-name"/>
-              <TextField
-                margin="normal"
-                fullWidth
-                id="truck-code"
-                label="Truck Code"
-                name="truck-code"/>
               <br/><br/>
-              <Typography variant="body2">
-                <strong>Require Approval:</strong>
+              <Typography variant="body1">
+                <strong>Upload Insurance File</strong>
               </Typography>
-              <Grid component="label" container alignItems="center" spacing={1} className={classes.textField}>
-                <Grid item>No</Grid>
-                <Grid item>
-                  <Switch
-                    color="primary"
-                    checked={state.reqApproval}
-                    onChange={handleChange('reqApproval')}
-                    value="reqApproval"/>
-                </Grid>
-                <Grid item>Yes</Grid>
-              </Grid>
               <br/>
-              <Select
-                  options = {userTypeOptions}
-                  isClearable
-                  placeholder="Select User Type"
-              />
-              <br/>
-              <Select
-                  options = {userRoleOptions}
-                  isClearable
-                  placeholder="Select User Role"
+              <DropzoneArea
+                onChange={setFiles}
+                dropzoneText="Drag and drop your files here or click here"
+                showPreviewsInDropzone={false}
+                showPreviews={true}
+                showFileNames={true}
               />
               <Button
                 type="submit"
