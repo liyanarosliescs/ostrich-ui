@@ -156,7 +156,7 @@ export default function TrailersTable() {
           <TableRow align="right">
             <TableCell colSpan="4">
               <Typography variant="h6" id="tableTitle">
-                Trailers
+                Trailer
                 <Link href="/trucker/traileradd">
                   <AddBox />
                 </Link>

@@ -156,7 +156,7 @@ export default function DriversTable() {
           <TableRow align="right">
             <TableCell colSpan="5">
               <Typography variant="h6" id="tableTitle">
-                Drivers
+                Driver
                 <Link href="/trucker/driveradd">
                   <AddBox />
                 </Link>

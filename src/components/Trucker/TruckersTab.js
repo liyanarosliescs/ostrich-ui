@@ -159,7 +159,7 @@ export default function TruckersTable() {
           <TableRow align="right">
             <TableCell colSpan="4">
               <Typography variant="h6" id="tableTitle">
-                Truckers
+                Trucker
                 <Link href="/trucker/truckeradd">
                   <AddBox />
                 </Link>
