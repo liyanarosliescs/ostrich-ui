@@ -197,7 +197,7 @@ function TruckerAdd(props) {
                 label="Insurance Number"
                 name="insurance-no"/>
               <br/><br/>
-              <Typography variant="body1">
+              <Typography variant="body1" className={classes.title}>
                 <strong>Upload Insurance File</strong>
               </Typography>
               <br/>

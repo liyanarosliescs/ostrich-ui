@@ -204,6 +204,8 @@ export default function TruckersTable() {
                 </TableCell>
                 <TableCell style={{ width: "15%" }}>
                   {row.insuranceFile}
+                  <Link href="#">Link 1</Link><br/>
+                  <Link href="#">Link 2</Link>
                 </TableCell>
               </TableRow>
             ))}
