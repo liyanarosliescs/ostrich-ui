@@ -11,6 +11,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from "@material-ui/core/IconButton";
 import FirstPageIcon from "@material-ui/icons/FirstPage";
@@ -151,7 +152,10 @@ export default function ShipmentTypeTable() {
           <TableRow align="right">
             <TableCell colSpan="6">
               <Typography variant="h6" id="tableTitle">
-                Truck/Container <AddBox/>
+                Shipment Type
+                <Link href="/shipper/shipmenttypeadd">
+                  <AddBox/>
+                </Link>
               </Typography>
             </TableCell>
           </TableRow>
