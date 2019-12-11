@@ -12,6 +12,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
@@ -155,7 +156,10 @@ export default function TrailersTable() {
           <TableRow align="right">
             <TableCell colSpan="2">
               <Typography variant="h6" id="tableTitle">
-                Trailers <AddBox />
+                Trailers
+                <Link href="/trucker/traileradd">
+                  <AddBox />
+                </Link>
               </Typography>
             </TableCell>
             <TableCell colSpan="2" align="right">
