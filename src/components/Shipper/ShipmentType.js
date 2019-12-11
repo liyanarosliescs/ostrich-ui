@@ -10,6 +10,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
+import Paper from "@material-ui/core/Paper";
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Link from '@material-ui/core/Link';
 import ExitIcon from '@material-ui/icons/ExitToApp';
@@ -17,6 +18,7 @@ import ShipmentIcon from '@material-ui/icons/LocalShipping';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import SideDrawer from './SideDrawer';
 import ShipmentTabs from './ShipmentTabs';
+import ShipmentTypeTable from './ShipmentTypeTable';
 
 const drawerWidth = 240;
 
@@ -61,6 +63,10 @@ const useStyles = makeStyles(theme => ({
   breadLink: {
     display: 'flex',
   },
+  paper: {
+    margin: theme.spacing(5),
+    padding: theme.spacing(5)
+  }
 }));
 
 function handleClick(event) {
@@ -145,7 +151,9 @@ function ShipmentType(props) {
               Shipment Type
           </Link>
         </Breadcrumbs>
-        <ShipmentTabs />
+        <Paper className={classes.paper}>
+          <ShipmentTypeTable />
+        </Paper>
       </main>
     </div>
   );
