@@ -28,6 +28,7 @@ import TruckerEdit from './components/Trucker/TruckerEdit'
 import TrailerAdd from './components/Trucker/TrailerAdd'
 import TrailerEdit from './components/Trucker/TrailerEdit'
 import DriverAdd from './components/Trucker/DriverAdd'
+import DriverEdit from './components/Trucker/DriverEdit'
 import UserManagement from './components/Admin/UserManagement'
 import AdminUserEdit from './components/Admin/UserEdit'
 import AdminUserAdd from './components/Admin/UserAdd'
@@ -117,6 +118,7 @@ const routing = (
       <Route exact path="/trucker/driveradd" component={DriverAdd} />
       <Route exact path="/trucker/truckeredit" component={TruckerEdit} />
       <Route exact path="/trucker/traileredit" component={TrailerEdit} />
+      <Route exact path="/trucker/driveredit" component={DriverEdit} />
       <Route exact path="/trucker/jobs" component={AvailableJobs} />
       <Route exact path="/trucker/workorder" component={TruckerWorkOrder} />
       <Route exact path="/trucker/workorderdetails" component={TruckerWorkOrderDetails} />

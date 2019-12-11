@@ -117,7 +117,7 @@ function createData(driverName, mobileNum, licenseNum, licenseFile) {
   return { driverName, mobileNum, licenseNum, licenseFile };
 }
 
-const rows = [createData("", "", "", "")];
+const rows = [createData("Darrren Goh", "98989898", "WGM126444HTB456", "")];
 
 const useStyles2 = makeStyles(theme => ({
   root: {
@@ -192,7 +192,9 @@ export default function DriversTable() {
             .map(row => (
               <TableRow key={row.licenseNum}>
                 <TableCell style={{ width: "15%" }}>
-                  <Edit />
+                  <Link href="/trucker/driveredit">
+                    <Edit />
+                  </Link>
                   <DeleteOutline />
                 </TableCell>
                 <TableCell style={{ width: "35%" }}>{row.driverName}</TableCell>
@@ -200,6 +202,8 @@ export default function DriversTable() {
                 <TableCell style={{ width: "15%" }}>{row.licenseNum}</TableCell>
                 <TableCell style={{ width: "15%" }}>
                   {row.licenseFile}
+                  <Link href="#">test.doc</Link><br/>
+                  <Link href="#">test.pdf</Link>
                 </TableCell>
               </TableRow>
             ))}
