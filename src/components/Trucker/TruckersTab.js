@@ -157,27 +157,13 @@ export default function TruckersTable() {
       <Table className={classes.table}>
         <TableHead>
           <TableRow align="right">
-            <TableCell colSpan="2">
+            <TableCell colSpan="4">
               <Typography variant="h6" id="tableTitle">
                 Truckers
                 <Link href="/trucker/truckeradd">
                   <AddBox />
                 </Link>
               </Typography>
-            </TableCell>
-            <TableCell colSpan="2" align="right">
-              <TextField
-                id="standard-search"
-                type="search"
-                margin="normal"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Search />
-                    </InputAdornment>
-                  ),
-                }}
-              />
             </TableCell>
           </TableRow>
           <TableRow>
