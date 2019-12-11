@@ -193,7 +193,9 @@ export default function TruckersTable() {
             .map(row => (
               <TableRow key={row.truckHeadNum}>
                 <TableCell style={{ width: "15%" }}>
-                  <Edit />
+                  <Link href="/trucker/truckeredit">
+                    <Edit />
+                  </Link>
                   <DeleteOutline />
                 </TableCell>
                 <TableCell style={{ width: "50%" }}>
@@ -204,8 +206,8 @@ export default function TruckersTable() {
                 </TableCell>
                 <TableCell style={{ width: "15%" }}>
                   {row.insuranceFile}
-                  <Link href="#">Link 1</Link><br/>
-                  <Link href="#">Link 2</Link>
+                  <Link href="#">test.doc</Link><br/>
+                  <Link href="#">test.pdf</Link>
                 </TableCell>
               </TableRow>
             ))}
