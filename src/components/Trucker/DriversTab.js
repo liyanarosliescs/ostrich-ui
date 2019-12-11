@@ -154,28 +154,13 @@ export default function DriversTable() {
       <Table className={classes.table}>
         <TableHead>
           <TableRow align="right">
-            <TableCell colSpan="2">
+            <TableCell colSpan="5">
               <Typography variant="h6" id="tableTitle">
                 Drivers
                 <Link href="/trucker/driveradd">
                   <AddBox />
                 </Link>
               </Typography>
-            </TableCell>
-            <TableCell />
-            <TableCell colSpan="2" align="right">
-              <TextField
-                id="standard-search"
-                type="search"
-                margin="normal"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Search />
-                    </InputAdornment>
-                  ),
-                }}
-              />
             </TableCell>
           </TableRow>
           <TableRow>
