@@ -23,7 +23,7 @@ import TableRow from '@material-ui/core/TableRow';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 import MasterDataIcon from '@material-ui/icons/Storage';
-import TruckIcon from '@material-ui/icons/LocalShipping';
+import TrailerIcon from '@material-ui/icons/DirectionsBus';
 import DetailViewIcon from "@material-ui/icons/FindInPage";
 import DeleteIcon from "@material-ui/icons/DeleteOutline";
 import Select from 'react-select';
@@ -92,7 +92,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function TruckerEdit(props) {
+function TrailerEdit(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -175,8 +175,8 @@ function TruckerEdit(props) {
               Master Data
           </Link>
           <Link color="inherit" href="" className={classes.breadLink}>
-            <TruckIcon className={classes.breadIcon} />
-              Edit Trucker
+            <TrailerIcon className={classes.breadIcon} />
+              Edit Trailer
           </Link>
         </Breadcrumbs>
         <Paper className={classes.paper}>
@@ -187,22 +187,22 @@ function TruckerEdit(props) {
             alignItems="center">
             <div className={classes.grid}>
               <Typography variant="h6" className={classes.title}>
-                Edit Trucker
+                Edit Trailer
               </Typography>
               <TextField
                 margin="normal"
                 fullWidth
-                id="truck-head-no"
-                label="Truck Head Number"
-                defaultValue="G02938B"
-                name="truck-head-no"
+                id="trailer-no"
+                label="Trailer Number"
+                defaultValue="W2341T"
+                name="trailer-no"
                 autoFocus/>
               <TextField
                 margin="normal"
                 fullWidth
                 id="insurance-no"
                 label="Insurance Number"
-                defaultValue="A1029"
+                defaultValue="A3144"
                 name="insurance-no"/>
               <br/><br/>
               <Typography variant="body1" className={classes.title}>
@@ -251,8 +251,8 @@ function TruckerEdit(props) {
   );
 }
 
-TruckerEdit.propTypes = {
+TrailerEdit.propTypes = {
   container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
 };
 
-export default TruckerEdit;
+export default TrailerEdit;

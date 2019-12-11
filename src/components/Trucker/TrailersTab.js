@@ -190,7 +190,9 @@ export default function TrailersTable() {
             .map(row => (
               <TableRow key={row.trailerNum}>
                 <TableCell style={{ width: "15%" }}>
-                  <Edit />
+                  <Link href="/trucker/traileredit">
+                    <Edit />
+                  </Link>
                   <DeleteOutline />
                 </TableCell>
                 <TableCell style={{ width: "50%" }}>{row.trailerNum}</TableCell>
@@ -199,6 +201,8 @@ export default function TrailersTable() {
                 </TableCell>
                 <TableCell style={{ width: "15%" }}>
                   {row.insuranceFile}
+                  <Link href="#">test.doc</Link><br/>
+                  <Link href="#">test.pdf</Link>
                 </TableCell>
               </TableRow>
             ))}
