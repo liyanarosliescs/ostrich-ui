@@ -174,7 +174,9 @@ export default function ShipmentTypeTable() {
             .map(row => (
               <TableRow key={row.id}>
                 <TableCell style={{ width: "15%" }}>
-                  <Edit />
+                  <Link href="/shipper/shipmenttypeedit">
+                    <Edit />
+                  </Link>
                   <DeleteOutline />
                 </TableCell>
                 <TableCell style={{ width: "15%" }}>

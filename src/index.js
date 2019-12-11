@@ -21,6 +21,7 @@ import ContactsAdd from './components/Shipper/ContactsAdd'
 import ContactsEdit from './components/Shipper/ContactsEdit'
 import ShipmentType from './components/Shipper/ShipmentType'
 import ShipmentTypeAdd from './components/Shipper/ShipmentTypeAdd'
+import ShipmentTypeEdit from './components/Shipper/ShipmentTypeEdit'
 import TruckerSetting from './components/Trucker/TruckerSetting'
 import AdminSetting from './components/Admin/AdminSetting'
 import AdminTerm from './components/Admin/TermsOfUse'
@@ -89,6 +90,7 @@ const routing = (
       <Route exact path="/shipper/contactsedit" component={ContactsEdit} />
       <Route exact path="/shipper/shipmenttype" component={ShipmentType} />
       <Route exact path="/shipper/shipmenttypeadd" component={ShipmentTypeAdd} />
+      <Route exact path="/shipper/shipmenttypeedit" component={ShipmentTypeEdit} />
       <Route exact path="/shipper/dashboard" component={ShipperDashboard} />
       <Route exact path="/shipper/form" component={TestDynamicForm} />
       <Route exact path="/shipper/form2" component={TestForm2} />
