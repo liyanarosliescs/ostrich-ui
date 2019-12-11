@@ -6,6 +6,7 @@ import App from './components/App';
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import ForgotPassword from './components/ForgotPassword'
+import NewPassword from './components/NewPassword'
 import ShipperWorkOrder from './components/ShipperWorkOrder'
 import WorkOrder from './components/Shipper/WorkOrder'
 import TruckerWorkOrder from './components/Trucker/WorkOrder'
@@ -74,6 +75,7 @@ const routing = (
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/forgotpass" component={ForgotPassword} />
+      <Route exact path="/newpass" component={NewPassword} />
       <Route exact path="/shipper/createworkorder" component={CreateWorkOrder} />
       <Route exact path="/shipper/workorder" component={WorkOrder} />
       <Route exact path="/shipper/workorderdetails" component={WorkOrderDetails} />
