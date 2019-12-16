@@ -13,6 +13,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import JourneyIconHorizontal from '@material-ui/icons/ArrowForward';
@@ -94,6 +95,11 @@ const useStyles = makeStyles(theme => ({
     color: "#000000"
   }
 }));
+
+function handleClick(event) {
+  event.preventDefault();
+  alert('You clicked handleClick');
+}
 
 export default function TestForm28() {
   const classes = useStyles();
@@ -283,35 +289,15 @@ export default function TestForm28() {
                                     scrollButtons="auto"
                                     aria-label="scrollable auto tabs example"
                                   >
-                                    <Tab label="Item One" />
-                                    <Tab label="Item Two"  />
-                                    <Tab label="Item Three"  />
-                                    <Tab label="Item Four"  />
-                                    <Tab label="Item Five"  />
-                                    <Tab label="Item Six"  />
-                                    <Tab label="Item Seven" />
+                                    <Tab label="1" />
+                                    <Button onClick={handleClick}>+</Button>
                                   </Tabs>
                                 </AppBar>
                                 <TabPanel value={value} index={0}>
                                   Item One
                                 </TabPanel>
                                 <TabPanel value={value} index={1}>
-                                  Item Two
-                                </TabPanel>
-                                <TabPanel value={value} index={2}>
-                                  Item Three
-                                </TabPanel>
-                                <TabPanel value={value} index={3}>
-                                  Item Four
-                                </TabPanel>
-                                <TabPanel value={value} index={4}>
-                                  Item Five
-                                </TabPanel>
-                                <TabPanel value={value} index={5}>
-                                  Item Six
-                                </TabPanel>
-                                <TabPanel value={value} index={6}>
-                                  Item Seven
+                                  Item One
                                 </TabPanel>
                               </div>
                               <div className={classes.container}>
