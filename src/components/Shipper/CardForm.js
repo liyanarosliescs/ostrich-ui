@@ -40,10 +40,15 @@ export default function CardForm() {
             <Grid item xs={6}>
               <Card className={classes.card}>
                 <CardContent>Container</CardContent>
+                <Card className={classes.card}>
+                  <CardContent>Container A</CardContent>
+                </Card>
               </Card>
             </Grid>
             <Grid item xs={6}>
-              <CargoCard/>
+              <Card className={classes.card}>
+                <CardContent>Cargo</CardContent>
+              </Card>
             </Grid>
           </Grid>
         </Card>
