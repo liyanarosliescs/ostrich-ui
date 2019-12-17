@@ -14,11 +14,12 @@ import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import { Formik, Field, Form, FieldArray } from "formik";
 import ShipmentSelect from "../Common/ShipmentSelect";
 import TransportSelect from "../Common/TransportSelect";
+import uuid from 'uuid';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(2)
+    padding: theme.spacing(3),
+    margin: theme.spacing(3)
   },
   card: {
     padding: theme.spacing(1),
@@ -35,9 +36,8 @@ const useStyles = makeStyles(theme => ({
   parentCardContent: {
     color: "#ffffff"
   },
-  cardButton: {
-    display: "block",
-    textAlign: "initial"
+  select: {
+    width: 300
   },
   subtitle: {
      textAlign: 'center'
@@ -47,9 +47,18 @@ const useStyles = makeStyles(theme => ({
 export default function CardForm() {
   const classes = useStyles();
 
+  function generateId() {
+    return uuid.v4();
+  }
+
+  const initialShipmentId = generateId()
+
+  const initialContainerId = generateId()
+
   const initialValues = {
     shipments: [
       {
+        shipmentsId: initialShipmentId,
         shipmentsType: "",
         shipmentsOtherType: "",
         transportsType: "",
@@ -61,14 +70,26 @@ export default function CardForm() {
         isCa: false,
         isDg: false,
         isOpen: false,
-        isClose: false,
-        containers: [
-          {
-            vehicleNo: "",
-            sealNo: "",
-            vgm: ""
-          }
-        ]
+        isClose: false
+      }
+    ],
+    containers: [
+      {
+        shipmentsId: initialShipmentId,
+        containersId: initialContainerId,
+        vehicleNo: "",
+        sealNo: "",
+        vgm: ""
+      }
+    ],
+    cargoes: [
+      {
+        shipmentsId: initialShipmentId,
+        containersId: initialContainerId,
+        cargoName: "",
+        palletQuantity: "",
+        weight: "",
+        unNo: ""
       }
     ]
   };
@@ -104,155 +125,48 @@ export default function CardForm() {
         } = props;
         return (
           <Form>
-            <Grid container justify = "center">
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>
+            <FieldArray
+              name="shipments"
+              render={({ remove, push }) => (
+                <div>
                   <Grid container justify = "center">
-                    <Grid item xs={12} className={classes.subtitle}>
-                      <FieldArray
-                        name="shipments"
-                        render={({ remove, push }) => (
-                          <div>
-                            <Typography variant="h6" className={classes.title}>
-                              Shipment
+                    <Typography variant="h6" className={classes.title}>
+                      Shipment
+                      <IconButton
+                        className= {classes.iconButton}
+                        onClick={() => push({ shipmentsType: "", transportsType: "", noOfUnits: "", ratePerUnit: "", currency: "SGD", isFrost: false, isChiller: false, isCa: false, isDg: false, isOpen: false, isClose: false   })}>
+                        <AddBox/>
+                      </IconButton>
+                    </Typography>
+                    <Grid item xs={12}>
+                    {values.shipments.length > 0 &&
+                      values.shipments.map((shipment, index) => (
+                        <div key={index}>
+                          <Paper className={classes.paper}>
+                            <Grid container justify = "center">
+                              <div>
+                                <ShipmentSelect
+                                  className={classes.select}
+                                  name={`shipments.${index}.shipmentsType`}
+                                />
+                              </div>
+                            </Grid>
+                            <div>
                               <IconButton
                                 className= {classes.iconButton}
-                                onClick={() => push({ shipmentsType: "", transportsType: "", noOfUnits: "", ratePerUnit: "", currency: "SGD", isFrost: false, isChiller: false, isCa: false, isDg: false, isOpen: false, isClose: false   })}>
-                                <AddBox/>
+                                onClick={() => remove(index)}
+                              >
+                                <DeleteBox/>
                               </IconButton>
-                            </Typography>
-                              {values.shipments.length > 0 &&
-                                values.shipments.map((shipment, index) => (
-                                  <div key={index}>
-                                    <div>
-                                      <ShipmentSelect
-                                        className={classes.select}
-                                        name={`shipments.${index}.shipmentsType`}
-                                      />
-                                    </div>
-                                    {(() => {
-                                      if (shipment.shipmentsType.includes('other')) {
-                                        return (
-                                          <div className={classes.container}>
-                                          <Field
-                                            name={`shipments.${index}.shipmentsOtherType`}
-                                            component={TextField}
-                                            label="Specify Other Shipment"
-                                            className={classes.textField}
-                                            fullWidth
-                                          />
-                                          </div>
-                                        )
-                                      } else {
-                                        return (
-                                          <div></div>
-                                        )
-                                      }
-                                    })()}
-                                    <br/>
-                                    <div>
-                                      <TransportSelect
-                                        className={classes.select}
-                                        name={`shipments.${index}.transportsType`}
-                                      />
-                                    </div>
-                                    <div>
-                                      <Field
-                                        name={`shipments.${index}.noOfUnits`}
-                                        component={TextField}
-                                        label="Number of *"
-                                        id="units"
-                                        type="number"
-                                        className={classes.textField}
-                                        fullWidth
-                                        InputProps={{
-                                          endAdornment: <InputAdornment position="end">Units</InputAdornment>,
-                                          inputProps: { min: 1 }
-                                        }}
-                                      />
-                                    </div>
-                                    <div>
-                                      <Field
-                                        name={`shipments.${index}.ratePerUnit`}
-                                        component={TextField}
-                                        label="Rate Per Unit (Tax Excluded) *"
-                                        id="rate"
-                                        type="number"
-                                        className={classes.textField}
-                                        fullWidth
-                                      />
-                                    </div>
-                                    <div>
-                                      <Field
-                                        name={`shipments.${index}.currency`}
-                                        component={TextField}
-                                        disabled
-                                        id="currency"
-                                        label="Currency"
-                                        className={classes.textField}
-                                        fullWidth
-                                      />
-                                    </div>
-                                    <div>
-                                      <Checkbox name={`shipments.${index}.isFrost`} />
-                                      Frost
-                                      <Checkbox name={`shipments.${index}.isChiller`} />
-                                      Chiller
-                                      <Checkbox name={`shipments.${index}.isCa`} />
-                                      CA
-                                      <Checkbox name={`shipments.${index}.isDg`} />
-                                      DG
-                                      <Checkbox name={`shipments.${index}.isOpen`} />
-                                      Open
-                                      <Checkbox name={`shipments.${index}.isClose`} />
-                                      Close
-                                    </div>
-                                    <div>
-                                      <IconButton
-                                        className= {classes.iconButton}
-                                        onClick={() => remove(index)}
-                                      >
-                                        <DeleteBox/>
-                                      </IconButton>
-                                    </div>
-                                  </div>
-                              ))}
-                          </div>
-                        )}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Card className={classes.parentCard}>
-                        <CardContent className={classes.parentCardContent}>Container</CardContent>
-                        <Card className={classes.card}>
-                          <CardContent>
-                            <IconButton><AddBox/></IconButton>
-                            <div>
-                              Container A <br/>
-                              <IconButton><DeleteBox/></IconButton>
                             </div>
-                          </CardContent>
-                        </Card>
-                      </Card>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Card className={classes.parentCard}>
-                        <CardContent className={classes.parentCardContent}>Cargo</CardContent>
-                          <Card className={classes.card}>
-                            <CardContent>
-                              <IconButton><AddBox/></IconButton>
-                              <div>
-                                Cargo A <br/>
-                                <IconButton><DeleteBox/></IconButton>
-                              </div>
-                            </CardContent>
-                          </Card>
-                      </Card>
+                          </Paper>
+                        </div>
+                      ))}
                     </Grid>
                   </Grid>
-                </Paper>
-              </Grid>
-            </Grid>
+                </div>
+              )}
+            />
             {
               //Uncomment the statement below to see how the form submission will look like
               <pre>{JSON.stringify(values, null, 2)}</pre>
