@@ -150,6 +150,44 @@ export default function CardForm() {
                                   name={`shipments.${index}.shipmentsType`}
                                 />
                               </div>
+                              <Grid container spacing={3}>
+                                <Grid item xs={6}>
+                                  <Card className={classes.parentCard}>
+                                    <CardContent className={classes.parentCardContent}>
+                                      Container
+                                      <IconButton className={classes.parentCardContent}>
+                                        <AddBox/>
+                                      </IconButton>
+                                    </CardContent>
+                                    <Card className={classes.card}>
+                                      <CardContent>
+                                        <div>
+                                          Container A <br/>
+                                          <IconButton><DeleteBox/></IconButton>
+                                        </div>
+                                      </CardContent>
+                                    </Card>
+                                  </Card>
+                                </Grid>
+                                <Grid item xs={6}>
+                                  <Card className={classes.parentCard}>
+                                    <CardContent className={classes.parentCardContent}>
+                                      Cargo
+                                      <IconButton className={classes.parentCardContent}>
+                                        <AddBox/>
+                                      </IconButton>
+                                    </CardContent>
+                                    <Card className={classes.card}>
+                                      <CardContent>
+                                        <div>
+                                          Cargo A <br/>
+                                          <IconButton><DeleteBox/></IconButton>
+                                        </div>
+                                      </CardContent>
+                                    </Card>
+                                  </Card>
+                                </Grid>
+                              </Grid>
                             </Grid>
                             <div>
                               <IconButton
