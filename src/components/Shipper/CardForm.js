@@ -6,10 +6,14 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import { TextField } from 'formik-material-ui';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { Checkbox } from "../Common/Checkbox";
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import { Formik, Field, Form, FieldArray } from "formik";
-import uuid from 'uuid';
+import ShipmentSelect from "../Common/ShipmentSelect";
+import TransportSelect from "../Common/TransportSelect";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -43,16 +47,9 @@ const useStyles = makeStyles(theme => ({
 export default function CardForm() {
   const classes = useStyles();
 
-  function generateId() {
-    return uuid.v4();
-  }
-
-  const initialId = generateId()
-
   const initialValues = {
     shipments: [
       {
-        shipmentsId: initialId,
         shipmentsType: "",
         shipmentsOtherType: "",
         transportsType: "",
@@ -64,24 +61,14 @@ export default function CardForm() {
         isCa: false,
         isDg: false,
         isOpen: false,
-        isClose: false
-      }
-    ],
-    containers: [
-      {
-        containersId: initialId,
-        vehicleNo: "",
-        sealNo: "",
-        vgm: ""
-      }
-    ],
-    cargoes: [
-      {
-        cargoesId: initialId,
-        cargoName: "",
-        palletQuantity: "",
-        weight: "",
-        unNo: ""
+        isClose: false,
+        containers: [
+          {
+            vehicleNo: "",
+            sealNo: "",
+            vgm: ""
+          }
+        ]
       }
     ]
   };
@@ -134,6 +121,102 @@ export default function CardForm() {
                                 <AddBox/>
                               </IconButton>
                             </Typography>
+                              {values.shipments.length > 0 &&
+                                values.shipments.map((shipment, index) => (
+                                  <div key={index}>
+                                    <div>
+                                      <ShipmentSelect
+                                        className={classes.select}
+                                        name={`shipments.${index}.shipmentsType`}
+                                      />
+                                    </div>
+                                    {(() => {
+                                      if (shipment.shipmentsType.includes('other')) {
+                                        return (
+                                          <div className={classes.container}>
+                                          <Field
+                                            name={`shipments.${index}.shipmentsOtherType`}
+                                            component={TextField}
+                                            label="Specify Other Shipment"
+                                            className={classes.textField}
+                                            fullWidth
+                                          />
+                                          </div>
+                                        )
+                                      } else {
+                                        return (
+                                          <div></div>
+                                        )
+                                      }
+                                    })()}
+                                    <br/>
+                                    <div>
+                                      <TransportSelect
+                                        className={classes.select}
+                                        name={`shipments.${index}.transportsType`}
+                                      />
+                                    </div>
+                                    <div>
+                                      <Field
+                                        name={`shipments.${index}.noOfUnits`}
+                                        component={TextField}
+                                        label="Number of *"
+                                        id="units"
+                                        type="number"
+                                        className={classes.textField}
+                                        fullWidth
+                                        InputProps={{
+                                          endAdornment: <InputAdornment position="end">Units</InputAdornment>,
+                                          inputProps: { min: 1 }
+                                        }}
+                                      />
+                                    </div>
+                                    <div>
+                                      <Field
+                                        name={`shipments.${index}.ratePerUnit`}
+                                        component={TextField}
+                                        label="Rate Per Unit (Tax Excluded) *"
+                                        id="rate"
+                                        type="number"
+                                        className={classes.textField}
+                                        fullWidth
+                                      />
+                                    </div>
+                                    <div>
+                                      <Field
+                                        name={`shipments.${index}.currency`}
+                                        component={TextField}
+                                        disabled
+                                        id="currency"
+                                        label="Currency"
+                                        className={classes.textField}
+                                        fullWidth
+                                      />
+                                    </div>
+                                    <div>
+                                      <Checkbox name={`shipments.${index}.isFrost`} />
+                                      Frost
+                                      <Checkbox name={`shipments.${index}.isChiller`} />
+                                      Chiller
+                                      <Checkbox name={`shipments.${index}.isCa`} />
+                                      CA
+                                      <Checkbox name={`shipments.${index}.isDg`} />
+                                      DG
+                                      <Checkbox name={`shipments.${index}.isOpen`} />
+                                      Open
+                                      <Checkbox name={`shipments.${index}.isClose`} />
+                                      Close
+                                    </div>
+                                    <div>
+                                      <IconButton
+                                        className= {classes.iconButton}
+                                        onClick={() => remove(index)}
+                                      >
+                                        <DeleteBox/>
+                                      </IconButton>
+                                    </div>
+                                  </div>
+                              ))}
                           </div>
                         )}
                       />
@@ -170,6 +253,10 @@ export default function CardForm() {
                 </Paper>
               </Grid>
             </Grid>
+            {
+              //Uncomment the statement below to see how the form submission will look like
+              <pre>{JSON.stringify(values, null, 2)}</pre>
+            }
           </Form>
         );
       }}
