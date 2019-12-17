@@ -14,6 +14,8 @@ import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import { Formik, Field, Form, FieldArray } from "formik";
 import ShipmentSelect from "../Common/ShipmentSelect";
 import TransportSelect from "../Common/TransportSelect";
+import CardContainerForm from "./CardContainerForm";
+import CardCargoForm from "./CardCargoForm";
 import uuid from 'uuid';
 
 const useStyles = makeStyles(theme => ({
@@ -152,40 +154,14 @@ export default function CardForm() {
                               </div>
                               <Grid container spacing={3}>
                                 <Grid item xs={6}>
-                                  <Card className={classes.parentCard}>
-                                    <CardContent className={classes.parentCardContent}>
-                                      Container
-                                      <IconButton className={classes.parentCardContent}>
-                                        <AddBox/>
-                                      </IconButton>
-                                    </CardContent>
-                                    <Card className={classes.card}>
-                                      <CardContent>
-                                        <div>
-                                          Container A <br/>
-                                          <IconButton><DeleteBox/></IconButton>
-                                        </div>
-                                      </CardContent>
-                                    </Card>
-                                  </Card>
+                                  <CardContainerForm
+                                    shipmentId={values.shipments[index].shipmentsId} />
                                 </Grid>
                                 <Grid item xs={6}>
-                                  <Card className={classes.parentCard}>
-                                    <CardContent className={classes.parentCardContent}>
-                                      Cargo
-                                      <IconButton className={classes.parentCardContent}>
-                                        <AddBox/>
-                                      </IconButton>
-                                    </CardContent>
-                                    <Card className={classes.card}>
-                                      <CardContent>
-                                        <div>
-                                          Cargo A <br/>
-                                          <IconButton><DeleteBox/></IconButton>
-                                        </div>
-                                      </CardContent>
-                                    </Card>
-                                  </Card>
+                                  <CardCargoForm
+                                    shipmentId={values.shipments[index].shipmentsId}
+                                    containerId={values.containers[index].containersId}/>
+                                    {console.log("cid", values.containers[index].containersId)}
                                 </Grid>
                               </Grid>
                             </Grid>
