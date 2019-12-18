@@ -38,8 +38,6 @@ export default function CardCargoForm({ shipmentId, containerId }) {
   const classes = useStyles();
   return (
     <Card className={classes.parentCard}>
-      Hello {shipmentId} <br/>
-      Hello {containerId}
       <CardContent className={classes.parentCardContent}>
         Cargo
         <IconButton className={classes.parentCardContent}>

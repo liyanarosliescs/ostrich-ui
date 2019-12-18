@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
+import { Formik, Field, Form, FieldArray } from "formik";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -13,8 +14,8 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     padding: theme.spacing(1),
-    marginLeft: theme.spacing(7),
-    marginRight: theme.spacing(7),
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
     marginTop:theme.spacing(2),
     marginBottom: theme.spacing(2)
   },
@@ -36,23 +37,72 @@ const useStyles = makeStyles(theme => ({
 
 export default function CardContainerForm({ shipmentId }) {
   const classes = useStyles();
+
+  const initialValues = {
+    containers: [
+      {
+        shipmentsId: shipmentId,
+        vehicleNo: "",
+        sealNo: "",
+        vgm: ""
+      }
+    ]
+  };
+
   return (
-    <Card className={classes.parentCard}>
-      Hello {shipmentId}
-      <CardContent className={classes.parentCardContent}>
-        Container
-        <IconButton className={classes.parentCardContent}>
-          <AddBox/>
-        </IconButton>
-      </CardContent>
-      <Card className={classes.card}>
-        <CardContent>
-          <div>
-            Container A <br/>
-            <IconButton><DeleteBox/></IconButton>
-          </div>
-        </CardContent>
-      </Card>
-    </Card>
+    <Formik
+      initialValues={initialValues}>
+      {props => {
+        const {
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          dirty,
+          setFieldValue,
+          setFieldTouched,
+          isSubmitting
+        } = props;
+        return (
+          <Form>
+            <Card className={classes.parentCard}>
+              <FieldArray
+                name="containers"
+                render={({ remove, push }) => (
+                  <div className="headOfFieldArray">
+                    <CardContent className={classes.parentCardContent}>
+                      Container
+                      <IconButton
+                        className= {classes.parentCardContent}
+                        onClick={() => push({ vehicleNo: "", sealNo: "", vgm: "" })}>
+                        <AddBox/>
+                      </IconButton>
+                      {values.containers.length > 0 &&
+                        values.containers.map((container, index) => (
+                          <div>
+                            <Card className={classes.card}>
+                              <CardContent>
+                                <div>
+                                  Container A <br/>
+                                  <div>
+                                    <IconButton
+                                      onClick={() => remove(index)}>
+                                      <DeleteBox/>
+                                    </IconButton>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          </div>
+                      ))}
+                    </CardContent>
+                  </div>
+                )}
+              />
+            </Card>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 }

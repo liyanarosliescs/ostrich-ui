@@ -74,25 +74,6 @@ export default function CardForm() {
         isOpen: false,
         isClose: false
       }
-    ],
-    containers: [
-      {
-        shipmentsId: initialShipmentId,
-        containersId: initialContainerId,
-        vehicleNo: "",
-        sealNo: "",
-        vgm: ""
-      }
-    ],
-    cargoes: [
-      {
-        shipmentsId: initialShipmentId,
-        containersId: initialContainerId,
-        cargoName: "",
-        palletQuantity: "",
-        weight: "",
-        unNo: ""
-      }
     ]
   };
 
@@ -160,8 +141,7 @@ export default function CardForm() {
                                 <Grid item xs={6}>
                                   <CardCargoForm
                                     shipmentId={values.shipments[index].shipmentsId}
-                                    containerId={values.containers[index].containersId}/>
-                                    {console.log("cid", values.containers[index].containersId)}
+                                    containerId={"cid"}/>
                                 </Grid>
                               </Grid>
                             </Grid>
