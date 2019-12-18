@@ -81,7 +81,7 @@ export default function CardCargoForm({ shipmentId, containerId }) {
                       </IconButton>
                       {values.cargoes.length > 0 &&
                         values.cargoes.map((cargo, index) => (
-                          <div>
+                          <div key={index}>
                             <Card className={classes.card}>
                               <CardContent>
                                 <div>

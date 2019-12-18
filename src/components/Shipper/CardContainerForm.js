@@ -79,7 +79,7 @@ export default function CardContainerForm({ shipmentId }) {
                       </IconButton>
                       {values.containers.length > 0 &&
                         values.containers.map((container, index) => (
-                          <div>
+                          <div key={index}>
                             <Card className={classes.card}>
                               <CardContent>
                                 <div>
