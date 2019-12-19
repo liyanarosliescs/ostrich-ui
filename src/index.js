@@ -73,6 +73,7 @@ import TestForm26 from './components/Shipper/TestForm26'
 import TestForm27 from './components/Shipper/TestForm27'
 import TestForm28 from './components/Shipper/TestForm28'
 import CardForm from './components/Shipper/CardForm'
+import NestedObjectsForm from './components/Shipper/NestedObjectsForm'
 import TestSelectForm from './components/Shipper/TestSelectForm'
 
 const routing = (
@@ -126,6 +127,7 @@ const routing = (
       <Route exact path="/shipper/form27" component={TestForm27} />
       <Route exact path="/shipper/form28" component={TestForm28} />
       <Route exact path="/shipper/cardform" component={CardForm} />
+      <Route exact path="/shipper/nestedobjectsform" component={NestedObjectsForm} />
       <Route exact path="/shipper/selectform" component={TestSelectForm} />
       <Route exact path="/trucker/setting" component={TruckerSetting} />
       <Route exact path="/trucker/masterdata" component={MasterData} />
