@@ -21,6 +21,9 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(2),
     paddingRight: theme.spacing(4)
+  },
+  nestedContainer: {
+    marginLeft: theme.spacing(5)
   }
 }));
 
@@ -56,9 +59,9 @@ export default function ContainerForm() {
             <FieldArray
               name="containers"
               render={({ remove, push }) => (
-                <div className="headOfFieldArray">
+                <div className="headOfFieldArray" className={classes.nestedContainer}>
                   <Typography variant="h6" className={classes.title}>
-                    Container
+                    Containers
                     <IconButton
                       className= {classes.iconButton}
                       onClick={() => push({ vehicleNo: "", sealNo: "", vgm: "" })}>
@@ -68,6 +71,9 @@ export default function ContainerForm() {
                     {values.containers.length > 0 &&
                       values.containers.map((container, index) => (
                         <div>
+                          <Typography variant="body1">
+                            <strong>Container {index+1}</strong>
+                          </Typography>
                           <Grid container justify = "center">
                             <Grid item xs={4}>
                               <Field
@@ -85,7 +91,7 @@ export default function ContainerForm() {
                                 className={classes.textField}
                                 fullWidth/>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={3}>
                               <Field
                                 component={TextField}
                                 name={`containers.${index}.vgm`}
@@ -93,19 +99,24 @@ export default function ContainerForm() {
                                 className={classes.textField}
                                 fullWidth/>
                             </Grid>
+                            <Grid item xs={1}>
+                              <div>
+                                <IconButton
+                                  className= {classes.iconButton}
+                                  onClick={() => remove(index)}>
+                                  <DeleteBox/>
+                                </IconButton>
+                              </div>
+                            </Grid>
                           </Grid>
-                          <div>
-                            <Card className={classes.card}>
-                              <CargoForm/>
-                            </Card>
-                          </div>
-                          <div>
-                            <IconButton
-                              className= {classes.iconButton}
-                              onClick={() => remove(index)}>
-                              <DeleteBox/>
-                            </IconButton>
-                          </div>
+                          <Grid container justify = "center">
+                            <Grid item xs={12}>
+                              <div>
+                                <CargoForm/>
+                                <br/>
+                              </div>
+                            </Grid>
+                          </Grid>
                           {
                             //Uncomment the statement below to see how the form submission will look like
                             //<pre>{JSON.stringify(values, null, 2)}</pre>

@@ -16,6 +16,9 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(2),
     paddingRight: theme.spacing(4)
+  },
+  nestedCargo: {
+    marginLeft: theme.spacing(5)
   }
 }));
 
@@ -52,7 +55,7 @@ export default function CargoForm() {
             <FieldArray
               name="cargoes"
               render={({ remove, push }) => (
-                <div className="headOfFieldArray">
+                <div className="headOfFieldArray" className={classes.nestedCargo}>
                   <Typography variant="h6" className={classes.title}>
                     Cargo
                     <IconButton
@@ -64,8 +67,11 @@ export default function CargoForm() {
                   {values.cargoes.length > 0 &&
                     values.cargoes.map((cargo, index) => (
                       <div>
+                        <Typography variant="body1">
+                          <strong>Cargo {index+1}</strong>
+                        </Typography>
                         <Grid container justify = "center">
-                          <Grid item xs={6}>
+                          <Grid item xs={3}>
                             <Field
                               component={TextField}
                               name={`cargoes.${index}.cargoName`}
@@ -73,7 +79,7 @@ export default function CargoForm() {
                               className={classes.textField}
                               fullWidth />
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={3}>
                             <Field
                               component={TextField}
                               name={`cargoes.${index}.palletQuantity`}
@@ -81,9 +87,7 @@ export default function CargoForm() {
                               className={classes.textField}
                               fullWidth />
                           </Grid>
-                        </Grid>
-                        <Grid container justify = "center">
-                          <Grid item xs={6}>
+                          <Grid item xs={3}>
                             <Field
                               component={TextField}
                               name={`cargoes.${index}.weight`}
@@ -98,7 +102,7 @@ export default function CargoForm() {
                               }}
                             />
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={2}>
                             <Field
                               component={TextField}
                               name={`cargoes.${index}.unNo`}
@@ -107,14 +111,16 @@ export default function CargoForm() {
                               fullWidth
                             />
                           </Grid>
+                          <Grid item xs={1}>
+                            <div>
+                              <IconButton
+                                className= {classes.iconButton}
+                                onClick={() => remove(index)}>
+                                <DeleteBox/>
+                              </IconButton>
+                            </div>
+                          </Grid>
                         </Grid>
-                        <div>
-                          <IconButton
-                            className= {classes.iconButton}
-                            onClick={() => remove(index)}>
-                            <DeleteBox/>
-                          </IconButton>
-                        </div>
                         {
                           //Uncomment the statement below to see how the form submission will look like
                           //<pre>{JSON.stringify(values, null, 2)}</pre>
