@@ -19,6 +19,7 @@ export default function NestedObjectsForm() {
   const shipmentId1 = generateId()
   const shipmentId2 = generateId()
   const containerId1 = generateId()
+  const containerId2 = generateId()
 
   const initialValues = {
     shipments: [
@@ -37,9 +38,15 @@ export default function NestedObjectsForm() {
         containersId: containerId1,
         vehicleNo: "vehicle11",
         sealNo: "seal11",
+      },
+      {
+        shipmentsId: shipmentId2,
+        containersId: containerId2,
+        vehicleNo: "vehicle12",
+        sealNo: "seal12",
       }
     ],
-    cargo: [
+    cargoes: [
       {
           containersId: containerId1,
           cargoName: "cargoName2b1",
@@ -94,6 +101,30 @@ export default function NestedObjectsForm() {
                                       name={`containers.${i}.vehicleNo`} />
                                     <Field
                                       name={`containers.${i}.sealNo`} />
+                                    {values.cargoes.length > 0 &&
+                                      values.cargoes.map((cargo, v) => (
+                                        <div key={v} className={classes.nesting}>
+                                          <div>
+                                            {(() => {
+                                              if (values.containers[i].containersId === values.cargoes[v].containersId) {
+                                                return (
+                                                  <div>
+                                                    <Field
+                                                      name={`cargoes.${v}.cargoName`} />
+                                                    <Field
+                                                      name={`cargoes.${v}.palletQuantity`} />
+                                                  </div>
+                                                  )
+                                                } else {
+                                                  return (
+                                                    <div></div>
+                                                  )
+                                                }
+                                              })
+                                            ()}
+                                          </div>
+                                        </div>
+                                    ))}
                                   </div>
                                   )
                                 } else {
