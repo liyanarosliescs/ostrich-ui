@@ -8,6 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AddBox from "@material-ui/icons/AddBox";
 import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import { Formik, Field, Form, FieldArray } from "formik";
+import uuid from 'uuid';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -22,12 +23,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CargoForm() {
+export default function CargoForm({ containerId3, container, containerIndex }) {
   const classes = useStyles();
 
   const initialValues = {
     cargoes: [
       {
+        containersId: containerId3,
         cargoName: "raw meat",
         palletQuantity: "1",
         weight: "200",
@@ -51,86 +53,92 @@ export default function CargoForm() {
           isSubmitting
         } = props;
         return (
-          <Form>
-            <FieldArray
-              name="cargoes"
-              render={({ remove, push }) => (
-                <div className="headOfFieldArray" className={classes.nestedCargo}>
-                  <Typography variant="h6" className={classes.title}>
-                    Cargo
-                    <IconButton
-                      className= {classes.iconButton}
-                      onClick={() => push({ cargoName: "", palletQuantity: "", weight: "", unNo: "" })}>
-                      <AddBox/>
-                    </IconButton>
-                  </Typography>
-                  {values.cargoes.length > 0 &&
-                    values.cargoes.map((cargo, index) => (
-                      <div>
-                        <Typography variant="body1">
-                          <strong>Cargo {index+1}</strong>
-                        </Typography>
-                        <Grid container justify = "center">
-                          <Grid item xs={3}>
-                            <Field
-                              component={TextField}
-                              name={`cargoes.${index}.cargoName`}
-                              label="Cargo Name"
-                              className={classes.textField}
-                              fullWidth />
-                          </Grid>
-                          <Grid item xs={3}>
-                            <Field
-                              component={TextField}
-                              name={`cargoes.${index}.palletQuantity`}
-                              label="Pallet Quantity"
-                              className={classes.textField}
-                              fullWidth />
-                          </Grid>
-                          <Grid item xs={3}>
-                            <Field
-                              component={TextField}
-                              name={`cargoes.${index}.weight`}
-                              label="Weight"
-                              id="weight"
-                              type="number"
-                              className={classes.textField}
-                              fullWidth
-                              InputProps={{
-                                endAdornment: <InputAdornment position="end" style={{ width: "30px"}}>Kg</InputAdornment>,
-                                inputProps: { min: 1 }
-                              }}
-                            />
-                          </Grid>
-                          <Grid item xs={2}>
-                            <Field
-                              component={TextField}
-                              name={`cargoes.${index}.unNo`}
-                              label="UN No"
-                              className={classes.textField}
-                              fullWidth
-                            />
-                          </Grid>
-                          <Grid item xs={1}>
+          <FieldArray
+            name="cargoes"
+            render={({ remove, push }) => (
+              <div className="headOfFieldArray" className={classes.nestedCargo}>
+                <Typography variant="h6" className={classes.title}>
+                  Cargo
+                  <IconButton
+                    className= {classes.iconButton}
+                    onClick={() => push({ containersId: container[containerIndex].containersId, cargoName: "", palletQuantity: "", weight: "", unNo: "" })}>
+                    <AddBox/>
+                  </IconButton>
+                </Typography>
+                {values.cargoes.length > 0 &&
+                  values.cargoes.map((cargo, index) => (
+                    <div key={index}>
+                      {(() => {
+                        if (container[containerIndex].containersId === values.cargoes[index].containersId) {
+                          return (
                             <div>
-                              <IconButton
-                                className= {classes.iconButton}
-                                onClick={() => remove(index)}>
-                                <DeleteBox/>
-                              </IconButton>
+                              <Typography variant="body1">
+                                <strong>Cargo</strong>
+                              </Typography>
+                              <Grid container justify = "center">
+                                <Grid item xs={3}>
+                                  <Field
+                                    component={TextField}
+                                    name={`cargoes.${index}.cargoName`}
+                                    label="Cargo Name"
+                                    className={classes.textField}
+                                    fullWidth />
+                                </Grid>
+                                <Grid item xs={3}>
+                                  <Field
+                                    component={TextField}
+                                    name={`cargoes.${index}.palletQuantity`}
+                                    label="Pallet Quantity"
+                                    className={classes.textField}
+                                    fullWidth />
+                                </Grid>
+                                <Grid item xs={3}>
+                                  <Field
+                                    component={TextField}
+                                    name={`cargoes.${index}.weight`}
+                                    label="Weight"
+                                    id="weight"
+                                    type="number"
+                                    className={classes.textField}
+                                    fullWidth
+                                    InputProps={{
+                                      endAdornment: <InputAdornment position="end" style={{ width: "30px"}}>Kg</InputAdornment>,
+                                      inputProps: { min: 1 }
+                                    }}
+                                  />
+                                </Grid>
+                                <Grid item xs={2}>
+                                  <Field
+                                    component={TextField}
+                                    name={`cargoes.${index}.unNo`}
+                                    label="UN No"
+                                    className={classes.textField}
+                                    fullWidth
+                                  />
+                                </Grid>
+                                <Grid item xs={1}>
+                                  <div>
+                                    <IconButton
+                                      className= {classes.iconButton}
+                                      onClick={() => remove(index)}>
+                                      <DeleteBox/>
+                                    </IconButton>
+                                  </div>
+                                </Grid>
+                              </Grid>
+                              {
+                                //Uncomment the statement below to see how the form submission will look like
+                                //<pre>{JSON.stringify(values, null, 2)}</pre>
+                              }
                             </div>
-                          </Grid>
-                        </Grid>
-                        {
-                          //Uncomment the statement below to see how the form submission will look like
-                          //<pre>{JSON.stringify(values, null, 2)}</pre>
+                          )
                         }
-                      </div>
-                  ))}
-                </div>
-              )}
-            />
-          </Form>
+                      })()}
+                    </div>
+                ))}
+              </div>
+            )}
+          />
         );
       }}
     </Formik>
