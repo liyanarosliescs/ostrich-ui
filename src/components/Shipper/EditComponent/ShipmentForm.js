@@ -15,6 +15,7 @@ import ShipmentSelect from "../../Common/ShipmentSelect";
 import TransportSelect from "../../Common/TransportSelect";
 import { Checkbox } from "../../Common/Checkbox";
 import ContainerForm from './ContainerForm';
+import uuid from 'uuid';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -31,15 +32,30 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(2),
     paddingRight: theme.spacing(4)
+  },
+  nesting: {
+    marginLeft: theme.spacing(5)
   }
 }));
 
 export default function ShipmentForm() {
   const classes = useStyles();
 
+  function generateId() {
+    return uuid.v4();
+  }
+
+  const shipmentId1 = generateId()
+  const shipmentId2 = generateId()
+
+  const containerId1 = generateId()
+  const containerId2 = generateId()
+  const containerId3 = generateId()
+
   const initialValues = {
     shipments: [
       {
+        shipmentsId: shipmentId1,
         shipmentsType: "Single",
         shipmentsOtherType: "",
         transportsType: "20GP",
@@ -52,6 +68,53 @@ export default function ShipmentForm() {
         isDg: false,
         isOpen: false,
         isClose: false
+      },
+      {
+        shipmentsId: shipmentId2,
+        shipmentsType: "roundLive",
+        shipmentsOtherType: "",
+        transportsType: "40GP",
+        noOfUnits: "3",
+        ratePerUnit: "300",
+        currency: "SGD",
+        isFrost: false,
+        isChiller: false,
+        isCa: true,
+        isDg: true,
+        isOpen: false,
+        isClose: false
+      }
+    ],
+    containers: [
+      {
+        shipmentsId: shipmentId1,
+        containersId: containerId1,
+        vehicleNo: "SGH5643R",
+        sealNo: "GHT12345",
+        vgm: "HR6565"
+      },
+      {
+        shipmentsId: shipmentId1,
+        containersId: containerId2,
+        vehicleNo: "STH5776R",
+        sealNo: "GYR55667",
+        vgm: "YT7656"
+      },
+      {
+        shipmentsId: shipmentId2,
+        containersId: containerId3,
+        vehicleNo: "SRE7878T",
+        sealNo: "GYQ17654",
+        vgm: "YQ8978"
+      }
+    ],
+    cargoes: [
+      {
+        containersId: containerId3,
+        cargoName: "raw meat",
+        palletQuantity: "1",
+        weight: "200",
+        unNo: "FR123"
       }
     ]
   };
@@ -81,7 +144,7 @@ export default function ShipmentForm() {
                       Shipments
                       <IconButton
                         className= {classes.iconButton}
-                        onClick={() => push({ shipmentsType: "", transportsType: "", noOfUnits: "", ratePerUnit: "", currency: "SGD", isFrost: false, isChiller: false, isCa: false, isDg: false, isOpen: false, isClose: false   })}>
+                        onClick={() => push({ shipmentsId: generateId(), shipmentsType: "", transportsType: "", noOfUnits: "", ratePerUnit: "", currency: "SGD", isFrost: false, isChiller: false, isCa: false, isDg: false, isOpen: false, isClose: false   })}>
                         <AddBox/>
                       </IconButton>
                     </Typography>
@@ -91,7 +154,7 @@ export default function ShipmentForm() {
                             <Card className={classes.card}>
                               <div>
                                 <Typography variant="body1">
-                                  <strong>Shipment {index+1}</strong>
+                                  <strong>Shipment</strong>
                                 </Typography>
                                 <Grid container justify = "center">
                                   <Grid item xs={3}>
@@ -242,14 +305,167 @@ export default function ShipmentForm() {
                                   </Grid>
                                 </Grid>
                               </div>
-                              <div>
-                                <ContainerForm/>
+                              <div className={classes.nesting}>
+                                <FieldArray
+                                  name="containers"
+                                  render={({ remove, push }) => (
+                                    <div className="headOfFieldArray">
+                                      <Typography variant="h6" className={classes.title}>
+                                        Containers
+                                        <IconButton
+                                          className= {classes.iconButton}
+                                          onClick={() => push({ shipmentsId: values.shipments[index].shipmentsId, containersId: generateId(), vehicleNo: "", sealNo: "", vgm: "" })}>
+                                          <AddBox/>
+                                        </IconButton>
+                                      </Typography>
+                                      <div>
+                                        {values.containers.length > 0 &&
+                                          values.containers.map((container, i) => (
+                                            <div key={i}>
+                                              {(() => {
+                                                if (values.shipments[index].shipmentsId === values.containers[i].shipmentsId) {
+                                                  return (
+                                                    <div>
+                                                      <Typography variant="body1">
+                                                        <strong>Container </strong>
+                                                      </Typography>
+                                                      <Grid container justify = "center">
+                                                        <Grid item xs={4}>
+                                                          <Field
+                                                            component={TextField}
+                                                            className={classes.textField}
+                                                            name={`containers.${i}.vehicleNo`}
+                                                            label="Vehicle Number"
+                                                            fullWidth/>
+                                                        </Grid>
+                                                        <Grid item xs={4}>
+                                                          <Field
+                                                            component={TextField}
+                                                            name={`containers.${i}.sealNo`}
+                                                            label="Seal No"
+                                                            className={classes.textField}
+                                                            fullWidth/>
+                                                        </Grid>
+                                                        <Grid item xs={3}>
+                                                          <Field
+                                                            component={TextField}
+                                                            name={`containers.${i}.vgm`}
+                                                            label="VGM"
+                                                            className={classes.textField}
+                                                            fullWidth/>
+                                                        </Grid>
+                                                        <Grid item xs={1}>
+                                                          <div>
+                                                            <IconButton
+                                                              className= {classes.iconButton}
+                                                              onClick={() => remove(i)}>
+                                                              <DeleteBox/>
+                                                            </IconButton>
+                                                          </div>
+                                                        </Grid>
+                                                      </Grid>
+                                                      <div className={classes.nesting}>
+                                                        <FieldArray
+                                                          name="cargoes"
+                                                          render={({ remove, push }) => (
+                                                            <div className="headOfFieldArray">
+                                                              <Typography variant="h6" className={classes.title}>
+                                                                Cargoes
+                                                                <IconButton
+                                                                  className= {classes.iconButton}
+                                                                  onClick={() => push({ containersId: values.containers[i].containersId, cargoName: "", palletQuantity: "", weight: "", unNo: "" })}>
+                                                                  <AddBox/>
+                                                                </IconButton>
+                                                              </Typography>
+                                                              <div>
+                                                                {values.cargoes.length > 0 &&
+                                                                  values.cargoes.map((cargo, v) => (
+                                                                    <div key={i}>
+                                                                      {(() => {
+                                                                        if (values.containers[i].containersId === values.cargoes[v].containersId) {
+                                                                          return (
+                                                                            <div>
+                                                                              <Typography variant="body1">
+                                                                                <strong>Cargo</strong>
+                                                                              </Typography>
+                                                                              <Grid container justify = "center">
+                                                                                <Grid item xs={3}>
+                                                                                  <Field
+                                                                                    component={TextField}
+                                                                                    name={`cargoes.${v}.cargoName`}
+                                                                                    label="Cargo Name"
+                                                                                    className={classes.textField}
+                                                                                    fullWidth />
+                                                                                </Grid>
+                                                                                <Grid item xs={3}>
+                                                                                  <Field
+                                                                                    component={TextField}
+                                                                                    name={`cargoes.${v}.palletQuantity`}
+                                                                                    label="Pallet Quantity"
+                                                                                    className={classes.textField}
+                                                                                    fullWidth />
+                                                                                </Grid>
+                                                                                <Grid item xs={3}>
+                                                                                  <Field
+                                                                                    component={TextField}
+                                                                                    name={`cargoes.${v}.weight`}
+                                                                                    label="Weight"
+                                                                                    id="weight"
+                                                                                    type="number"
+                                                                                    className={classes.textField}
+                                                                                    fullWidth
+                                                                                    InputProps={{
+                                                                                      endAdornment: <InputAdornment position="end" style={{ width: "30px"}}>Kg</InputAdornment>,
+                                                                                      inputProps: { min: 1 }
+                                                                                    }}
+                                                                                  />
+                                                                                </Grid>
+                                                                                <Grid item xs={2}>
+                                                                                  <Field
+                                                                                    component={TextField}
+                                                                                    name={`cargoes.${v}.unNo`}
+                                                                                    label="UN No"
+                                                                                    className={classes.textField}
+                                                                                    fullWidth
+                                                                                  />
+                                                                                </Grid>
+                                                                                <Grid item xs={1}>
+                                                                                  <div>
+                                                                                    <IconButton
+                                                                                      className= {classes.iconButton}
+                                                                                      onClick={() => remove(v)}>
+                                                                                      <DeleteBox/>
+                                                                                    </IconButton>
+                                                                                  </div>
+                                                                                </Grid>
+                                                                              </Grid>
+                                                                            </div>
+                                                                          )
+                                                                        }
+                                                                      })()}
+                                                                    </div>
+                                                                ))}
+                                                              </div>
+                                                            </div>
+                                                          )}
+                                                        />
+                                                      </div>
+                                                    </div>
+                                                  )
+                                                }
+                                              })()}
+                                            </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )}
+                                />
                               </div>
-                              {
-                                //Uncomment the statement below to see how the form submission will look like
-                                //<pre>{JSON.stringify(values, null, 2)}</pre>
-                              }
                             </Card>
+                            {
+                              //Uncomment the statement below to see how the form submission will look like
+                              //<pre>{JSON.stringify(values, null, 2)}</pre>
+                            }
                           </div>
                       ))}
                   </div>
