@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { TextField } from 'formik-material-ui';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
@@ -18,19 +19,23 @@ import DeleteBox from "@material-ui/icons/IndeterminateCheckBox";
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik, Field, Form, FieldArray } from "formik";
 import { Checkbox } from "../../Common/Checkbox";
+import ContainerForm from './ContainerForm';
 import ShipmentSelect from "../../Common/ShipmentSelect";
 import TransportSelect from "../../Common/TransportSelect";
+import uuid from 'uuid';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 400,
+    padding: theme.spacing(2),
+    margin: theme.spacing(2)
   },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
   subtitle: {
-    textAlign: 'center'
+    textAlign: 'center',
+    color: "#3f51b5"
   },
   title: {
     marginLeft: theme.spacing(2),
@@ -38,9 +43,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(2),
   },
   textField: {
-    marginTop: theme.spacing(1),
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(2),
+    paddingRight: theme.spacing(4)
   },
   icon: {
     marginTop: theme.spacing(20),
@@ -52,7 +56,8 @@ const useStyles = makeStyles(theme => ({
     height: 70,
   },
   select: {
-    width: 300
+    padding: theme.spacing(1),
+    margin: theme.spacing(1)
   },
   formControl: {
     margin: theme.spacing(1),
@@ -65,9 +70,16 @@ const useStyles = makeStyles(theme => ({
 export default function ShipmentForm() {
   const classes = useStyles();
 
+  function generateId() {
+    return uuid.v4();
+  }
+
+  const shipmentId = generateId()
+
   const initialValues = {
     shipments: [
       {
+        shipmentsId: shipmentId,
         shipmentsType: "",
         shipmentsOtherType: "",
         transportsType: "",
@@ -81,329 +93,218 @@ export default function ShipmentForm() {
         isOpen: false,
         isClose: false
       }
-    ],
-    containers: [
-      {
-        vehicleNo: "",
-        sealNo: "",
-        vgm: ""
-      }
-    ],
-    cargoes: [
-      {
-        cargoName: "",
-        palletQuantity: "",
-        weight: "",
-        unNo: ""
-      }
     ]
   };
 
   return (
     <React.Fragment>
-    <Formik
-      initialValues={initialValues}>
-      {props => {
-        const {
-          values,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          dirty,
-          setFieldValue,
-          setFieldTouched,
-          isSubmitting
-        } = props;
-      return (
-      <Form>
-      <Typography variant="h6" gutterBottom>
-        Shipment Information
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Card className={classes.card}>
-          <FieldArray
-            name="shipments"
-            render={({ remove, push }) => (
-              <div>
-                <Typography variant="h6" className={classes.title}>
-                  Shipment
-                  <IconButton
-                    className= {classes.iconButton}
-                    onClick={() => push({ shipmentsType: "", transportsType: "", noOfUnits: "", ratePerUnit: "", currency: "SGD", isFrost: false, isChiller: false, isCa: false, isDg: false, isOpen: false, isClose: false   })}>
-                    <AddBox/>
-                  </IconButton>
-                </Typography>
-                <CardContent>
-                  {values.shipments.length > 0 &&
-                    values.shipments.map((shipment, index) => (
-                      <div key={index}>
-                        <div className={classes.container}>
-                          <ShipmentSelect
-                            className={classes.select}
-                            name={`shipments.${index}.shipmentsType`}
-                          />
-                        </div>
-                        {(() => {
-                          if (shipment.shipmentsType.includes('other')) {
-                            return (
-                              <div className={classes.container}>
-                              <Field
-                                name={`shipments.${index}.shipmentsOtherType`}
-                                component={TextField}
-                                label="Specify Other Shipment"
-                                className={classes.textField}
-                                fullWidth
-                              />
-                              </div>
-                            )
-                          } else {
-                            return (
-                              <div></div>
-                            )
-                          }
-                        })()}
-                        <br/>
-                        <div className={classes.container}>
-                          <TransportSelect
-                            className={classes.select}
-                            name={`shipments.${index}.transportsType`}
-                          />
-                        </div>
-                        <div className={classes.container}>
-                          <Field
-                            name={`shipments.${index}.noOfUnits`}
-                            component={TextField}
-                            label="Number of *"
-                            id="units"
-                            type="number"
-                            className={classes.textField}
-                            fullWidth
-                            InputProps={{
-                              endAdornment: <InputAdornment position="end">Units</InputAdornment>,
-                              inputProps: { min: 1 }
-                            }}
-                          />
-                        </div>
-                        <div className={classes.container}>
-                          <Field
-                            name={`shipments.${index}.ratePerUnit`}
-                            component={TextField}
-                            label="Rate Per Unit (Tax Excluded) *"
-                            id="rate"
-                            type="number"
-                            className={classes.textField}
-                            fullWidth
-                          />
-                        </div>
-                        <div className={classes.container}>
-                          <Field
-                            name={`shipments.${index}.currency`}
-                            component={TextField}
-                            disabled
-                            id="currency"
-                            label="Currency"
-                            className={classes.textField}
-                            fullWidth
-                          />
-                        </div>
-                        <div className={classes.container}>
-                          <Checkbox name={`shipments.${index}.isFrost`} />
-                          <p>Frost</p>
-                          <Checkbox name={`shipments.${index}.isChiller`} />
-                          <p>Chiller</p>
-                          <Checkbox name={`shipments.${index}.isCa`} />
-                          <p>CA</p>
-                          <Checkbox name={`shipments.${index}.isDg`} />
-                          <p>DG</p>
-                          <Checkbox name={`shipments.${index}.isOpen`} />
-                          <p>Open</p>
-                          <Checkbox name={`shipments.${index}.isClose`} />
-                          <p>Close</p>
-                        </div>
-                        <div className={classes.container}>
-                          <IconButton
-                            className= {classes.iconButton}
-                            onClick={() => remove(index)}
-                          >
-                            <DeleteBox/>
-                          </IconButton>
-                        </div>
-                      </div>
-                  ))}
-                </CardContent>
-              </div>
-            )}
-          />
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={1}>
-          <Box display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }}>
-            <JourneyIconHorizontal
-              className={classes.icon}
-            />
-          </Box>
-          <Box display={{ xs: 'block', sm: 'block', md: 'none', lg: 'none' }}>
-            <JourneyIconVertical
-              className={classes.icon}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Card className={classes.card}>
-            <FieldArray
-              name="containers"
-              render={({ remove, push }) => (
-                <div>
-                <Typography variant="h6" className={classes.title}>
-                  Container
-                  <IconButton
-                    className= {classes.iconButton}
-                    onClick={() => push({ vehicleNo: "", sealNo: "", vgm: "" })}>
-                    <AddBox/>
-                  </IconButton>
-                </Typography>
-                <CardContent>
-                  {values.containers.length > 0 &&
-                    values.containers.map((container, index) => (
-                      <div key={index}>
-                        <div className={classes.container}>
-                          <Field
-                            component={TextField}
-                            name={`containers.${index}.vehicleNo`}
-                            label="Vehicle Number"
-                            className={classes.textField}
-                            fullWidth/>
-                        </div>
-                        <div className={classes.container}>
-                          <Field
-                            component={TextField}
-                            name={`containers.${index}.sealNo`}
-                            label="Seal No"
-                            className={classes.textField}
-                            fullWidth/>
-                        </div>
-                        <div className={classes.container}>
-                          <Field
-                            component={TextField}
-                            name={`containers.${index}.vgm`}
-                            label="VGM"
-                            className={classes.textField}
-                            fullWidth/>
-                        </div>
-                        <div className={classes.container}>
-                          <IconButton
-                            className= {classes.iconButton}
-                            onClick={() => remove(index)}
-                          >
-                            <DeleteBox/>
-                          </IconButton>
-                        </div>
-                      </div>
-                    ))}
-                  </CardContent>
-                </div>
-              )}
-            />
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={1}>
-          <Box display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }}>
-            <JourneyIconHorizontal
-              className={classes.icon}
-            />
-          </Box>
-          <Box display={{ xs: 'block', sm: 'block', md: 'none', lg: 'none' }}>
-            <JourneyIconVertical
-              className={classes.icon}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Card className={classes.card}>
-          <FieldArray
-            name="cargoes"
-            render={({ remove, push }) => (
-              <div>
-              <Typography variant="h6" className={classes.title}>
-                Cargo
-                <IconButton
-                  className= {classes.iconButton}
-                  onClick={() => push({ cargoName: "", palletQuantity: "", weight: "", unNo: "" })}>
-                  <AddBox/>
-                </IconButton>
+      <Formik
+        initialValues={initialValues}>
+        {props => {
+          const {
+            values,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            dirty,
+            setFieldValue,
+            setFieldTouched,
+            isSubmitting
+          } = props;
+          return (
+            <Form>
+              <Typography variant="h6" gutterBottom>
+                Shipment Information
               </Typography>
-              <CardContent>
-                {values.cargoes.length > 0 &&
-                  values.cargoes.map((cargo, index) => (
-                    <div key={index}>
-                      <div className={classes.container}>
-                        <Field
-                          component={TextField}
-                          name={`cargoes.${index}.cargoName`}
-                          label="Cargo Name"
-                          className={classes.textField}
-                          fullWidth/>
-                      </div>
-                      <div className={classes.container}>
-                        <Field
-                          component={TextField}
-                          name={`cargoes.${index}.palletQuantity`}
-                          label="Pallet Quantity"
-                          className={classes.textField}
-                          fullWidth/>
-                      </div>
-                      <div className={classes.container}>
-                        <Field
-                          component={TextField}
-                          name={`cargoes.${index}.weight`}
-                          label="Weight"
-                          id="weight"
-                          type="number"
-                          className={classes.textField}
-                          fullWidth
-                          InputProps={{
-                            endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
-                            inputProps: { min: 1 }
-                          }}
-                        />
-                      </div>
-                      <div className={classes.container}>
-                        <Field
-                          component={TextField}
-                          name={`cargoes.${index}.unNo`}
-                          label="UN No"
-                          className={classes.textField}
-                          fullWidth
-                        />
-                      </div>
-                      <div className={classes.container}>
-                        <IconButton
-                          className= {classes.iconButton}
-                          onClick={() => remove(index)}
-                        >
-                          <DeleteBox/>
-                        </IconButton>
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </div>
-            )}
-          />
-          </Card>
-        </Grid>
-        {
-          //Uncomment the statement below to see how the form submission will look like
-          //<pre>{JSON.stringify(values, null, 2)}</pre>
-        }
-      </Grid>
-      </Form>
-    );
-  }}
-</Formik>
+              <FieldArray
+                name="shipments"
+                render={({ remove, push }) => (
+                  <div className="headOfFieldArray">
+                    <Typography variant="h6" className={classes.subtitle}>
+                      Shipments
+                      <IconButton
+                        className= {classes.iconButton}
+                        onClick={() => push({ shipmentsId: generateId(), shipmentsType: "", transportsType: "", noOfUnits: "", ratePerUnit: "", currency: "SGD", isFrost: false, isChiller: false, isCa: false, isDg: false, isOpen: false, isClose: false   })}>
+                        <AddBox/>
+                      </IconButton>
+                    </Typography>
+                    {values.shipments.length > 0 &&
+                      values.shipments.map((shipment, index) => (
+                        <div className="headOfForm">
+                          <Card className={classes.card}>
+                            <div>
+                              <Typography variant="body1">
+                                <strong>Shipment</strong>
+                              </Typography>
+                              <Grid container justify = "center">
+                                <Grid item xs={3}>
+                                  <Field
+                                    name={`shipments.${index}.shipmentsType`}
+                                    component={TextField}
+                                    label="Shipment Type"
+                                    disabled
+                                    className={classes.textField}
+                                    fullWidth
+                                    />
+                                </Grid>
+                                <Grid item xs={3}>
+                                  <Field
+                                    name={`shipments.${index}.transportsType`}
+                                    component={TextField}
+                                    label="Transport Type"
+                                    disabled
+                                    className={classes.textField}
+                                    fullWidth
+                                    />
+                                </Grid>
+                                <Grid item xs={2}>
+                                  <Field
+                                    name={`shipments.${index}.noOfUnits`}
+                                    component={TextField}
+                                    label="No of *"
+                                    id="units"
+                                    type="number"
+                                    className={classes.textField}
+                                    fullWidth
+                                    InputProps={{
+                                      endAdornment: <InputAdornment position="end" style={{ width: "50px"}}>Units</InputAdornment>,
+                                      inputProps: { min: 1 }
+                                    }}
+                                  />
+                                </Grid>
+                                <Grid item xs={2}>
+                                  <Field
+                                    name={`shipments.${index}.ratePerUnit`}
+                                    component={TextField}
+                                    label="Rate Per Unit *"
+                                    id="rate"
+                                    type="number"
+                                    className={classes.textField}
+                                    fullWidth
+                                  />
+                                </Grid>
+                                <Grid item xs={1}>
+                                  <Field
+                                    name={`shipments.${index}.currency`}
+                                    component={TextField}
+                                    disabled
+                                    id="currency"
+                                    label="Currency"
+                                    className={classes.textField}
+                                    fullWidth
+                                  />
+                                </Grid>
+                                <Grid item xs={1}>
+                                  <div>
+                                    <IconButton
+                                      className= {classes.iconButton}
+                                      onClick={() => remove(index)}
+                                      >
+                                      <DeleteBox/>
+                                    </IconButton>
+                                  </div>
+                                </Grid>
+                              </Grid>
+                              <Grid container justify = "center">
+                                <Grid item xs={3}>
+                                  <ShipmentSelect
+                                    className={classes.select}
+                                    name={`shipments.${index}.shipmentsType`}
+                                  />
+                                  {(() => {
+                                    if (shipment.shipmentsType.includes('other')) {
+                                      return (
+                                        <div className={classes.container}>
+                                        <Field
+                                          name={`shipments.${index}.shipmentsOtherType`}
+                                          component={TextField}
+                                          label="Specify Other Shipment"
+                                          className={classes.textField}
+                                          fullWidth
+                                          />
+                                          </div>
+                                        )
+                                      } else {
+                                        return (
+                                          <div></div>
+                                        )
+                                      }
+                                    })
+                                  ()}
+                                </Grid>
+                                <Grid item xs={3}>
+                                  <TransportSelect
+                                    className={classes.select}
+                                    name={`shipments.${index}.transportsType`}
+                                  />
+                                </Grid>
+                                <Grid item xs={6}>
+                                  <FormControlLabel
+                                    className={classes.textField}
+                                    control={
+                                      <Checkbox
+                                        name={`shipments.${index}.isFrost`} />
+                                    }
+                                    label="Frost"
+                                  />
+                                  <FormControlLabel
+                                    className={classes.textField}
+                                    control={
+                                      <Checkbox name={`shipments.${index}.isChiller`} />
+                                    }
+                                    label="Chiller"
+                                  />
+                                  <FormControlLabel
+                                    className={classes.textField}
+                                    control={
+                                      <Checkbox name={`shipments.${index}.isCa`} />
+                                    }
+                                    label="CA"
+                                  />
+                                  <FormControlLabel
+                                    className={classes.textField}
+                                    control={
+                                      <Checkbox name={`shipments.${index}.isDg`} />
+                                    }
+                                    label="DG"
+                                  />
+                                  <FormControlLabel
+                                    className={classes.textField}
+                                    control={
+                                      <Checkbox name={`shipments.${index}.isOpen`} />
+                                    }
+                                    label="Open"
+                                  />
+                                  <FormControlLabel
+                                    className={classes.textField}
+                                    control={
+                                      <Checkbox name={`shipments.${index}.isClose`} />
+                                    }
+                                    label="Close"
+                                  />
+                                </Grid>
+                              </Grid>
+                            </div>
+                            <div className={classes.nesting}>
+                              <ContainerForm
+                                shipmentId = {shipmentId}
+                                shipment={values.shipments}
+                                shipmentIndex={index}/>
+                            </div>
+                          </Card>
+                          {
+                            //Uncomment the statement below to see how the form submission will look like
+                            <pre>{JSON.stringify(values, null, 2)}</pre>
+                          }
+                        </div>
+                    ))}
+                  </div>
+                )}
+              />
+            </Form>
+          );
+        }}
+      </Formik>
     </React.Fragment>
   );
 }
