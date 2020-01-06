@@ -134,7 +134,7 @@ export default function ContainerForm({ shipmentId, shipment, shipmentIndex }) {
                                 </Grid>
                                 {
                                   //Uncomment the statement below to see how the form submission will look like
-                                  <pre>{JSON.stringify(values, null, 2)}</pre>
+                                  //<pre>{JSON.stringify(values, null, 2)}</pre>
                                 }
                               </div>
                             )
